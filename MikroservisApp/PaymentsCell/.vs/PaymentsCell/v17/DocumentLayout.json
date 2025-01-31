@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Zeraxo\\source\\repos\\MikroservisApp\\PaymentsCell\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|c:\\users\\zeraxo\\source\\repos\\mikroservisapp\\paymentscell\\paymentscell\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|solutionrelative:paymentscell\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|c:\\users\\zeraxo\\source\\repos\\mikroservisapp\\paymentscell\\paymentscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|solutionrelative:paymentscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "PaymentsCell\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "PaymentsCell\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T08:43:43.996Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Program.cs",
+              "RelativeDocumentMoniker": "PaymentsCell\\Program.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Program.cs",
+              "RelativeToolTip": "PaymentsCell\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T08:43:35.032Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

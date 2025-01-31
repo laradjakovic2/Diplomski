@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  competitions-service:
+    build:
+      context: ./CompetitionsCell/CompetitionsCell
+      dockerfile: Dockerfile
+    ports:
+      - "7001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  notifications-service:
+    build:
+      context: ./NotificationsCell/NotificationsCell
+      dockerfile: Dockerfile
+    ports:
+      - "7005:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  payments-service:
+    build:
+      context: ./PaymentsCell/PaymentsCell
+      dockerfile: Dockerfile
+    ports:
+      - "7002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  trainings-service:
+    build:
+      context: ./TrainingsCell/TrainingsCell
+      dockerfile: Dockerfile
+    ports:
+      - "7003:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  users-service:
+    build:
+      context: ./UsersCell/UsersCell
+      dockerfile: Dockerfile
+    ports:
+      - "7004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

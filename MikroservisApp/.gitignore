@@ -1,0 +1,87 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Dd]ata/
+[Tt]emp/
+[tT]emp/
+[Ll]ogs/
+[Ll]og/
+[Ll]og/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.isuser
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+
+# C++ auto-generated source
+*.idb
+*.pdb
+*.opendb
+*.tlog
+
+# Visual Studio profiler
+*.vsp
+*.vspx
+
+# TFS 2012 Local Workspace
+$tf/
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# Azure DevOps Server
+*.rdl.data
+
+# Microsoft Azure Web App publish settings
+*.Publish.xml
+
+# IIS Express
+/.vs/
+*.iisexpress/
+
+# Windows
+AppData/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
