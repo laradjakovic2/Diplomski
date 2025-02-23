@@ -82,6 +82,12 @@ AppData/
 ScaffoldingReadMe.txt
 
 # .NET Core
-project.lock.json
-project.fragment.lock.json
+.project.lock.json
+.project.fragment.lock.json
 artifacts/
+
+# Ignoriranje backup i bin datoteka
+*.backup
+*.backup.json
+*.bin
+.metadata.v9.bin

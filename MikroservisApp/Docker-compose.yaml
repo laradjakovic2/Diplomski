@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  competitions-service:
+  competitionscell:
     build:
       context: ./CompetitionsCell/CompetitionsCell
       dockerfile: Dockerfile
@@ -9,8 +9,9 @@ services:
       - "7001:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
 
-  notifications-service:
+  notificationscell:
     build:
       context: ./NotificationsCell/NotificationsCell
       dockerfile: Dockerfile
@@ -18,8 +19,9 @@ services:
       - "7005:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
 
-  payments-service:
+  paymentscell:
     build:
       context: ./PaymentsCell/PaymentsCell
       dockerfile: Dockerfile
@@ -27,8 +29,9 @@ services:
       - "7002:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
 
-  trainings-service:
+  trainingscell:
     build:
       context: ./TrainingsCell/TrainingsCell
       dockerfile: Dockerfile
@@ -36,8 +39,9 @@ services:
       - "7003:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
 
-  users-service:
+  userscell:
     build:
       context: ./UsersCell/UsersCell
       dockerfile: Dockerfile
@@ -45,3 +49,4 @@ services:
       - "7004:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
