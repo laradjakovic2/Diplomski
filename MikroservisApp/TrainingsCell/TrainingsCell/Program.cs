@@ -1,4 +1,6 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using MassTransit;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -20,9 +22,22 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("rabbitmq", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+    });
+});
+
+/* ovo otkomentirati za pokretanje sa dockerom*/
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(80);  // Listen on port 80
+    options.ListenAnyIP(5003);  // Listen on port 80
 });
 
 var app = builder.Build();

@@ -1,4 +1,5 @@
-﻿
+﻿using MassTransit;
+using UsersCell.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,9 +21,29 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<UserRegisteredForTrainingConsumer>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("rabbitmq", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.ReceiveEndpoint("user-registered-for-training-queue", e =>
+        {
+            e.ConfigureConsumer<UserRegisteredForTrainingConsumer>(context);
+        });
+    });
+});
+
+/* ovo otkomentirati za pokretanje sa dockerom*/
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(80);  // Listen on port 80
+    options.ListenAnyIP(5004);  // Listen on port 80
 });
 
 var app = builder.Build();

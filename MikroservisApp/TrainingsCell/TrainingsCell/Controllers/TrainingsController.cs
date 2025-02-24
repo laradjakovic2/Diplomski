@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using TrainingsCell.Entities;
+using TrainingsCell.Interfaces;
 
 namespace TrainingsCell.Controllers
 {
@@ -6,28 +9,44 @@ namespace TrainingsCell.Controllers
     [Route("[controller]")]
     public class TrainingsController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<TrainingsController> _logger;
+        private ITrainingsService _trainingsService { get; set; }
 
-        public TrainingsController(ILogger<TrainingsController> logger)
+        public TrainingsController(ILogger<TrainingsController> logger, ITrainingsService trainingsService)
         {
             _logger = logger;
+            _trainingsService = trainingsService;
         }
 
-        [HttpGet(Name = "GetTrainings")]
-        public IEnumerable<WeatherForecast> Get()
+        /*[HttpGet]
+        public IActionResult<IEnumerable<Training>> Get(int id)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+
+        }*/
+
+        [HttpPost]
+        public IActionResult Create()
+        {
+            return Created();
+        }
+
+        [HttpPut]
+        public IActionResult Update()
+        {
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete()
+        {
+            return Ok();
+        }
+
+        [HttpPost("{trainingId}/register/{userId}")]
+        public IActionResult RegisterUserForTraining(int trainingId, int userId)
+        {
+            _trainingsService.RegisterUserForTraining(userId, trainingId);
+            return Ok();
         }
     }
 }

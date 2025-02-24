@@ -1,0 +1,12 @@
+CompetitionsCell 7001:5001
+NotificationsCell 7005:5005
+PaymentsCell 7002:5002
+TrainingsCell 7003:5003
+UsersCell 7004:5004
+----------------------------------------------------------------
+
+posloziti portove
+rabbitmq
+swagger
+komunikacija medu servisimaidentity-autorizacija
+login

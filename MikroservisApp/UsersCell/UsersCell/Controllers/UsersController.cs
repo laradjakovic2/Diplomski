@@ -10,8 +10,8 @@ namespace UsersCell.Controllers
 
         private static IEnumerable<User> users = new List<User>
         {
-            new User { Id = 1, FirstName = "Lara", LastName = "Dakovic", Email = "laradjakovic00@gmail.com" },
-            new User { Id = 2, FirstName = "Ema", LastName = "Petrovic", Email = "ema.petrovic@example.com" },
+            new User { Id = 1, FirstName = "Lara", LastName = "Dakovic", Email = "laradjakovic00@gmail.com", Password="lara123!" },
+            new User { Id = 2, FirstName = "Marta", LastName = "Fer", Email = "lara.dakovic@fer.hr", Password="lara123!" },
         };
 
         private readonly ILogger<UsersController> _logger;
@@ -21,10 +21,28 @@ namespace UsersCell.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetUsers")]
+        [HttpGet]
         public IEnumerable<User> Get()
         {
             return users;
+        }
+
+        [HttpPut]
+        public IActionResult Create(CreateUserRequest request)
+        {
+            return NoContent();
+        }
+
+        [HttpPut]
+        public IActionResult Update(int id)
+        {
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            return NoContent();
         }
     }
 }
