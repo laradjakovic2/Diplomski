@@ -1,7 +1,7 @@
 ﻿using MassTransit;
-using MassTransit.Transports;
-using MassTransit.RabbitMqTransport;
 using TrainingsCell.Interfaces;
+using RabbitMQ.Client;
+using System.Text;
 
 namespace TrainingsCell.Services
 {
@@ -12,30 +12,28 @@ namespace TrainingsCell.Services
     }
     public class TrainingsService : ITrainingsService
     {
-        private readonly IPublishEndpoint _publishEndpoint;
-
-        public TrainingsService(IPublishEndpoint publishEndpoint)
-        {
-            _publishEndpoint = publishEndpoint;
-        }
         public async Task RegisterUserForTraining(int userId, int trainingId)
         {
-            /*var training = _dbContext.Trainings.Find(trainingId);
+            /*Rabbit mq sender*/
+            ConnectionFactory factory = new();
+            factory.Uri = new Uri("amqp://guest:guest@localhost:5672");
+            factory.ClientProvidedName = "Training App";
+            IConnection cnn = await factory.CreateConnectionAsync();
+            IChannel channel = await cnn.CreateChannelAsync();
+            string exchangeName = "UserRegisteredForTraining";
+            string routingKey = "tr-u";
+            string queueName = "TrainingUser";
+            await channel.ExchangeDeclareAsync(exchangeName, ExchangeType.Direct);
+            await channel.QueueDeclareAsync(queueName, false, false, false, null);
+            await channel.QueueBindAsync(queueName, exchangeName, routingKey, null);
 
-            if (training != null)
-            {
-                training.RegisteredUsers.Add(userId);
-                await _dbContext.SaveChangesAsync();
-
-                
-            }*/
-
-            // Šaljemo event u RabbitMQ
-            await _publishEndpoint.Publish(new UserRegisteredForTraining
-            {
-                UserId = userId,
-                TrainingId = trainingId
-            });
+            byte[] messageBodyBytes = Encoding.UTF8.GetBytes("Hello od Lare s treninga");
+            var props = new BasicProperties();
+            props.ContentType = "text/plain";
+            props.DeliveryMode = (DeliveryModes)2;
+            await channel.BasicPublishAsync(exchangeName, routingKey, mandatory: true, basicProperties: props, body: messageBodyBytes);
+            await channel.CloseAsync();
+            await cnn.CloseAsync();
         }
     }
 }

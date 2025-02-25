@@ -26,7 +26,7 @@ namespace UsersCell.Controllers
         {
             return users;
         }
-
+        /*
         [HttpPut]
         public IActionResult Create(CreateUserRequest request)
         {
@@ -37,7 +37,7 @@ namespace UsersCell.Controllers
         public IActionResult Update(int id)
         {
             return NoContent();
-        }
+        }*/
 
         [HttpDelete]
         public IActionResult Delete(int id)

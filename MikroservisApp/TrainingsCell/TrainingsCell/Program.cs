@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using TrainingsCell.Interfaces;
+using TrainingsCell.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,19 +23,9 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddMassTransit(x =>
-{
-    x.UsingRabbitMq((context, cfg) =>
-    {
-        cfg.Host("rabbitmq", h =>
-        {
-            h.Username("guest");
-            h.Password("guest");
-        });
-    });
-});
+builder.Services.AddScoped<ITrainingsService, TrainingsService>();
 
-/* ovo otkomentirati za pokretanje sa dockerom*/
+/* ovo otkomentirati za pokretanje sa dockerom ili u yaml podesiti da slusa na tom portu*/
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(5003);  // Listen on port 80
