@@ -1,6 +1,5 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System.ComponentModel.Design;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

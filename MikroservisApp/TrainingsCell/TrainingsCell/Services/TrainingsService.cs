@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using TrainingsCell.Interfaces;
+﻿using TrainingsCell.Interfaces;
 using RabbitMQ.Client;
 using System.Text;
 

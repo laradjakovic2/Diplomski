@@ -3,10 +3,13 @@ NotificationsCell 7005:5005
 PaymentsCell 7002:5002
 TrainingsCell 7003:5003
 UsersCell 7004:5004
+-kad pokrecem preko dockera app trebaju slusati na 80 ili myb bude radilo i ako eksplicitno napisem 5001...itd probati
 ----------------------------------------------------------------
+https://www.rabbitmq.com/client-libraries/dotnet-api-guide
+docker run -d --hostname rmq --name rabbit-server -p 8080:15672 -p 5672:5672 rabbitmq:3-management
 
 posloziti portove
 rabbitmq
-swagger
+api gateway
 komunikacija medu servisimaidentity-autorizacija
 login
