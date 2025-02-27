@@ -1,7 +1,4 @@
-﻿using MassTransit;
-using NotificationsCell.Consumers;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -19,25 +16,6 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials();
-    });
-});
-
-builder.Services.AddMassTransit(x =>
-{
-    x.AddConsumer<NewTrainingCreatedConsumer>();
-
-    x.UsingRabbitMq((context, cfg) =>
-    {
-        cfg.Host("rabbitmq", h =>  // **MORA BITI "rabbitmq" ako koristimo Docker Compose** inace localhost
-        {
-            h.Username("guest");
-            h.Password("guest");
-        });
-
-        cfg.ReceiveEndpoint("new-training-created-queue", e =>
-        {
-            e.ConfigureConsumer<NewTrainingCreatedConsumer>(context);
-        });
     });
 });
 

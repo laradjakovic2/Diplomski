@@ -1,5 +1,6 @@
 ﻿using TrainingsCell.Interfaces;
 using TrainingsCell.Services;
+using TrainingsCell;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Dodaj RabbitMQ Background Service
+builder.Services.AddScoped<IRabbitMqSender, RabbitMqSender>();
 builder.Services.AddScoped<ITrainingsService, TrainingsService>();
 
 /* ovo otkomentirati za pokretanje sa dockerom ili u yaml podesiti da slusa na tom portu*/
