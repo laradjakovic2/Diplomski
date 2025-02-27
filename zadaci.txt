@@ -7,8 +7,16 @@ UsersCell 7004:5004
 ----------------------------------------------------------------
 https://www.rabbitmq.com/client-libraries/dotnet-api-guide
 docker run -d --hostname rmq --name rabbit-server -p 8080:15672 -p 5672:5672 rabbitmq:3-management
-
-docker run -d --hostname rmq --name rabbit-server -p 8080:15672 -p 5672:5672 rabbitmq:3-management
+---------------------------------------------------------------------------
+ako jednom servisu saljemo poruku:
+ExchangeType.Direct - samo jedan servis prima poruku
+--------------------------------------------------------------------------
+ako dva servisa istu poruku
+-isti ExchangeType-dva razlicita queua
+ExchangeType.Fanout
+--------------------------------------------------------------------------
+ako dva servisa razlicitu poruku
+-isti exchange i razliciti routing kljucevi - npr ako povezana tematski poruka (ili razliciti exchange ako tematski odvojene)
 
 posloziti portove
 rabbitmq

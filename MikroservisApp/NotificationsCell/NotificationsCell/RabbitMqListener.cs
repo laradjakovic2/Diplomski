@@ -1,15 +1,12 @@
-﻿using System.Threading.Channels;
-
-namespace UsersCell;
+﻿
+namespace NotificationsCell;
 
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Channels;
 using System.Threading.Tasks;
 
 public class RabbitMqListener : BackgroundService
@@ -22,7 +19,7 @@ public class RabbitMqListener : BackgroundService
 
     private readonly Dictionary<string, string> _queues = new()
     {
-        { "training-user", "training-user" },
+        { "training-notification", "training-notification" }
     };
 
     private readonly List<string> _consumerTags = new();
@@ -47,7 +44,7 @@ public class RabbitMqListener : BackgroundService
         {
             await _channel.QueueDeclareAsync(queueName, false, false, false, null);
             await _channel.QueueBindAsync(queueName, ExchangeName, routingKey, null);
-            await _channel.BasicQosAsync(0, 1, false);
+            await _channel.BasicQosAsync(0, 1, false); // Procesiraj jednu poruku odjednom
 
             var consumer = new AsyncEventingBasicConsumer(_channel);
             consumer.ReceivedAsync += async (sender, args) =>
@@ -76,7 +73,7 @@ public class RabbitMqListener : BackgroundService
         {
             foreach (var tag in _consumerTags)
             {
-               await _channel.BasicCancelAsync(tag);
+                await _channel.BasicCancelAsync(tag);
             }
 
             await _channel.CloseAsync();

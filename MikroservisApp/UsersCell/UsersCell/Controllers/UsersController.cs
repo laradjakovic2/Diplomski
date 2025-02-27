@@ -39,7 +39,7 @@ namespace UsersCell.Controllers
             return NoContent();
         }*/
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             return NoContent();

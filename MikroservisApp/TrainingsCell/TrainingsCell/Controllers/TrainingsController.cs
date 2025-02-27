@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using TrainingsCell.Entities;
 using TrainingsCell.Interfaces;
+using TrainingsCell.Services;
 
 namespace TrainingsCell.Controllers
 {
@@ -25,27 +26,30 @@ namespace TrainingsCell.Controllers
         }*/
 
         [HttpPost]
-        public IActionResult Create()
+        public async Task<IActionResult> Create([FromBody] Training request)
         {
+            await _trainingsService.Create(request);
             return Created();
         }
 
         [HttpPut]
-        public IActionResult Update()
+        public async Task<IActionResult> Update([FromBody] Training request)
         {
+            await _trainingsService.Update(request);
             return Ok();
         }
 
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
+            await _trainingsService.Delete(id);
             return Ok();
         }
 
-        [HttpPost("{trainingId}/register/{userId}")]
-        public IActionResult RegisterUserForTraining(int trainingId, int userId)
+        [HttpPost("register-user-for-training")]
+        public IActionResult RegisterUserForTraining([FromBody] UserRegisteredForTraining request)
         {
-            _trainingsService.RegisterUserForTraining(userId, trainingId);
+            _trainingsService.RegisterUserForTraining(request);
             return Ok();
         }
     }

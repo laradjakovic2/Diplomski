@@ -11,12 +11,16 @@ public class RabbitMqSender : IRabbitMqSender
     private IConnection? _connection;
     private IChannel? _channel;
 
-    private const string ExchangeName = "UserRegisteredForTraining";
-    private const string RoutingKey = "tr-u";
-    private const string QueueName = "TrainingUser";
+    private string _exchangeName;
+    private string _routingKey;
+    private string _queueName;
 
-    public RabbitMqSender()
+    public RabbitMqSender(string exchangeName, string routingKey, string queueName)
     {
+        _exchangeName = exchangeName;
+        _routingKey = routingKey;
+        _queueName = queueName;
+
         _factory = new ConnectionFactory
         {
             Uri = new Uri("amqp://guest:guest@localhost:5672"),
@@ -35,11 +39,12 @@ public class RabbitMqSender : IRabbitMqSender
         _connection = await _factory.CreateConnectionAsync();
         _channel = await _connection.CreateChannelAsync();
 
-        await _channel.ExchangeDeclareAsync(ExchangeName, ExchangeType.Direct);
-        await _channel.QueueDeclareAsync(QueueName, false, false, false, null);
-        await _channel.QueueBindAsync(QueueName, ExchangeName, RoutingKey, null);
+        await _channel.ExchangeDeclareAsync(_exchangeName, ExchangeType.Direct);
+        //await _channel.QueueDeclareAsync(_queueName, false, false, false, null);
+        //await _channel.QueueBindAsync(_queueName, _exchangeName, _routingKey, null);
 
-        await _channel.BasicPublishAsync(ExchangeName, RoutingKey, mandatory: true, basicProperties: _props, body: messageBodyBytes);
+        await _channel.BasicPublishAsync(_exchangeName, _routingKey, mandatory: true, basicProperties: _props, body: messageBodyBytes);
+
         await _channel.CloseAsync();
         await _connection.CloseAsync();
     }

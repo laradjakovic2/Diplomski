@@ -1,4 +1,6 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using NotificationsCell;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -18,6 +20,9 @@ builder.Services.AddCors(options =>
                .AllowCredentials();
     });
 });
+
+// Dodaj RabbitMQ Background Service
+builder.Services.AddHostedService<RabbitMqListener>();
 
 /* ovo otkomentirati za pokretanje sa dockerom*/
 builder.WebHost.ConfigureKestrel(options =>
