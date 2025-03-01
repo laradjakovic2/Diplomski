@@ -6,5 +6,7 @@
         public string Description { get; set; }
         public string Name { get; set; }
         public DateTime TrainingDateTime { get; set; }
+
+        public int RankingId { get; set; }
     }
 }

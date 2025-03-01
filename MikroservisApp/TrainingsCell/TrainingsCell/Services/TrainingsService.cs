@@ -12,17 +12,20 @@ namespace TrainingsCell.Services
     }
     public class TrainingsService : ITrainingsService
     {
+        private AppDbContext _context;
         public IRabbitMqSender _rabbitMqSenderUsers;
         public IRabbitMqSender _rabbitMqSenderNotifications;
-        public TrainingsService()
+        public TrainingsService(AppDbContext context)
         {
             _rabbitMqSenderUsers = new RabbitMqSender("UserRegisteredForTraining", "training-user", "training-user");
             _rabbitMqSenderNotifications = new RabbitMqSender("UserRegisteredForTraining", "training-notification", "training-notification");
+            _context = context;
         }
 
         public async Task Create(Training request)
         {
-            
+            _context.Add(request);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Update(Training request)
