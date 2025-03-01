@@ -1,8 +1,11 @@
+APIGateway 5018
+
 CompetitionsCell 7001:5001
 NotificationsCell 7005:5005
 PaymentsCell 7002:5002
 TrainingsCell 7003:5003
 UsersCell 7004:5004
+
 -kad pokrecem preko dockera app trebaju slusati na 80 ili myb bude radilo i ako eksplicitno napisem 5001...itd probati
 ----------------------------------------------------------------
 https://www.rabbitmq.com/client-libraries/dotnet-api-guide
@@ -16,12 +19,10 @@ ako dva servisa istu poruku
 ExchangeType.Fanout
 --------------------------------------------------------------------------
 ako dva servisa razlicitu poruku
--isti exchange i razliciti routing kljucevi - npr ako povezana tematski poruka (ili razliciti exchange ako tematski odvojene)
+-isti exchange i razliciti routing kljucevi i queue - npr ako povezana tematski poruka (ili razliciti exchange ako tematski odvojene)
 
-posloziti portove
-rabbitmq
-swagger
-rabbitmq - dodati jos u appsetting konfiguraciju
-api gateway
-komunikacija medu servisimaidentity-autorizacija
+
+baza treninzi
+baza users
+jwt token-autorizacija
 login

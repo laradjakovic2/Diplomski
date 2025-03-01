@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\UsersCell\\",
+  "WorkspaceRootPath": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\userscell\\userscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\userscell\\userscell\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,34 +18,29 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Controllers\\UsersController.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "UsersCell\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Controllers\\UsersController.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Controllers\\UsersController.cs",
               "RelativeToolTip": "UsersCell\\Controllers\\UsersController.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAACcAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:20:20.017Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T09:20:20.017Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Program.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Program.cs",
               "RelativeDocumentMoniker": "UsersCell\\Program.cs",
-              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Program.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Program.cs",
               "RelativeToolTip": "UsersCell\\Program.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAAACsAAAAEAAAA",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAACsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-25T08:47:24.963Z",
               "EditorCaption": ""

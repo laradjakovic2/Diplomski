@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentsCell", "PaymentsCel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingsCell", "TrainingsCell\TrainingsCell\TrainingsCell.csproj", "{A553F4D5-5C98-4DC3-9A6A-BB3239F8C049}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\APIGateway.csproj", "{6ADFF165-B5C1-4071-825E-31F715E3446A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A553F4D5-5C98-4DC3-9A6A-BB3239F8C049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A553F4D5-5C98-4DC3-9A6A-BB3239F8C049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A553F4D5-5C98-4DC3-9A6A-BB3239F8C049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ADFF165-B5C1-4071-825E-31F715E3446A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADFF165-B5C1-4071-825E-31F715E3446A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADFF165-B5C1-4071-825E-31F715E3446A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADFF165-B5C1-4071-825E-31F715E3446A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
