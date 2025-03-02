@@ -2,8 +2,6 @@
 using TrainingsCell.Services;
 using TrainingsCell;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

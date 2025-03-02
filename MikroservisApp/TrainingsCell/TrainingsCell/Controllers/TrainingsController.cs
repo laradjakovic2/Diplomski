@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using TrainingsCell.Entities;
 using TrainingsCell.Interfaces;
 using TrainingsCell.Services;
@@ -19,11 +20,19 @@ namespace TrainingsCell.Controllers
             _trainingsService = trainingsService;
         }
 
-        /*[HttpGet]
-        public IActionResult<IEnumerable<Training>> Get(int id)
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
+            var result = await _trainingsService.GetAll();
+            return Ok(result);
+        }
 
-        }*/
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await _trainingsService.Get(id);
+            return Ok(result);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Training request)

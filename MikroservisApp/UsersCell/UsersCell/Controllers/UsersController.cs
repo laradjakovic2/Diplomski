@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using UsersCell.Models;
+using System.Threading.Tasks;
+using UsersCell.Interfaces;
+using UsersCell.Entities;
 
 namespace UsersCell.Controllers
 {
@@ -7,42 +9,47 @@ namespace UsersCell.Controllers
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
-
-        private static IEnumerable<User> users = new List<User>
-        {
-            new User { Id = 1, FirstName = "Lara", LastName = "Dakovic", Email = "laradjakovic00@gmail.com", Password="lara123!" },
-            new User { Id = 2, FirstName = "Marta", LastName = "Fer", Email = "lara.dakovic@fer.hr", Password="lara123!" },
-        };
+        IUsersService _usersService;
 
         private readonly ILogger<UsersController> _logger;
 
-        public UsersController(ILogger<UsersController> logger)
+        public UsersController(ILogger<UsersController> logger, IUsersService userService)
         {
             _logger = logger;
+            _usersService = userService;
         }
 
         [HttpGet]
-        public IEnumerable<User> Get()
+        public async Task<IActionResult> GetAll()
         {
-            return users;
+            var result = await _usersService.GetAll();
+            return Ok(result);
         }
-        /*
-        [HttpPut]
-        public IActionResult Create(CreateUserRequest request)
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
         {
-            return NoContent();
+            var result = await _usersService.Get(id);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(User request)
+        {
+            await _usersService.Create(request);
+            return Created();
         }
 
         [HttpPut]
-        public IActionResult Update(int id)
+        public IActionResult Update(User request)
         {
-            return NoContent();
-        }*/
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return NoContent();
+            return Ok();
         }
     }
 }

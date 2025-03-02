@@ -38,36 +38,42 @@ public class RabbitMqListener : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _connection = await _factory.CreateConnectionAsync();
-        _channel = await _connection.CreateChannelAsync();
-
-        await _channel.ExchangeDeclareAsync(ExchangeName, ExchangeType.Direct);
-
-        foreach (var (queueName, routingKey) in _queues)
+        try
         {
-            await _channel.QueueDeclareAsync(queueName, false, false, false, null);
-            await _channel.QueueBindAsync(queueName, ExchangeName, routingKey, null);
-            await _channel.BasicQosAsync(0, 1, false);
+            _connection = await _factory.CreateConnectionAsync();
+            _channel = await _connection.CreateChannelAsync();
 
-            var consumer = new AsyncEventingBasicConsumer(_channel);
-            consumer.ReceivedAsync += async (sender, args) =>
+            await _channel.ExchangeDeclareAsync(ExchangeName, ExchangeType.Direct);
+
+            foreach (var (queueName, routingKey) in _queues)
             {
-                var body = args.Body.ToArray();
-                string message = Encoding.UTF8.GetString(body);
-                var deserialized = JsonSerializer.Deserialize<object>(message);
+                await _channel.QueueDeclareAsync(queueName, false, false, false, null);
+                await _channel.QueueBindAsync(queueName, ExchangeName, routingKey, null);
+                await _channel.BasicQosAsync(0, 1, false);
 
-                Console.WriteLine($"[Queue: {queueName}] Primljena poruka: {message}");
+                var consumer = new AsyncEventingBasicConsumer(_channel);
+                consumer.ReceivedAsync += async (sender, args) =>
+                {
+                    var body = args.Body.ToArray();
+                    string message = Encoding.UTF8.GetString(body);
+                    var deserialized = JsonSerializer.Deserialize<object>(message);
 
-                //spremi ili nesto
+                    Console.WriteLine($"[Queue: {queueName}] Primljena poruka: {message}");
 
-                await _channel.BasicAckAsync(args.DeliveryTag, false);
-            };
+                    //spremi ili nesto
 
-            string consumerTag = await _channel.BasicConsumeAsync(queue: queueName, autoAck: false, consumer: consumer);
-            _consumerTags.Add(consumerTag);
+                    await _channel.BasicAckAsync(args.DeliveryTag, false);
+                };
+
+                string consumerTag = await _channel.BasicConsumeAsync(queue: queueName, autoAck: false, consumer: consumer);
+                _consumerTags.Add(consumerTag);
+            }
         }
+        catch
+        {
 
-        await Task.Delay(Timeout.Infinite, stoppingToken);
+        }
+        
     }
 
     public override async Task StopAsync(CancellationToken cancellationToken)

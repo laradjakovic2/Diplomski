@@ -1,6 +1,21 @@
 ﻿using UsersCell;
+using Microsoft.EntityFrameworkCore;
+using UsersCell.Interfaces;
+using UsersCell.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddScoped<IUsersService, UsersService>();
+
+// Dodaj RabbitMQ Background Service
+builder.Services.AddHostedService<RabbitMqListener>();
+
+//DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Database"));
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -19,9 +34,6 @@ builder.Services.AddCors(options =>
                .AllowCredentials();
     });
 });
-
-// Dodaj RabbitMQ Background Service
-builder.Services.AddHostedService<RabbitMqListener>();
 
 // Kestrel konfiguracija za Docker
 builder.WebHost.ConfigureKestrel(options =>

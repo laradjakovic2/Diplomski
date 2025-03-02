@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\rabbitmqlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\rabbitmqlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\interfaces\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\interfaces\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\userscell\\userscell\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01EBADA6-B638-41D6-A504-8FD777DC55B7}|UsersCell\\UsersCell.csproj|solutionrelative:userscell\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +34,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RabbitMqListener.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\RabbitMqListener.cs",
+              "RelativeDocumentMoniker": "UsersCell\\RabbitMqListener.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\RabbitMqListener.cs",
+              "RelativeToolTip": "UsersCell\\RabbitMqListener.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAUwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T17:23:07.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Program.cs",
+              "RelativeDocumentMoniker": "UsersCell\\Program.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Program.cs",
+              "RelativeToolTip": "UsersCell\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T17:14:09.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IUsersService.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Interfaces\\IUsersService.cs",
+              "RelativeDocumentMoniker": "UsersCell\\Interfaces\\IUsersService.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Interfaces\\IUsersService.cs",
+              "RelativeToolTip": "UsersCell\\Interfaces\\IUsersService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T17:08:44.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsersService.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Services\\UsersService.cs",
+              "RelativeDocumentMoniker": "UsersCell\\Services\\UsersService.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Services\\UsersService.cs",
+              "RelativeToolTip": "UsersCell\\Services\\UsersService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T17:08:34.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "UsersCell\\AppDbContext.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\AppDbContext.cs",
+              "RelativeToolTip": "UsersCell\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T16:34:23.585Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -28,21 +109,9 @@
               "RelativeDocumentMoniker": "UsersCell\\Controllers\\UsersController.cs",
               "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Controllers\\UsersController.cs",
               "RelativeToolTip": "UsersCell\\Controllers\\UsersController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAACcAAAALAAAA",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwAMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:20:20.017Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Program.cs",
-              "RelativeDocumentMoniker": "UsersCell\\Program.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\UsersCell\\UsersCell\\Program.cs",
-              "RelativeToolTip": "UsersCell\\Program.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAACsAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T08:47:24.963Z",
+              "WhenOpened": "2025-02-25T09:20:20.017Z",
               "EditorCaption": ""
             }
           ]

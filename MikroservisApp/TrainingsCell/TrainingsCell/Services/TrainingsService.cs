@@ -22,6 +22,16 @@ namespace TrainingsCell.Services
             _context = context;
         }
 
+        public async Task<List<Training>> GetAll()
+        {
+            return _context.Trainings.ToList();
+        }
+
+        public async Task<Training> Get(int id)
+        {
+            return _context.Trainings.Where(t => t.Id == id).SingleOrDefault();
+        }
+
         public async Task Create(Training request)
         {
             _context.Add(request);
