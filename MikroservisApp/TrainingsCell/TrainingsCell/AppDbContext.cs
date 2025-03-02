@@ -6,17 +6,7 @@ namespace TrainingsCell
 {
     public class AppDbContext : DbContext
     {
-        protected readonly IConfiguration Configuration;
-
-        public AppDbContext(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(Configuration.GetConnectionString("Database"));
-        }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Training> Trainings { get; set; }
     }

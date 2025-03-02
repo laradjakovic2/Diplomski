@@ -2,8 +2,19 @@
 using TrainingsCell.Services;
 using TrainingsCell;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddScoped<ITrainingsService, TrainingsService>();
+
+//DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Database"));
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -22,11 +33,6 @@ builder.Services.AddCors(options =>
                .AllowCredentials();
     });
 });
-
-// Add services to the container.
-builder.Services.AddDbContext<AppDbContext>();
-// Dodaj RabbitMQ Background Service
-builder.Services.AddScoped<ITrainingsService, TrainingsService>();
 
 /* ovo otkomentirati za pokretanje sa dockerom ili u yaml podesiti da slusa na tom portu*/
 builder.WebHost.ConfigureKestrel(options =>
