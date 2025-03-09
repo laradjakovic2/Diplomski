@@ -21,8 +21,13 @@ ExchangeType.Fanout
 ako dva servisa razlicitu poruku
 -isti exchange i razliciti routing kljucevi i queue - npr ako povezana tematski poruka (ili razliciti exchange ako tematski odvojene)
 
+-------------------------------------------------------------------------------------------------
 
-baza treninzi
-baza users
+TODO:
+baza users-hashiranje password
+baza model
+napravit baze competitions, users i trainings
+
+
 jwt token-autorizacija
 login
