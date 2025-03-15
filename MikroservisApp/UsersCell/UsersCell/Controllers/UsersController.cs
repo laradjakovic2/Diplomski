@@ -41,14 +41,18 @@ namespace UsersCell.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(User request)
+        public async Task<IActionResult> Update(User request)
         {
+            await _usersService.Update(request);
+
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _usersService.Delete(id);
+
             return Ok();
         }
     }

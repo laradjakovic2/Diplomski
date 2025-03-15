@@ -24,10 +24,13 @@ ako dva servisa razlicitu poruku
 -------------------------------------------------------------------------------------------------
 
 TODO:
-baza users-hashiranje password
-baza model
-napravit baze competitions, users i trainings
 
+crud za trainings - ako posaljem typeId onda kreira novi - treba novi Model za bez toga
+crud competitions
+
+baza notifications
+
+baza users-hashiranje password
 
 jwt token-autorizacija
 login

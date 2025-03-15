@@ -61,5 +61,19 @@ namespace TrainingsCell.Controllers
             _trainingsService.RegisterUserForTraining(request);
             return Ok();
         }
+
+        [HttpPost("register-user-for-membership")]
+        public async Task<IActionResult> Create([FromBody] TrainingTypeMembership request)
+        {
+            await _trainingsService.RegisterUserForTrainingType(request);
+            return Ok();
+        }
+
+        [HttpPut("update-score")]
+        public async Task<IActionResult> Update([FromBody] Registration request)
+        {
+            await _trainingsService.UpdateScore(request);
+            return Ok();
+        }
     }
 }

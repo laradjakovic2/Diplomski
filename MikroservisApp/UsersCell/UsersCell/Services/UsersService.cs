@@ -28,12 +28,23 @@ namespace UsersCell.Services
 
         public async Task Update(User request)
         {
+            var user = _context.Users.Where(user => user.Id == request.Id).SingleOrDefault();
 
+            user.FirstName = request.FirstName;
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
         {
+            var user = _context
+                .Users
+                .Where(user => user.Id == id)
+                .SingleOrDefault();
 
+            _context.Remove(user);
+
+            await _context.SaveChangesAsync();
         }
     }
 }
