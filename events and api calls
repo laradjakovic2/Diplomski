@@ -1,7 +1,5 @@
 Mikroservis------------------------Sinkronizacija i komunikacija ------------------------	Opis
-Users → Trainings	-----------------Event (user_created, user_updated)	-------Kada se korisnik prijavi na trening, Trainings servis sprema podatke o korisniku (npr. email).
-Users → Competitions	-------------Event (user_created, user_updated)	-------Kada korisnik promijeni podatke, Competitions servis ažurira podatke o prijavi.
-Payments → Trainings	-------------Event (payment_successful)--------------  Kada korisnik plati članarinu, Trainings servis omogućava pristup treningu.
 Trainings → Notifications	---------Event (training_registered)------------	Kada korisnik prijavi trening, Notifications servis šalje email potvrde.
+Competitions → Notifications	---------Event (competition_registered)------------	Kada korisnik prijavi natjecanje, Notifications servis šalje email potvrde.
 Competitions → Payments	-------------Event (competition_registration_succ)----	Kada se korisnik prijavi na natjecanje, Payments servis traži uplatu kotizacije.
 Media → Trainings / Competitions--- 	API poziv	------------------------------Treninzi i natjecanja dohvaćaju slike putem API-ja iz Media servisa.
