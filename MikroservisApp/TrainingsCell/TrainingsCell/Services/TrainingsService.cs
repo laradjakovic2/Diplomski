@@ -12,6 +12,29 @@ namespace TrainingsCell.Services
 
         public string UserEmail { get; set; }
     }
+
+    public class CreateTrainingTypeMembership
+    {
+        public int UserId { get; set; }
+
+        public int TrainingTypeId { get; set; }
+    }
+
+    public class CreateTraining
+    {
+        public string? Description { get; set; }
+        public string? Title { get; set; }
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public int TrainerId { get; set; }
+
+        public string? TrainerEmail { get; set; }
+
+        public int? TrainingTypeId { get; set; }
+        public int ScoreType { get; set; }
+    }
     public class TrainingsService : ITrainingsService
     {
         private AppDbContext _context;
@@ -34,9 +57,21 @@ namespace TrainingsCell.Services
             return _context.Trainings.Where(t => t.Id == id).SingleOrDefault();
         }
 
-        public async Task Create(Training request)
+        public async Task Create(CreateTraining request)
         {
-            _context.Add(request);
+            var entity = new Training
+            {
+                Description = request.Description,
+                Title = request.Title,
+                StartDate = request.StartDate,
+                EndDate = request.EndDate,
+                TrainerId = request.TrainerId,
+                TrainerEmail = request.TrainerEmail,
+                TrainingTypeId = request.TrainingTypeId,
+                ScoreType = request.ScoreType
+            };
+
+            _context.Add(entity);
             await _context.SaveChangesAsync();
         }
 
@@ -80,9 +115,15 @@ namespace TrainingsCell.Services
             await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
         }
 
-        public async Task RegisterUserForTrainingType(TrainingTypeMembership request)
+        public async Task RegisterUserForTrainingType(CreateTrainingTypeMembership request)
         {
-            _context.Add(request);
+            var entity = new TrainingTypeMembership
+            {
+                UserId = request.UserId,
+                TrainingTypeId = request.TrainingTypeId,
+            };
+
+            _context.Add(entity);
             await _context.SaveChangesAsync();
         }
 

@@ -9,11 +9,11 @@ namespace TrainingsCell.Interfaces
         public Task<List<Training>> GetAll();
 
         public Task<Training> Get(int id);
-        public Task Create(Training request);
+        public Task Create(CreateTraining request);
         public Task Update(Training request);
         public Task Delete(int id);
 
-        public Task RegisterUserForTrainingType(TrainingTypeMembership request);
+        public Task RegisterUserForTrainingType(CreateTrainingTypeMembership request);
         public Task RegisterUserForTraining(UserRegisteredForTraining request);
         public Task UpdateScore(Registration request);
     }

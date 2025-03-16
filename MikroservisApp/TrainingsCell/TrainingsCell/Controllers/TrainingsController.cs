@@ -35,7 +35,7 @@ namespace TrainingsCell.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Training request)
+        public async Task<IActionResult> Create([FromBody] CreateTraining request)
         {
             await _trainingsService.Create(request);
             return Created();
@@ -63,7 +63,7 @@ namespace TrainingsCell.Controllers
         }
 
         [HttpPost("register-user-for-membership")]
-        public async Task<IActionResult> Create([FromBody] TrainingTypeMembership request)
+        public async Task<IActionResult> Create([FromBody] CreateTrainingTypeMembership request)
         {
             await _trainingsService.RegisterUserForTrainingType(request);
             return Ok();
