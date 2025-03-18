@@ -91,3 +91,4 @@ artifacts/
 *.backup.json
 *.bin
 .metadata.v9.bin
+/MikroservisApp/NotificationsCell/.vs/NotificationsCell/FileContentIndex
