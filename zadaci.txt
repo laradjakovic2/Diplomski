@@ -24,11 +24,7 @@ ako dva servisa razlicitu poruku
 -------------------------------------------------------------------------------------------------
 
 TODO:
-
-crud za trainings - ako posaljem typeId onda kreira novi - treba novi Model za bez toga
-crud competitions
-
-baza notifications
+impl notifications na prijavu treninga
 
 baza users-hashiranje password
 

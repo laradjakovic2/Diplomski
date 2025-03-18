@@ -2,18 +2,22 @@
 namespace NotificationsCell;
 
 using Microsoft.Extensions.Hosting;
+using NotificationsCell.Services;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using NotificationsCell.Models;
 
 public class RabbitMqListener : BackgroundService
 {
     private readonly ConnectionFactory _factory;
     private IConnection? _connection;
     private IChannel? _channel;
+
+    private readonly IServiceScopeFactory _scopeFactory;
 
     private const string ExchangeName = "UserRegisteredForTraining";
 
@@ -24,47 +28,78 @@ public class RabbitMqListener : BackgroundService
 
     private readonly List<string> _consumerTags = new();
 
-    public RabbitMqListener()
+    public RabbitMqListener(IServiceScopeFactory scopeFactory)
     {
         _factory = new ConnectionFactory
         {
             Uri = new Uri("amqp://guest:guest@localhost:5672"),
             ClientProvidedName = "User receiver"
         };
+        _scopeFactory = scopeFactory;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _connection = await _factory.CreateConnectionAsync();
-        _channel = await _connection.CreateChannelAsync();
+        using var scope = _scopeFactory.CreateScope();
 
-        await _channel.ExchangeDeclareAsync(ExchangeName, ExchangeType.Direct);
+        // Get a Dbcontext from the scope
+        var emailService = scope.ServiceProvider.GetRequiredService<EmailService>();
 
-        foreach (var (queueName, routingKey) in _queues)
+        try
         {
-            await _channel.QueueDeclareAsync(queueName, false, false, false, null);
-            await _channel.QueueBindAsync(queueName, ExchangeName, routingKey, null);
-            await _channel.BasicQosAsync(0, 1, false); // Procesiraj jednu poruku odjednom
+            _connection = await _factory.CreateConnectionAsync();
+            _channel = await _connection.CreateChannelAsync();
 
-            var consumer = new AsyncEventingBasicConsumer(_channel);
-            consumer.ReceivedAsync += async (sender, args) =>
+            await _channel.ExchangeDeclareAsync(ExchangeName, ExchangeType.Direct);
+
+            foreach (var (queueName, routingKey) in _queues)
             {
-                var body = args.Body.ToArray();
-                string message = Encoding.UTF8.GetString(body);
-                var deserialized = JsonSerializer.Deserialize<object>(message);
+                await _channel.QueueDeclareAsync(queueName, false, false, false, null);
+                await _channel.QueueBindAsync(queueName, ExchangeName, routingKey, null);
+                await _channel.BasicQosAsync(0, 1, false); // Procesiraj jednu poruku odjednom
 
-                Console.WriteLine($"[Queue: {queueName}] Primljena poruka: {message}");
+                var consumer = new AsyncEventingBasicConsumer(_channel);
+                consumer.ReceivedAsync += async (sender, args) =>
+                {
+                    var body = args.Body.ToArray();
+                    string message = Encoding.UTF8.GetString(body);
 
-                //spremi ili nesto
+                    if (queueName=="training-notification")
+                    {
+                        UserRegisteredForTrainingModel deserialized = JsonSerializer.Deserialize<UserRegisteredForTrainingModel>(message);
 
-                await _channel.BasicAckAsync(args.DeliveryTag, false);
-            };
+                        //spremi ili nesto
+                        if(deserialized?.UserEmail != null)
+                        {
+                            emailService.SendEmailAsync(deserialized.UserEmail,
+                            "Trening kreiran",
+                            "Pozdrav, uspješno ste kreirali trening");
+                        }
+                    }
+                    else
+                    {
+                        var deserialized = JsonSerializer.Deserialize<object>(message);
 
-            string consumerTag = await _channel.BasicConsumeAsync(queue: queueName, autoAck: false, consumer: consumer);
-            _consumerTags.Add(consumerTag);
+                        Console.WriteLine($"[Queue: {queueName}] Primljena poruka: {message}");
+
+                        //spremi ili nesto
+                        emailService.SendEmailAsync("lara.dakovic@fer.hr", "bok", "pozdrav šaljem poruku");
+                    }
+
+
+                     await _channel.BasicAckAsync(args.DeliveryTag, false);
+                };
+
+                string consumerTag = await _channel.BasicConsumeAsync(queue: queueName, autoAck: false, consumer: consumer);
+                _consumerTags.Add(consumerTag);
+            }
+
+            await Task.Delay(Timeout.Infinite, stoppingToken);
         }
+        catch
+        {
 
-        await Task.Delay(Timeout.Infinite, stoppingToken);
+        }
     }
 
     public override async Task StopAsync(CancellationToken cancellationToken)

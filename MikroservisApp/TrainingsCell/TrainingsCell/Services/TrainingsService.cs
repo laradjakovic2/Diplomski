@@ -107,7 +107,7 @@ namespace TrainingsCell.Services
                 Score = ""
             };
             _context.Registrations.Add(entity);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
 
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 

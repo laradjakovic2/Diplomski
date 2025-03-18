@@ -1,7 +1,20 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Zeraxo\\source\\repos\\MikroservisApp\\NotificationsCell\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\faks\\Diplomski\\MikroservisApp\\NotificationsCell\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{139111AA-3DCD-43D9-BEA6-CF4B4C0CB12D}|NotificationsCell\\NotificationsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\notificationscell\\notificationscell\\rabbitmqlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{139111AA-3DCD-43D9-BEA6-CF4B4C0CB12D}|NotificationsCell\\NotificationsCell.csproj|solutionrelative:notificationscell\\rabbitmqlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{139111AA-3DCD-43D9-BEA6-CF4B4C0CB12D}|NotificationsCell\\NotificationsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\notificationscell\\notificationscell\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{139111AA-3DCD-43D9-BEA6-CF4B4C0CB12D}|NotificationsCell\\NotificationsCell.csproj|solutionrelative:notificationscell\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{139111AA-3DCD-43D9-BEA6-CF4B4C0CB12D}|NotificationsCell\\NotificationsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\notificationscell\\notificationscell\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{139111AA-3DCD-43D9-BEA6-CF4B4C0CB12D}|NotificationsCell\\NotificationsCell.csproj|solutionrelative:notificationscell\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NotificationsController.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\NotificationsCell\\NotificationsCell\\Controllers\\NotificationsController.cs",
+              "RelativeDocumentMoniker": "NotificationsCell\\Controllers\\NotificationsController.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\NotificationsCell\\NotificationsCell\\Controllers\\NotificationsController.cs",
+              "RelativeToolTip": "NotificationsCell\\Controllers\\NotificationsController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T13:13:32.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\NotificationsCell\\NotificationsCell\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "NotificationsCell\\Services\\EmailService.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\NotificationsCell\\NotificationsCell\\Services\\EmailService.cs",
+              "RelativeToolTip": "NotificationsCell\\Services\\EmailService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAcwCMAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T18:03:16.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RabbitMqListener.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\NotificationsCell\\NotificationsCell\\RabbitMqListener.cs",
+              "RelativeDocumentMoniker": "NotificationsCell\\RabbitMqListener.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\NotificationsCell\\NotificationsCell\\RabbitMqListener.cs",
+              "RelativeToolTip": "NotificationsCell\\RabbitMqListener.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAYwEEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T18:01:36.695Z",
+              "EditorCaption": ""
             }
           ]
         }

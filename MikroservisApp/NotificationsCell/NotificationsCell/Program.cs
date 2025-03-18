@@ -1,8 +1,14 @@
 ﻿using NotificationsCell;
+using NotificationsCell.Services;
+using NotificationsCell.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<EmailService>();
+
+// Dodaj RabbitMQ Background Service
+builder.Services.AddHostedService<RabbitMqListener>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -20,9 +26,6 @@ builder.Services.AddCors(options =>
                .AllowCredentials();
     });
 });
-
-// Dodaj RabbitMQ Background Service
-builder.Services.AddHostedService<RabbitMqListener>();
 
 /* ovo otkomentirati za pokretanje sa dockerom*/
 builder.WebHost.ConfigureKestrel(options =>
