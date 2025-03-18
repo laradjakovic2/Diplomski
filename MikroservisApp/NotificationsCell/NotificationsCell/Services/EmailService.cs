@@ -28,8 +28,8 @@ namespace NotificationsCell.Services
         public bool SendEmailAsync(string sendTo, string subject, string body)
         {
             MailMessage message = new MailMessage(this.sendFrom, sendTo);
-            message.Subject = "Using the new SMTP client.";
-            message.Body = @"Using this new feature, you can send an email message from an application very easily.";
+            message.Subject = subject;
+            message.Body = body;
 
             try
             {
