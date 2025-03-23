@@ -111,7 +111,7 @@ namespace TrainingsCell.Services
 
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
-            await _rabbitMqSenderUsers.SendMessage(messageBodyBytes); //obavijesti usere
+            //await _rabbitMqSenderUsers.SendMessage(messageBodyBytes); //obavijesti usere
             await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
         }
 

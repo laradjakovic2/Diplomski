@@ -23,7 +23,8 @@ public class RabbitMqListener : BackgroundService
 
     private readonly Dictionary<string, string> _queues = new()
     {
-        { "training-notification", "training-notification" }
+        { "training-notification", "training-notification" },
+        { "competition-notification", "competition-notification" }
     };
 
     private readonly List<string> _consumerTags = new();
@@ -76,16 +77,24 @@ public class RabbitMqListener : BackgroundService
                             "Pozdrav, uspješno ste kreirali trening");
                         }
                     }
+                    else if (queueName == "competition-notification")
+                    {
+                        UserRegisteredForCompetitionModel deserialized = JsonSerializer.Deserialize<UserRegisteredForCompetitionModel>(message);
+
+                        //spremi ili nesto
+                        if (deserialized?.UserEmail != null)
+                        {
+                            emailService.SendEmailAsync(deserialized.UserEmail,
+                            "Prijava na natjecanje",
+                            "Pozdrav, uspješno ste se prijavili na natjecanje");
+                        }
+                    }
                     else
                     {
                         var deserialized = JsonSerializer.Deserialize<object>(message);
 
                         Console.WriteLine($"[Queue: {queueName}] Primljena poruka: {message}");
-
-                        //spremi ili nesto
-                        emailService.SendEmailAsync("lara.dakovic@fer.hr", "bok", "pozdrav šaljem poruku");
                     }
-
 
                      await _channel.BasicAckAsync(args.DeliveryTag, false);
                 };

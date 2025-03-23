@@ -24,9 +24,10 @@ ako dva servisa razlicitu poruku
 -------------------------------------------------------------------------------------------------
 
 TODO:
-impl notifications na prijavu treninga
-
-baza users-hashiranje password
+testirati notifications na prijavu treninga i competitions
+media implementacija baze
+api pozivi slike
 
 jwt token-autorizacija
 login
+baza users-hashiranje password
