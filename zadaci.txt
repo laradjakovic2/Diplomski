@@ -24,9 +24,9 @@ ako dva servisa razlicitu poruku
 -------------------------------------------------------------------------------------------------
 
 TODO:
-testirati notifications na prijavu treninga i competitions
-media implementacija baze
-api pozivi slike
+testirati notifications na prijavu treninga i competitions-radi
+media implementacija baze-done
+api pozivi slike - kostur napravljen, ima dio na chatu-impl bas spremanje i pozive, istraziti gdje na cloud to mozemo stvarno spremit
 
 jwt token-autorizacija
 login

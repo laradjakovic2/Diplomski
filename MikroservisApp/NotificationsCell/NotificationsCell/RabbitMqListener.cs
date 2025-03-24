@@ -19,7 +19,7 @@ public class RabbitMqListener : BackgroundService
 
     private readonly IServiceScopeFactory _scopeFactory;
 
-    private const string ExchangeName = "UserRegisteredForTraining";
+    private const string ExchangeName = "SendNotification";
 
     private readonly Dictionary<string, string> _queues = new()
     {

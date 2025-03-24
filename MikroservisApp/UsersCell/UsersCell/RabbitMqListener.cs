@@ -18,7 +18,7 @@ public class RabbitMqListener : BackgroundService
     private IConnection? _connection;
     private IChannel? _channel;
 
-    private const string ExchangeName = "UserRegisteredForTraining";
+    private const string ExchangeName = "NotifyUser";
 
     private readonly Dictionary<string, string> _queues = new()
     {

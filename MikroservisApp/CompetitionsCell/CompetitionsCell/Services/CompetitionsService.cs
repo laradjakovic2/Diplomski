@@ -29,7 +29,7 @@ namespace CompetitionsCell.Services
         public IRabbitMqSender _rabbitMqSenderNotifications;
         public CompetitionsService(AppDbContext context)
         {
-            _rabbitMqSenderNotifications = new RabbitMqSender("UserRegisteredForCompetition", "competition-notification", "competition-notification");
+            _rabbitMqSenderNotifications = new RabbitMqSender("SendNotification", "competition-notification", "competition-notification");
             _context = context;
         }
 
@@ -78,7 +78,7 @@ namespace CompetitionsCell.Services
             _context.Add(entity);
             //await _context.SaveChangesAsync();
 
-            byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(req);
+            byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
             await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
         }

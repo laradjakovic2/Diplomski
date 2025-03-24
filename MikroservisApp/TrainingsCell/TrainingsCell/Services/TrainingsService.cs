@@ -42,8 +42,8 @@ namespace TrainingsCell.Services
         public IRabbitMqSender _rabbitMqSenderNotifications;
         public TrainingsService(AppDbContext context)
         {
-            _rabbitMqSenderUsers = new RabbitMqSender("UserRegisteredForTraining", "training-user", "training-user");
-            _rabbitMqSenderNotifications = new RabbitMqSender("UserRegisteredForTraining", "training-notification", "training-notification");
+            _rabbitMqSenderUsers = new RabbitMqSender("NotifyUser", "training-user", "training-user");
+            _rabbitMqSenderNotifications = new RabbitMqSender("SendNotification", "training-notification", "training-notification");
             _context = context;
         }
 
