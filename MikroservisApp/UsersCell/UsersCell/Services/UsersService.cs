@@ -1,15 +1,11 @@
 ﻿using UsersCell.Interfaces;
 using UsersCell.Entities;
+using UsersCell.Infrastructure;
 
 namespace UsersCell.Services
 {
-    public class UsersService : IUsersService
+    public class UsersService(AppDbContext _context, TokenProvider tokenProvider) : IUsersService
     {
-        private AppDbContext _context;
-        public UsersService(AppDbContext context)
-        {
-            _context = context;
-        }
         public async Task<List<User>> GetAll()
         {
             return _context.Users.ToList();
@@ -45,6 +41,20 @@ namespace UsersCell.Services
             _context.Remove(user);
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<string> Login(User request)
+        {
+            var user = _context.Users.Where(t => t.Email == request.Email).SingleOrDefault();
+
+            if(user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            string token = tokenProvider.Create(user);
+
+            return token;
         }
     }
 }

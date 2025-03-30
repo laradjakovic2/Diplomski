@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using UsersCell.Interfaces;
 using UsersCell.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UsersCell.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
@@ -38,6 +40,14 @@ namespace UsersCell.Controllers
         {
             await _usersService.Create(request);
             return Created();
+        }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(User request)
+        {
+            var token = await _usersService.Login(request);
+            return Ok(token);
         }
 
         [HttpPut]

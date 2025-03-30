@@ -1,4 +1,5 @@
 ﻿using MediaCell.Entities;
+using MediaCell.Enums;
 using MediaCell.Interfaces;
 
 namespace MediaCell.Services
@@ -19,13 +20,13 @@ namespace MediaCell.Services
             return media.Id;
         }
 
-        public async Task<Media?> GetImageUrlByIdAsync(int Id)
+        public async Task<string> GetImageUrlAsync(int relatedEntityId, EntityType entityType)
         {
             var media = _context.Medias
-                .Where(cm => cm.Id == Id)
+                .Where(cm => cm.RelatedEntityId == relatedEntityId && cm.EntityType == entityType)
                 .SingleOrDefault();
 
-            return media;
+            return media?.Url;
         }
 
         public async Task<string> SaveFileAsync(IFormFile file)
@@ -40,4 +41,15 @@ namespace MediaCell.Services
             return $"/uploads/{file.FileName}";
         }
     }
+}
+
+public class MediaRequestModel
+{
+    public IFormFile File { get; set; }
+
+    public int RelatedEntityId { get; set; }
+
+    public EntityType EntityType { get; set; }
+
+    public MediaType MediaType { get; set; }
 }

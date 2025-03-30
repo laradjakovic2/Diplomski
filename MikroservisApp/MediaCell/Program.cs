@@ -18,16 +18,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Kestrel konfiguracija za Docker
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5006); // Listen on port 80
+});
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseCors("WebClientUrl");
 }
 
-app.UseHttpsRedirection();
+app.UseSwagger();
+app.UseSwaggerUI();
+
+
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

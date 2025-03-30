@@ -22,12 +22,21 @@ ako dva servisa razlicitu poruku
 -isti exchange i razliciti routing kljucevi i queue - npr ako povezana tematski poruka (ili razliciti exchange ako tematski odvojene)
 
 -------------------------------------------------------------------------------------------------
-
 TODO:
-testirati notifications na prijavu treninga i competitions-radi
-media implementacija baze-done
-api pozivi slike - kostur napravljen, ima dio na chatu-impl bas spremanje i pozive, istraziti gdje na cloud to mozemo stvarno spremit
 
-jwt token-autorizacija
-login
-baza users-hashiranje password
+
+-baza users-hashiranje password
+-umjesto laradjakovic00 mail, koristiti od app za mailove
+-istraziti gdje na cloud to mozemo stvarno spremit, zasad sprema samo na wwwroot
+-payments event pozivi
+-APIGateway dodati autorizaciju i prosljeduje samo ako je autoriziran azurirati rute
+
+
+DONE:
+-bata Users, Training, Competition, Media
+-events izmedu Trainin->Notification, mail 
+-events izmedu COmetition->Notification, mail
+-MediaCell - api pozivi slike upload i get - done, ali sprema u wwwroot
+-spremanje slika sa competition
+-apiGateway dodan
+-jwt token-autorizacija-login logika dodana(ne provjerava password), samo usersCell koristi autorizaciju

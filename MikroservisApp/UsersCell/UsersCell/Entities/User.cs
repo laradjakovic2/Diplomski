@@ -12,6 +12,8 @@ namespace UsersCell.Entities
 
         public int? RoleId { get; set; }
 
+        public bool EmailVerified { get; set; }
+
         //public virtual Role? Role { get; set; }
     }
 }

@@ -8,6 +8,8 @@ namespace UsersCell.Interfaces
 
         public Task<User> Get(int id);
         public Task Create(User request);
+
+        public Task<string> Login(User request);
         public Task Update(User request);
         public Task Delete(int id);
     }

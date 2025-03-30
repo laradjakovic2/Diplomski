@@ -4,9 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>5e14f2a7-1bf6-421c-9e8b-79ec60428a9b</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.14" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
 		<PrivateAssets>all</PrivateAssets>

@@ -8,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<ICompetitionsService, CompetitionsService>();
 
+builder.Services.AddHttpClient<MediaServiceClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:5006"); // URL MediaService-a
+});
 //DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

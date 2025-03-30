@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MediaCell.Interfaces;
+using MediaCell.Enums;
 
 namespace MediaCell.Controllers
 {
@@ -15,28 +16,39 @@ namespace MediaCell.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> Upload(IFormFile file)
+        public async Task<IActionResult> Upload([FromForm] MediaRequestModel request)
         {
-            if (file == null || file.Length == 0)
+            if (request.File == null || request.File.Length == 0)
                 return BadRequest("File is required");
 
-            var fileUrl = await _mediaService.SaveFileAsync(file);
+            var fileUrl = await _mediaService.SaveFileAsync(request.File);
 
-
-            var mediaId = await _mediaService.SaveMediaRecordAsync(new Entities.Media() { Url=file.FileName, RelatedEntityId=1, CreatedAt=DateTime.Now});
-
-            return Ok(mediaId);
+            if(fileUrl != null)
+            {
+                var mediaId = await _mediaService.SaveMediaRecordAsync(
+                    new Entities.Media()
+                    {
+                        Url = fileUrl,
+                        RelatedEntityId = request.RelatedEntityId,
+                        EntityType = request.EntityType,
+                        MediaType = request.MediaType,
+                        CreatedAt = DateTime.UtcNow
+                    }
+                );
+                return Ok(mediaId);
+            }
+            return BadRequest("Error saving");
         }
 
-        [HttpGet("image/{Id}")]
-        public async Task<IActionResult> GetImage(int Id)
+        [HttpGet("get-file")]
+        public async Task<IActionResult> GetFile([FromQuery] int relatedEntityId, [FromQuery] EntityType entityType)
         {
-            var imageUrl = await _mediaService.GetImageUrlByIdAsync(Id);
+            var fileUrl = await _mediaService.GetImageUrlAsync(relatedEntityId, entityType);
 
-            if (imageUrl == null)
-                return NotFound();
+            if (!string.IsNullOrEmpty(fileUrl))
+                return Ok(fileUrl);
 
-            return Ok(imageUrl);
+            return NotFound("File not found");
         }
     }
 }
