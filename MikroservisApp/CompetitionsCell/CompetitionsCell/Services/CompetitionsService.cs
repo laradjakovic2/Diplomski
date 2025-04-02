@@ -27,9 +27,11 @@ namespace CompetitionsCell.Services
         private AppDbContext _context;
 
         public IRabbitMqSender _rabbitMqSenderNotifications;
+        public IRabbitMqSender _rabbitMqSenderPayments;
         public CompetitionsService(AppDbContext context)
         {
             _rabbitMqSenderNotifications = new RabbitMqSender("SendNotification", "competition-notification", "competition-notification");
+            _rabbitMqSenderPayments = new RabbitMqSender("SendPayment", "competition-payment", "competition-payment");
             _context = context;
         }
 
@@ -81,6 +83,14 @@ namespace CompetitionsCell.Services
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
             await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
+        }
+
+        public async Task PayCompetitionMembership()
+        {
+
+            byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize("saljem"));
+
+            await _rabbitMqSenderPayments.SendMessage(messageBodyBytes);
         }
 
         public async Task UpdateScore(Result request)

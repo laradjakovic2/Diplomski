@@ -49,6 +49,13 @@ namespace CompetitionsCell.Controllers
             return Ok();
         }
 
+        [HttpPost("pay-competition-membership")]
+        public IActionResult PayCompetitionMembership()
+        {
+            _competitionsService.PayCompetitionMembership();
+            return Ok();
+        }
+
         [HttpPost("register-user-for-competition")]
         public IActionResult RegisterUserForCompetition([FromBody] UserRegisteredForCompetition request)
         {

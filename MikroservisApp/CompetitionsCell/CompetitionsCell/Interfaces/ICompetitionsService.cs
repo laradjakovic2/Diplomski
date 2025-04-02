@@ -13,6 +13,8 @@ namespace CompetitionsCell.Interfaces
         public Task UpdateWorkout(Workout request);
 
         public Task RegisterUserForCompetition(UserRegisteredForCompetition request);
+
+        public Task PayCompetitionMembership();
         public Task UpdateScore(Result request);
     }
 }

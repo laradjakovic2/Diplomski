@@ -104,11 +104,14 @@ Table notifications {
 //Ref: notifications.user_id > users.id // many-to-one (preko sinkronizacije putem događaja)
 
 //PaymentsCell
-Table payments {
+Table CompetitionsPayments {
   id integer [primary key]
   user_id integer [not null]
+  competition_id integer [not null]
   user_email varchar [not null]
-  amount float [not null]
+  price float [not null]
+  tax float [not null]
+  total float [not null]
 }
 
 //Ref: payments.user_id > users.id // many-to-one (preko sinkronizacije putem događaja)

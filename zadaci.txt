@@ -24,11 +24,13 @@ ako dva servisa razlicitu poruku
 -------------------------------------------------------------------------------------------------
 TODO:
 
+-payments event pozivi
+-dodano na competition samo - proba logika-dovrsiti
+-dodati listener na payments i testirati sve - ime exchange-a i to
 
 -baza users-hashiranje password
 -umjesto laradjakovic00 mail, koristiti od app za mailove
 -istraziti gdje na cloud to mozemo stvarno spremit, zasad sprema samo na wwwroot
--payments event pozivi
 -APIGateway dodati autorizaciju i prosljeduje samo ako je autoriziran azurirati rute
 
 
