@@ -1,6 +1,21 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.EntityFrameworkCore;
+using PaymentsCell;
+using PaymentsCell.Interfaces;
+using PaymentsCell.Services;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+
+// Dodaj RabbitMQ Background Service
+builder.Services.AddHostedService<RabbitMqListener>();
+
+//DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Database"));
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

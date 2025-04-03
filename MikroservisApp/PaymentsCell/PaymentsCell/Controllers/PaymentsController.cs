@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using PaymentsCell.Interfaces;
+using PaymentsCell.Models;
 
 namespace PaymentsCell.Controllers
 {
@@ -6,17 +8,18 @@ namespace PaymentsCell.Controllers
     [Route("[controller]")]
     public class PaymentsController : ControllerBase
     {
-        private readonly ILogger<PaymentsController> _logger;
+        private IPaymentService _paymentService;
 
-        public PaymentsController(ILogger<PaymentsController> logger)
+        public PaymentsController(IPaymentService paymentService)
         {
-            _logger = logger;
+            _paymentService = paymentService;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpPut("competiton-payment")]
+        public IActionResult CreateCompetitionPayment([FromBody] CreateCompetitionPayment request)
         {
-            return NoContent();
+            _paymentService.SaveCompetitionPayment(request);
+            return Created();
         }
     }
 }

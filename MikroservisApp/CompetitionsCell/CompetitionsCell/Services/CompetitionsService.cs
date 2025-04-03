@@ -22,6 +22,17 @@ namespace CompetitionsCell.Services
 
         public int ScoreType { get; set; }
     }
+
+    public class CreateCompetitionPayment
+    {
+        public int UserId { get; set; }
+        public int CompetitionId { get; set; }
+        public string UserEmail { get; set; }
+        public double Price { get; set; }
+        public double Tax { get; set; }
+        public double Total { get; set; }
+    }
+
     public class CompetitionsService : ICompetitionsService
     {
         private AppDbContext _context;
@@ -85,10 +96,9 @@ namespace CompetitionsCell.Services
             await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
         }
 
-        public async Task PayCompetitionMembership()
+        public async Task PayCompetitionMembership(CreateCompetitionPayment request)
         {
-
-            byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize("saljem"));
+            byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
             await _rabbitMqSenderPayments.SendMessage(messageBodyBytes);
         }

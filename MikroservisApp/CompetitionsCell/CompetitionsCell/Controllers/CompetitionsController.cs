@@ -50,9 +50,9 @@ namespace CompetitionsCell.Controllers
         }
 
         [HttpPost("pay-competition-membership")]
-        public IActionResult PayCompetitionMembership()
+        public IActionResult PayCompetitionMembership([FromBody] CreateCompetitionPayment request)
         {
-            _competitionsService.PayCompetitionMembership();
+            _competitionsService.PayCompetitionMembership(request);
             return Ok();
         }
 
