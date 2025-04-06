@@ -23,10 +23,7 @@ ako dva servisa razlicitu poruku
 
 -------------------------------------------------------------------------------------------------
 TODO:
-
--payments event pozivi
--dodano na competition samo - proba logika-dovrsiti
--dodati listener na payments i testirati sve - ime exchange-a i to
+-spojila se preko clienta na competitions be-krenuti spajati polako
 
 -baza users-hashiranje password
 -umjesto laradjakovic00 mail, koristiti od app za mailove
@@ -35,9 +32,10 @@ TODO:
 
 
 DONE:
--bata Users, Training, Competition, Media
+-bata Users, Training, Competition, Media, Payments
 -events izmedu Trainin->Notification, mail 
--events izmedu COmetition->Notification, mail
+-events izmedu Cometition->Notification, mail
+-event izmedu Competition->Payment, smpremi u bazu
 -MediaCell - api pozivi slike upload i get - done, ali sprema u wwwroot
 -spremanje slika sa competition
 -apiGateway dodan

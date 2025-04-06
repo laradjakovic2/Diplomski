@@ -15,6 +15,14 @@ export const apiConfig: ApiConfig = {
     notificationsApi: "https://localhost:7005"
   };
 
+export const apiConfig1: ApiConfig = {
+    usersApi: "http://localhost:5004",
+    trainingsApi: "http://localhost:5003",
+    competitionsApi: "http://localhost:5001",
+    paymentsApi: "http://localhost:5002",
+    notificationsApi: "http://localhost:5005"
+  };
+
 
   
 export class ApiClientBase {
