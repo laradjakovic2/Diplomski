@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using CompetitionsCell.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CompetitionsCell.Services
 {
@@ -51,7 +52,7 @@ namespace CompetitionsCell.Services
             return _context.Competitions.ToList();
         }
 
-        public async Task<Competition> Get(int id)
+        public async Task<Competition?> Get(int id)
         {
             return _context.Competitions.Where(t => t.Id == id).SingleOrDefault();
         }

@@ -6,7 +6,7 @@ services:
       context: ./CompetitionsCell/CompetitionsCell
       dockerfile: Dockerfile
     ports:
-      - "7001:80"
+      - "5001:5001"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
@@ -16,7 +16,7 @@ services:
       context: ./NotificationsCell/NotificationsCell
       dockerfile: Dockerfile
     ports:
-      - "7005:80"
+      - "5005:5005"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
@@ -26,7 +26,7 @@ services:
       context: ./PaymentsCell/PaymentsCell
       dockerfile: Dockerfile
     ports:
-      - "7002:80"
+      - "5002:5002"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
@@ -36,7 +36,7 @@ services:
       context: ./TrainingsCell/TrainingsCell
       dockerfile: Dockerfile
     ports:
-      - "7003:80"
+      - "5003:5003"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
@@ -46,7 +46,26 @@ services:
       context: ./UsersCell/UsersCell
       dockerfile: Dockerfile
     ports:
-      - "7004:80"
+      - "5004:5004"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
+
+  mediacell:
+    build:
+      context: ./MediaCell/MediaCell
+      dockerfile: Dockerfile
+    ports:
+      - "5006:5006"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
+  apigateway:
+    build:
+      context: ./APIGateway/APIGateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true

@@ -35,6 +35,27 @@ namespace CompetitionsCell.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] Competition request)
+        {
+            //TODO
+            return Created();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Competition request)
+        {
+            //TODO
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            //TODO
+            return Ok();
+        }
+
         [HttpPost("workout")]
         public async Task<IActionResult> CreateWorkout([FromBody] CreateWorkout request)
         {

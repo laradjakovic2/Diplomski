@@ -23,6 +23,7 @@ ako dva servisa razlicitu poruku
 
 -------------------------------------------------------------------------------------------------
 TODO:
+-pokrenuti sve preko dockera(rabbit isto)
 -APIGateway azurirati rute i pokretati sve preko toga
 -spojila se preko clienta na competitions be-krenuti spajati polako
 
@@ -30,7 +31,6 @@ TODO:
 -umjesto laradjakovic00 mail, koristiti od app za mailove
 -istraziti gdje na cloud to mozemo stvarno spremit, zasad sprema samo na wwwroot
 -APIGateway dodati autorizaciju prosljeduje samo ako je autoriziran
--pokrenuti sve preko dockera(azurirati portove)
 
 
 DONE:

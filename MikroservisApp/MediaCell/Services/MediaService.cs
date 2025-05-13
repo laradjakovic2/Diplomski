@@ -20,7 +20,7 @@ namespace MediaCell.Services
             return media.Id;
         }
 
-        public async Task<string> GetImageUrlAsync(int relatedEntityId, EntityType entityType)
+        public async Task<string?> GetImageUrlAsync(int relatedEntityId, EntityType entityType)
         {
             var media = _context.Medias
                 .Where(cm => cm.RelatedEntityId == relatedEntityId && cm.EntityType == entityType)
