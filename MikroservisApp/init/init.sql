@@ -1,0 +1,5 @@
+CREATE DATABASE UsersCell;
+CREATE DATABASE TrainingsCell;
+CREATE DATABASE CompetitionsCell;
+CREATE DATABASE PaymentsCell;
+CREATE DATABASE MediaCell;

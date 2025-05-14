@@ -1,45 +1,35 @@
 version: '3.8'
 
 services:
-  competitionscell:
-    build:
-      context: ./CompetitionsCell/CompetitionsCell
-      dockerfile: Dockerfile
-    ports:
-      - "5001:5001"
+  postgres:
+    image: postgres:16
+    container_name: microservice-postgres
+    restart: always
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - DOTNET_RUNNING_IN_CONTAINER=true
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: lara2001
+      POSTGRES_DB: UsersCell  # Primary (mora jedan biti naveden, ostali se stvaraju putem SQL-a)
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5433"
+    networks:
+      - microservice-moja-mreza
+      
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: microservice-rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"      # RabbitMQ TCP port
+      - "15672:15672"     # Web UI (default je 15672)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - microservice-moja-mreza
 
-  notificationscell:
-    build:
-      context: ./NotificationsCell/NotificationsCell
-      dockerfile: Dockerfile
-    ports:
-      - "5005:5005"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - DOTNET_RUNNING_IN_CONTAINER=true
-
-  paymentscell:
-    build:
-      context: ./PaymentsCell/PaymentsCell
-      dockerfile: Dockerfile
-    ports:
-      - "5002:5002"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - DOTNET_RUNNING_IN_CONTAINER=true
-
-  trainingscell:
-    build:
-      context: ./TrainingsCell/TrainingsCell
-      dockerfile: Dockerfile
-    ports:
-      - "5003:5003"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - DOTNET_RUNNING_IN_CONTAINER=true
 
   userscell:
     build:
@@ -50,22 +40,133 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
+      - DB_HOST=postgres
+      - DB_PORT=5433
+      - DB_NAME=UsersCell
+      - DB_USER=postgres
+      - DB_PASSWORD=lara2001
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - microservice-moja-mreza
+
+  trainingscell:
+    build:
+      context: ./TrainingsCell/TrainingsCell
+      dockerfile: Dockerfile
+    ports:
+      - "5003:5003"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - DB_HOST=postgres
+      - DB_PORT=5433
+      - DB_NAME=TrainingsCell
+      - DB_USER=postgres
+      - DB_PASSWORD=lara2001
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - microservice-moja-mreza
+
+  competitionscell:
+    build:
+      context: ./CompetitionsCell/CompetitionsCell
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - DB_HOST=postgres
+      - DB_PORT=5433
+      - DB_NAME=CompetitionsCell
+      - DB_USER=postgres
+      - DB_PASSWORD=lara2001
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - microservice-moja-mreza
+
+  notificationscell:
+    build:
+      context: ./NotificationsCell/NotificationsCell
+      dockerfile: Dockerfile
+    ports:
+      - "5005:5005"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - microservice-moja-mreza
+
+  paymentscell:
+    build:
+      context: ./PaymentsCell/PaymentsCell
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - DB_HOST=postgres
+      - DB_PORT=5433
+      - DB_NAME=PaymentsCell
+      - DB_USER=postgres
+      - DB_PASSWORD=lara2001
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - microservice-moja-mreza
 
   mediacell:
     build:
-      context: ./MediaCell/MediaCell
+      context: ./MediaCell
       dockerfile: Dockerfile
     ports:
       - "5006:5006"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
+      - DB_HOST=postgres
+      - DB_PORT=5433
+      - DB_NAME=MediaCell
+      - DB_USER=postgres
+      - DB_PASSWORD=lara2001
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - microservice-moja-mreza
+
   apigateway:
     build:
-      context: ./APIGateway/APIGateway
+      context: ./APIGateway
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
+    depends_on:
+      - userscell
+      - trainingscell
+      - competitionscell
+      - notificationscell
+      - paymentscell
+      - mediacell
+    networks:
+      - microservice-moja-mreza
+
+volumes:
+  pgdata:
+
+networks:
+  microservice-moja-mreza:
