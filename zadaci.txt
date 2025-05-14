@@ -22,9 +22,19 @@ ako dva servisa razlicitu poruku
 -isti exchange i razliciti routing kljucevi i queue - npr ako povezana tematski poruka (ili razliciti exchange ako tematski odvojene)
 
 -------------------------------------------------------------------------------------------------
+SPAJANJE NA BAZU UNUTAR KONTEJNERA:
+docker exec -it microservice-postgres psql -U postgres
+NAPOMENE NAKON STO KONTEJNERIZIRANO:
+-rabbit isto preko yaml-amqp://guest:guest@localhost:5672 promijenila localhost u rabbitmq
+-baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
+-------------------------------------------------------------------------------------------------
 TODO:
--pokrenuti sve preko dockera(rabbit isto)
--APIGateway azurirati rute i pokretati sve preko toga
+-slanje mailova radi na NotificationsCell, ali kad rabbitmq posalje testirati dal spojen no rabbitmq
+
+
+-pokrenuti sve preko dockera
+
+-APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-testirati kak radi detaljno
 -spojila se preko clienta na competitions be-krenuti spajati polako
 
 -baza users-hashiranje password

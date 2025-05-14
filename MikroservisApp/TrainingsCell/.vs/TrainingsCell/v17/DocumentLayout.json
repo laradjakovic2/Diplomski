@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Migrations\\20250315210123_Models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TrainingsCell\\Migrations\\20250315210123_Models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\interfaces\\itrainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\interfaces\\itrainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\services\\trainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\services\\trainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\controllers\\trainingtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\controllers\\trainingtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\entities\\training.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\entities\\training.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Migrations\\20250315205617_Models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TrainingsCell\\Migrations\\20250315205617_Models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\entities\\trainingtypemembership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\entities\\trainingtypemembership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\entities\\trainingtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\entities\\trainingtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\entities\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\entities\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,20 +27,8 @@
       "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\services\\trainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\services\\trainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\interfaces\\itrainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\interfaces\\itrainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\controllers\\trainingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\controllers\\trainingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\rabbitmqsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -67,95 +47,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20250315210123_Models.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Migrations\\20250315210123_Models.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\Migrations\\20250315210123_Models.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Migrations\\20250315210123_Models.cs",
-              "RelativeToolTip": "TrainingsCell\\Migrations\\20250315210123_Models.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T21:01:23.883Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "20250315205617_Models.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Migrations\\20250315205617_Models.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\Migrations\\20250315205617_Models.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Migrations\\20250315205617_Models.cs",
-              "RelativeToolTip": "TrainingsCell\\Migrations\\20250315205617_Models.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAMwBoAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T20:56:18.448Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TrainingType.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\TrainingType.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\Entities\\TrainingType.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\TrainingType.cs",
-              "RelativeToolTip": "TrainingsCell\\Entities\\TrainingType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T20:54:20.754Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Registration.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Registration.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\Entities\\Registration.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Registration.cs",
-              "RelativeToolTip": "TrainingsCell\\Entities\\Registration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T20:53:30.452Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TrainingTypeMembership.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\TrainingTypeMembership.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\Entities\\TrainingTypeMembership.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\TrainingTypeMembership.cs",
-              "RelativeToolTip": "TrainingsCell\\Entities\\TrainingTypeMembership.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T20:52:11.653Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
               "Title": "ITrainingsService.cs",
               "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Interfaces\\ITrainingsService.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\Interfaces\\ITrainingsService.cs",
               "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Interfaces\\ITrainingsService.cs",
               "RelativeToolTip": "TrainingsCell\\Interfaces\\ITrainingsService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABPAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAADwvxUAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T17:06:27.683Z"
+              "WhenOpened": "2025-05-14T13:05:22.786Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\appsettings.json",
-              "RelativeDocumentMoniker": "TrainingsCell\\appsettings.json",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\appsettings.json",
-              "RelativeToolTip": "TrainingsCell\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-02T16:40:02.733Z"
+              "DocumentIndex": 2,
+              "Title": "TrainingTypeController.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingTypeController.cs",
+              "RelativeDocumentMoniker": "TrainingsCell\\Controllers\\TrainingTypeController.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingTypeController.cs",
+              "RelativeToolTip": "TrainingsCell\\Controllers\\TrainingTypeController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwCAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T13:04:16.868Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
               "Title": "RabbitMqSender.cs",
               "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\RabbitMqSender.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\RabbitMqSender.cs",
@@ -167,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Training.cs",
               "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Training.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\Entities\\Training.cs",
@@ -175,12 +92,11 @@
               "RelativeToolTip": "TrainingsCell\\Entities\\Training.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAA5wBIAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T21:59:58.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-01T21:59:58.805Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\AppDbContext.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\AppDbContext.cs",
@@ -188,24 +104,24 @@
               "RelativeToolTip": "TrainingsCell\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T21:47:45.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-01T21:47:45.781Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "TrainingsService.cs",
               "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Services\\TrainingsService.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\Services\\TrainingsService.cs",
               "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Services\\TrainingsService.cs",
               "RelativeToolTip": "TrainingsCell\\Services\\TrainingsService.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAiwBYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAuwCwAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:00:11.671Z"
+              "WhenOpened": "2025-02-25T09:00:11.671Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Program.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\Program.cs",
@@ -213,12 +129,11 @@
               "RelativeToolTip": "TrainingsCell\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T08:28:14.803Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T08:28:14.803Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 6,
               "Title": "TrainingsController.cs",
               "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingsController.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\Controllers\\TrainingsController.cs",
@@ -226,7 +141,8 @@
               "RelativeToolTip": "TrainingsCell\\Controllers\\TrainingsController.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAQwCIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T22:06:36.766Z"
+              "WhenOpened": "2025-02-23T22:06:36.766Z",
+              "EditorCaption": ""
             }
           ]
         }
