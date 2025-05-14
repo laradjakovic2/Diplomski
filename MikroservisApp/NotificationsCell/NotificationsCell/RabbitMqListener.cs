@@ -76,7 +76,7 @@ public class RabbitMqListener : BackgroundService
                         //spremi ili nesto
                         if (deserialized?.UserEmail != null)
                         {
-                            await emailService.SendEmailAsync(deserialized.UserEmail,
+                            emailService.SendEmailAsync(deserialized.UserEmail,
                             "Trening kreiran",
                             "Pozdrav, uspješno ste kreirali trening");
                         }
@@ -89,7 +89,7 @@ public class RabbitMqListener : BackgroundService
                         //spremi ili nesto
                         if (deserialized?.UserEmail != null)
                         {
-                            await emailService.SendEmailAsync(deserialized.UserEmail,
+                            emailService.SendEmailAsync(deserialized.UserEmail,
                             "Prijava na natjecanje",
                             "Pozdrav, uspješno ste se prijavili na natjecanje");
                         }

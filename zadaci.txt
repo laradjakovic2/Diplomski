@@ -29,7 +29,10 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
--slanje mailova radi na NotificationsCell, ali kad rabbitmq posalje testirati dal spojen no rabbitmq
+-slanje mailova ne radi na NotificationsCell
+-kad rabbitmq posalje vidi se queue - provj dal dolazi poruka i mail
+-izgleda da poruka ne dolazi do notifications-provj parametre
+
 
 
 -pokrenuti sve preko dockera
