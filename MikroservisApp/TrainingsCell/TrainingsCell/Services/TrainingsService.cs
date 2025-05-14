@@ -35,6 +35,13 @@ namespace TrainingsCell.Services
         public int? TrainingTypeId { get; set; }
         public int ScoreType { get; set; }
     }
+
+    public class CreateTrainingType
+    {
+        public string Description { get; set; }
+        public string Title { get; set; }
+    }
+
     public class TrainingsService : ITrainingsService
     {
         private AppDbContext _context;
@@ -132,6 +139,45 @@ namespace TrainingsCell.Services
             var entity = _context.Registrations.Where(t => t.Id == request.Id).SingleOrDefault();
 
             entity.Score = request.Score;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<TrainingType> GetTrainingType(int id)
+        {
+            return _context.TrainingTypes.Where(t => t.Id == id).SingleOrDefault();
+        }
+
+        public async Task CreateTrainingType(CreateTrainingType request)
+        {
+            var entity = new TrainingType
+            {
+                Description = request.Description,
+                Title = request.Title,
+            };
+
+            _context.Add(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateTrainingType(TrainingType request)
+        {
+            var entity = _context.TrainingTypes.Where(t => t.Id == request.Id).SingleOrDefault();
+
+            entity.Title = request.Title;
+            entity.Description = request.Description;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteTrainingType(int id)
+        {
+            var entity = _context
+                .TrainingTypes
+                .Where(t => t.Id == id)
+                .SingleOrDefault();
+
+            _context.Remove(entity);
 
             await _context.SaveChangesAsync();
         }

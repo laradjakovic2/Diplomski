@@ -16,5 +16,13 @@ namespace TrainingsCell.Interfaces
         public Task RegisterUserForTrainingType(CreateTrainingTypeMembership request);
         public Task RegisterUserForTraining(UserRegisteredForTraining request);
         public Task UpdateScore(Registration request);
+
+        public Task<TrainingType> GetTrainingType(int id);
+
+        public Task CreateTrainingType(CreateTrainingType request);
+
+        public Task UpdateTrainingType(TrainingType request);
+
+        public Task DeleteTrainingType(int id);
     }
 }
