@@ -31,7 +31,7 @@ public class RabbitMqListener : BackgroundService
     {
         _factory = new ConnectionFactory
         {
-            Uri = new Uri("amqp://guest:guest@localhost:5672"),
+            Uri = new Uri("amqp://guest:guest@rabbitmq:5672"),
             ClientProvidedName = "User receiver"
         };
     }
@@ -73,7 +73,7 @@ public class RabbitMqListener : BackgroundService
         {
 
         }
-        
+
     }
 
     public override async Task StopAsync(CancellationToken cancellationToken)
@@ -82,7 +82,7 @@ public class RabbitMqListener : BackgroundService
         {
             foreach (var tag in _consumerTags)
             {
-               await _channel.BasicCancelAsync(tag);
+                await _channel.BasicCancelAsync(tag);
             }
 
             await _channel.CloseAsync();

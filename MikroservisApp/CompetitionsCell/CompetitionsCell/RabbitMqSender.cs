@@ -23,7 +23,7 @@ public class RabbitMqSender : IRabbitMqSender
 
         _factory = new ConnectionFactory
         {
-            Uri = new Uri("amqp://guest:guest@localhost:5672"),
+            Uri = new Uri("amqp://guest:guest@rabbitmq:5672"),
             ClientProvidedName = "Competitions sender"
         };
 
@@ -33,7 +33,7 @@ public class RabbitMqSender : IRabbitMqSender
             DeliveryMode = (DeliveryModes)2
         };
     }
-    
+
     public async Task SendMessage(byte[] messageBodyBytes)
     {
         _connection = await _factory.CreateConnectionAsync();

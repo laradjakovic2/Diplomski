@@ -29,7 +29,7 @@ public class RabbitMqListener : BackgroundService
     {
         _factory = new ConnectionFactory
         {
-            Uri = new Uri("amqp://guest:guest@localhost:5672"),
+            Uri = new Uri("amqp://guest:guest@rabbitmq:5672"),
             ClientProvidedName = "Payment receiver"
         };
         _scopeFactory = scopeFactory;
@@ -61,18 +61,18 @@ public class RabbitMqListener : BackgroundService
                     var body = args.Body.ToArray();
                     string message = Encoding.UTF8.GetString(body);
 
-                    if (queueName=="competition-payment")
+                    if (queueName == "competition-payment")
                     {
                         var deserialized = JsonSerializer.Deserialize<CreateCompetitionPayment>(message);
 
                         //spremi ili nesto
-                        if(deserialized != null)
+                        if (deserialized != null)
                         {
                             await paymentService.SaveCompetitionPayment(deserialized);
                         }
                     }
 
-                     await _channel.BasicAckAsync(args.DeliveryTag, false);
+                    await _channel.BasicAckAsync(args.DeliveryTag, false);
                 };
 
                 string consumerTag = await _channel.BasicConsumeAsync(queue: queueName, autoAck: false, consumer: consumer);

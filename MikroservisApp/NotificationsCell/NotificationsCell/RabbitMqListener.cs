@@ -33,7 +33,7 @@ public class RabbitMqListener : BackgroundService
     {
         _factory = new ConnectionFactory
         {
-            Uri = new Uri("amqp://guest:guest@localhost:5672"),
+            Uri = new Uri("amqp://guest:guest@rabbitmq:5672"),
             ClientProvidedName = "User receiver"
         };
         _scopeFactory = scopeFactory;
@@ -53,8 +53,11 @@ public class RabbitMqListener : BackgroundService
 
             await _channel.ExchangeDeclareAsync(ExchangeName, ExchangeType.Direct);
 
-            foreach (var (queueName, routingKey) in _queues)
+            foreach (var (qName, rKey) in _queues)
             {
+                var queueName = qName;
+                var routingKey = rKey;
+
                 await _channel.QueueDeclareAsync(queueName, false, false, false, null);
                 await _channel.QueueBindAsync(queueName, ExchangeName, routingKey, null);
                 await _channel.BasicQosAsync(0, 1, false); // Procesiraj jednu poruku odjednom
@@ -65,26 +68,28 @@ public class RabbitMqListener : BackgroundService
                     var body = args.Body.ToArray();
                     string message = Encoding.UTF8.GetString(body);
 
-                    if (queueName=="training-notification")
+                    if (queueName == "training-notification")
                     {
+                        Console.WriteLine($"[Queue: {queueName}] Primljena poruka: {message}");
                         UserRegisteredForTrainingModel deserialized = JsonSerializer.Deserialize<UserRegisteredForTrainingModel>(message);
 
                         //spremi ili nesto
-                        if(deserialized?.UserEmail != null)
+                        if (deserialized?.UserEmail != null)
                         {
-                            emailService.SendEmailAsync(deserialized.UserEmail,
+                            await emailService.SendEmailAsync(deserialized.UserEmail,
                             "Trening kreiran",
                             "Pozdrav, uspješno ste kreirali trening");
                         }
                     }
                     else if (queueName == "competition-notification")
                     {
+                        Console.WriteLine($"[Queue: {queueName}] Primljena poruka: {message}");
                         UserRegisteredForCompetitionModel deserialized = JsonSerializer.Deserialize<UserRegisteredForCompetitionModel>(message);
 
                         //spremi ili nesto
                         if (deserialized?.UserEmail != null)
                         {
-                            emailService.SendEmailAsync(deserialized.UserEmail,
+                            await emailService.SendEmailAsync(deserialized.UserEmail,
                             "Prijava na natjecanje",
                             "Pozdrav, uspješno ste se prijavili na natjecanje");
                         }
@@ -96,7 +101,7 @@ public class RabbitMqListener : BackgroundService
                         Console.WriteLine($"[Queue: {queueName}] Primljena poruka: {message}");
                     }
 
-                     await _channel.BasicAckAsync(args.DeliveryTag, false);
+                    await _channel.BasicAckAsync(args.DeliveryTag, false);
                 };
 
                 string consumerTag = await _channel.BasicConsumeAsync(queue: queueName, autoAck: false, consumer: consumer);
@@ -107,7 +112,7 @@ public class RabbitMqListener : BackgroundService
         }
         catch
         {
-
+            Console.WriteLine("Greška prilikom pokretanja RabbitMQ listenera");
         }
     }
 
