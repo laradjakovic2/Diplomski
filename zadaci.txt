@@ -1,12 +1,13 @@
-APIGateway 5018
+APIGateway 8080:8080
 
-CompetitionsCell 7001:5001
-NotificationsCell 7005:5005
-PaymentsCell 7002:5002
-TrainingsCell 7003:5003
-UsersCell 7004:5004
+CompetitionsCell 5001:5001
+NotificationsCell 5005:5005
+PaymentsCell 5002:5002
+TrainingsCell 5003:5003
+UsersCell 5004:5004
+MediaCell 5006:5006
 
--kad pokrecem preko dockera app trebaju slusati na 80 ili myb bude radilo i ako eksplicitno napisem 5001...itd probati
+-kad pokrecem preko dockera app trebaju slusati na 80 ili myb bude radilo i ako eksplicitno napisem 5001...itd probati-radi
 ----------------------------------------------------------------
 https://www.rabbitmq.com/client-libraries/dotnet-api-guide
 docker run -d --hostname rmq --name rabbit-server -p 8080:15672 -p 5672:5672 rabbitmq:3-management
@@ -20,24 +21,22 @@ ExchangeType.Fanout
 --------------------------------------------------------------------------
 ako dva servisa razlicitu poruku
 -isti exchange i razliciti routing kljucevi i queue - npr ako povezana tematski poruka (ili razliciti exchange ako tematski odvojene)
-
 -------------------------------------------------------------------------------------------------
-SPAJANJE NA BAZU UNUTAR KONTEJNERA:
+SPAJANJE NA BAZU UNUTAR KONTEJNERA za queryje:
 docker exec -it microservice-postgres psql -U postgres
 NAPOMENE NAKON STO KONTEJNERIZIRANO:
--rabbit isto preko yaml-amqp://guest:guest@localhost:5672 promijenila localhost u rabbitmq
+-rabbit isto preko yaml-amqp://guest:guest@localhost:5672 - promijenila localhost u rabbitmq
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
 -slanje mailova ne radi na NotificationsCell
--kad rabbitmq posalje vidi se queue - provj dal dolazi poruka i mail
--izgleda da poruka ne dolazi do notifications-provj parametre
+-kad pokrenem training i notification bez kontejnera - prima notification poruku ali se mail ne posalje
+-myb credentials za slanje mailova
+-kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
 
-
-
--pokrenuti sve preko dockera
-
+-pokrenuti sve preko dockera-pokrece se ali u fazi testiranja dal sve stvari rade
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-testirati kak radi detaljno
+
 -spojila se preko clienta na competitions be-krenuti spajati polako
 
 -baza users-hashiranje password
