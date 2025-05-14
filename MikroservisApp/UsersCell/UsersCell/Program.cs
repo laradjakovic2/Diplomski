@@ -57,7 +57,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]!)),
             ValidateIssuer = false, //nije radilo sa true
-            ValidateAudience=false,
+            ValidateAudience = false,
             //ValidIssuer = builder.Configuration["Jwt:Issuer"],
             //ValidAudience = builder.Configuration["Jsw:Audience"],
             ClockSkew = TimeSpan.Zero
@@ -78,5 +78,11 @@ app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();  // Pokreće EF migracije
+}
 
 app.Run();
