@@ -5,25 +5,17 @@ export interface ApiConfig {
     competitionsApi: string;
     paymentsApi: string;
     notificationsApi: string;
+    mediaApi: string;
 }
 
 export const apiConfig: ApiConfig = {
-    usersApi: "https://localhost:7004",
-    trainingsApi: "https://localhost:7003",
-    competitionsApi: "https://localhost:7001",
-    paymentsApi: "https://localhost:7002",
-    notificationsApi: "https://localhost:7005"
-  };
-
-export const apiConfig1: ApiConfig = {
     usersApi: "http://localhost:5004",
     trainingsApi: "http://localhost:5003",
     competitionsApi: "http://localhost:5001",
     paymentsApi: "http://localhost:5002",
-    notificationsApi: "http://localhost:5005"
+    notificationsApi: "http://localhost:5005",
+    mediaApi: "http://localhost:5006"
   };
-
-
   
 export class ApiClientBase {
     baseApiUrl: string = 'http://localhost:5075';

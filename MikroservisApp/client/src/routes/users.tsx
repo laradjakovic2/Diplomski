@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
-import { apiConfig1 } from '../api/api'
+import { apiConfig } from '../api/api'
 //import { useFetchData } from "../api/service1";
 
 export const Route = createFileRoute('/users')({
@@ -13,7 +13,7 @@ function RouteComponent() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    fetch(apiConfig1.usersApi + '/users', {
+    fetch(apiConfig.usersApi + '/users', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

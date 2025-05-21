@@ -25,19 +25,26 @@ ako dva servisa razlicitu poruku
 SPAJANJE NA BAZU UNUTAR KONTEJNERA za queryje:
 docker exec -it microservice-postgres psql -U postgres
 NAPOMENE NAKON STO KONTEJNERIZIRANO:
--rabbit isto preko yaml-amqp://guest:guest@localhost:5672 - promijenila localhost u rabbitmq
+-rabbit isto preko yaml-amqp://guest:guest@localhost:5672 - promijeniti iz localhost u rabbitmq
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
+-funkcije sa fe na be
+-trainings-done
+-competitions-done
+-users
+-register users-a-done
+
+-kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
+
 -slanje mailova ne radi na NotificationsCell
 -kad pokrenem training i notification bez kontejnera - prima notification poruku ali se mail ne posalje
 -myb credentials za slanje mailova
--kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
 
--pokrenuti sve preko dockera-pokrece se ali u fazi testiranja dal sve stvari rade
--APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-testirati kak radi detaljno
 
--spojila se preko clienta na competitions be-krenuti spajati polako
+-pokrenuti sve preko dockera-pokrece se ali u fazi testiranja- vidjeti dal se napredna komunikacija preko servisa radi(mail, rabbit)
+-APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi
+
 
 -baza users-hashiranje password
 -umjesto laradjakovic00 mail, koristiti od app za mailove
