@@ -1,4 +1,5 @@
 ﻿using UsersCell.Entities;
+using UsersCell.Services;
 
 namespace UsersCell.Interfaces
 {
@@ -7,7 +8,7 @@ namespace UsersCell.Interfaces
         public Task<List<User>> GetAll();
 
         public Task<User> Get(int id);
-        public Task Create(User request);
+        public Task<string> Create(CreateUser request);
 
         public Task<string> Login(User request);
         public Task Update(User request);

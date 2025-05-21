@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using UsersCell.Interfaces;
 using UsersCell.Entities;
 using Microsoft.AspNetCore.Authorization;
+using UsersCell.Services;
 
 namespace UsersCell.Controllers
 {
@@ -35,11 +36,12 @@ namespace UsersCell.Controllers
             return Ok(result);
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Create(User request)
+        public async Task<IActionResult> Register(CreateUser request)
         {
-            await _usersService.Create(request);
-            return Created();
+            var token = await _usersService.Create(request);
+            return Ok(token);
         }
 
         [AllowAnonymous]
