@@ -1,12 +1,15 @@
 import { ScoreType } from "./Enums"
 
-export interface CompetitionDto {
-  id: number;
+export interface CreateCompetition {
   title: string;
   description?: string;
   location?: string;
   startDate: Date;
   endDate: Date;
+}
+
+export interface CompetitionDto extends CreateCompetition{
+  id: number;
 }
 
 export interface CreateWorkout {

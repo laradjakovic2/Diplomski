@@ -14,6 +14,18 @@ namespace CompetitionsCell.Services
         public string UserEmail { get; set; }
     }
 
+    public class CreateCompetition
+    {
+        public string? Description { get; set; }
+        public string? Title { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public string? Location { get; set; }
+    }
+
     public class CreateWorkout
     {
         public string? Description { get; set; }

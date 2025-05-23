@@ -36,7 +36,7 @@ namespace CompetitionsCell.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Competition request)
+        public async Task<IActionResult> Create([FromBody] CreateCompetition request)
         {
             //TODO
             return Created();

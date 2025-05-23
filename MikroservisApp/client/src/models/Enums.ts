@@ -3,3 +3,9 @@ export enum ScoreType{
     Time=2,
     Weight=3,
 }
+
+export enum UserRole{
+    Admin=1,
+    Trainer=2,
+    Customer=3
+}

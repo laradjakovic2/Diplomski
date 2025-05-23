@@ -13,7 +13,6 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as UsersImport } from './routes/users'
 import { Route as TrainingsImport } from './routes/trainings'
-import { Route as PaymentsImport } from './routes/payments'
 import { Route as CompetitionsImport } from './routes/competitions'
 import { Route as IndexImport } from './routes/index'
 
@@ -28,12 +27,6 @@ const UsersRoute = UsersImport.update({
 const TrainingsRoute = TrainingsImport.update({
   id: '/trainings',
   path: '/trainings',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const PaymentsRoute = PaymentsImport.update({
-  id: '/payments',
-  path: '/payments',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,13 +60,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompetitionsImport
       parentRoute: typeof rootRoute
     }
-    '/payments': {
-      id: '/payments'
-      path: '/payments'
-      fullPath: '/payments'
-      preLoaderRoute: typeof PaymentsImport
-      parentRoute: typeof rootRoute
-    }
     '/trainings': {
       id: '/trainings'
       path: '/trainings'
@@ -96,7 +82,6 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/competitions': typeof CompetitionsRoute
-  '/payments': typeof PaymentsRoute
   '/trainings': typeof TrainingsRoute
   '/users': typeof UsersRoute
 }
@@ -104,7 +89,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/competitions': typeof CompetitionsRoute
-  '/payments': typeof PaymentsRoute
   '/trainings': typeof TrainingsRoute
   '/users': typeof UsersRoute
 }
@@ -113,24 +97,22 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/competitions': typeof CompetitionsRoute
-  '/payments': typeof PaymentsRoute
   '/trainings': typeof TrainingsRoute
   '/users': typeof UsersRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/competitions' | '/payments' | '/trainings' | '/users'
+  fullPaths: '/' | '/competitions' | '/trainings' | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/competitions' | '/payments' | '/trainings' | '/users'
-  id: '__root__' | '/' | '/competitions' | '/payments' | '/trainings' | '/users'
+  to: '/' | '/competitions' | '/trainings' | '/users'
+  id: '__root__' | '/' | '/competitions' | '/trainings' | '/users'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompetitionsRoute: typeof CompetitionsRoute
-  PaymentsRoute: typeof PaymentsRoute
   TrainingsRoute: typeof TrainingsRoute
   UsersRoute: typeof UsersRoute
 }
@@ -138,7 +120,6 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompetitionsRoute: CompetitionsRoute,
-  PaymentsRoute: PaymentsRoute,
   TrainingsRoute: TrainingsRoute,
   UsersRoute: UsersRoute,
 }
@@ -155,7 +136,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/competitions",
-        "/payments",
         "/trainings",
         "/users"
       ]
@@ -165,9 +145,6 @@ export const routeTree = rootRoute
     },
     "/competitions": {
       "filePath": "competitions.tsx"
-    },
-    "/payments": {
-      "filePath": "payments.tsx"
     },
     "/trainings": {
       "filePath": "trainings.tsx"

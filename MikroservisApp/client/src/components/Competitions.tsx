@@ -1,29 +1,29 @@
 import { EllipsisOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Drawer, Dropdown, Table } from "antd";
 import { useCallback, useEffect, useState } from "react";
-import { getAllTrainings } from "../api/trainingsService";
-import { TrainingDto } from "../models/trainings";
-import TrainingForm from "./TrainingForm";
+import { CompetitionDto } from "../models/competitions";
+import CompetitionForm from "./CompetitionForm";
+import { getAllCompetitions } from "../api/competitionsService";
 
-function Trainings() {
+function Competitions() {
   //const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const [trainings, setTrainings] = useState<TrainingDto[]>([]);
+  const [competitions, setcompetitions] = useState<CompetitionDto[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [selectedTraining, setTraining] = useState<TrainingDto | undefined>(
-    undefined
-  );
+  const [selectedCompetition, setCompetition] = useState<
+    CompetitionDto | undefined
+  >(undefined);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
-  const handleOpenDrawer = useCallback((entity?: TrainingDto) => {
-    setTraining(entity);
+  const handleOpenDrawer = useCallback((entity?: CompetitionDto) => {
+    setCompetition(entity);
     setIsDrawerOpen(true);
   }, []);
   const handleDrawerClose = useCallback(() => {
-    setTraining(undefined);
+    setCompetition(undefined);
     setIsDrawerOpen(false);
   }, []);
   /*
-  const handleDeleteModalOpen = useCallback((activity: TrainingDto) => {
+  const handleDeleteModalOpen = useCallback((activity: CompetitionDto) => {
     setIsDeleteModalOpen(true);
     setDeleteActivityId(activity.id);
   }, []);
@@ -43,23 +43,23 @@ function Trainings() {
   }, []);
 */
   useEffect(() => {
-    const fetchTrainings = async () => {
+    const fetchcompetitions = async () => {
       try {
-        const data = await getAllTrainings();
-        setTrainings(data);
+        const data = await getAllCompetitions();
+        setcompetitions(data);
       } catch (err) {
-        setError("Failed to load trainings." + { err });
+        setError("Failed to load competitions." + { err });
       }
     };
 
-    fetchTrainings();
+    fetchcompetitions();
   }, []);
 
   if (error) return <div>{error}</div>;
 
   const columns = [
     {
-      title: "Training",
+      title: "Competition",
       dataIndex: "title",
     },
     {
@@ -83,7 +83,7 @@ function Trainings() {
     {
       title: "Actions",
       key: "actions",
-      render: (t: TrainingDto) => {
+      render: (t: CompetitionDto) => {
         const menuItems = [
           {
             key: "delete",
@@ -125,7 +125,7 @@ function Trainings() {
           marginBottom: 16,
         }}
       >
-        <h1 style={{ margin: 0 }}>Trainings</h1>
+        <h1 style={{ margin: 0 }}>competitions</h1>
         <Button key="1" type="primary" onClick={() => handleOpenDrawer()}>
           <PlusOutlined />
           Add
@@ -135,10 +135,10 @@ function Trainings() {
       <Table
         style={{ width: "100%" }}
         columns={columns}
-        dataSource={trainings}
-        rowKey={(activity: TrainingDto): string => activity.id.toString()}
+        dataSource={competitions}
+        rowKey={(activity: CompetitionDto): string => activity.id.toString()}
         //loading={isLoading}
-        onRow={(t: TrainingDto) => ({
+        onRow={(t: CompetitionDto) => ({
           onClick: () => handleOpenDrawer(t),
         })}
         //onChange={handleTableChange}
@@ -146,14 +146,14 @@ function Trainings() {
       />
 
       <Drawer
-        title={!selectedTraining ? "Edit" : "Create"}
+        title={!selectedCompetition ? "Edit" : "Create"}
         open={!!isDrawerOpen}
         onClose={() => handleDrawerClose()}
         destroyOnClose
         width={700}
       >
-        <TrainingForm
-          training={selectedTraining}
+        <CompetitionForm
+          Competition={selectedCompetition}
           onClose={() => handleDrawerClose()}
         />
       </Drawer>
@@ -161,4 +161,4 @@ function Trainings() {
   );
 }
 
-export default Trainings;
+export default Competitions;
