@@ -38,14 +38,14 @@ namespace CompetitionsCell.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCompetition request)
         {
-            //TODO
+            await _competitionsService.CreateCompetition(request);
             return Created();
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Competition request)
         {
-            //TODO
+            await _competitionsService.UpdateCompetition(request);
             return Ok();
         }
 

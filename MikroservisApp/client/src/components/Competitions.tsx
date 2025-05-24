@@ -77,8 +77,8 @@ function Competitions() {
       render: (value?: Date) => value ? new Date(value).toLocaleDateString() : "",
     },
     {
-      title: "Trainer",
-      dataIndex: "trainerEmail",
+      title: "Location",
+      dataIndex: "location",
     },
     {
       title: "Actions",

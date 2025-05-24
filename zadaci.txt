@@ -29,18 +29,17 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
--funkcije sa fe na be
+-funkcije sa fe na be:
 -trainings-done
 -competitions-done
--users
 -register users-a-done
+-users-baca gresku
 
 -kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
 
 -slanje mailova ne radi na NotificationsCell
 -kad pokrenem training i notification bez kontejnera - prima notification poruku ali se mail ne posalje
 -myb credentials za slanje mailova
-
 
 -pokrenuti sve preko dockera-pokrece se ali u fazi testiranja- vidjeti dal se napredna komunikacija preko servisa radi(mail, rabbit)
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi

@@ -9,6 +9,8 @@ namespace CompetitionsCell.Interfaces
         public Task<List<Competition>> GetAll();
 
         public Task<Competition> Get(int id);
+        public Task CreateCompetition(CreateCompetition request);
+        public Task UpdateCompetition(Competition request);
         public Task CreateWorkout(CreateWorkout request);
         public Task UpdateWorkout(Workout request);
 

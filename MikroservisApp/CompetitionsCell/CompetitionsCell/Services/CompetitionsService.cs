@@ -69,6 +69,34 @@ namespace CompetitionsCell.Services
             return _context.Competitions.Where(t => t.Id == id).SingleOrDefault();
         }
 
+        public async Task CreateCompetition(CreateCompetition request)
+        {
+            var entity = new Competition
+            {
+                Description = request.Description,
+                Title = request.Title,
+                Location = request.Location,
+                StartDate = request.StartDate,
+                EndDate = request.EndDate
+            };
+
+            _context.Add(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateCompetition(Competition request)
+        {
+            var entity = _context.Competitions.Where(t => t.Id == request.Id).SingleOrDefault();
+
+            entity.Title = request.Title;
+            entity.Description = request.Description;
+            entity.Location = request.Location;
+            entity.StartDate = request.StartDate;
+            entity.EndDate = request.EndDate;
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task CreateWorkout(CreateWorkout request)
         {
             var entity = new Workout
