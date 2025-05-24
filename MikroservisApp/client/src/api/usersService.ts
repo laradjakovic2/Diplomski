@@ -1,4 +1,4 @@
-import { CreateUser, UserDto } from "../models/users";
+import { CreateUser, LoginUser, UserDto } from "../models/users";
 import { apiConfig } from "./api";
 
 const USERS_API = apiConfig.usersApi + "/users";
@@ -18,7 +18,8 @@ export const getAllUsers = async (): Promise<UserDto[]> => {
       method: "GET",
       headers: getAuthHeaders(),
     });
-
+// eslint-disable-next-line no-debugger
+debugger;
     if (!response.ok) throw new Error(`Server error: ${response.status} ${response.statusText}`);
     return await response.json();
   } catch (err) {
@@ -61,14 +62,15 @@ export const registerUser = async (data: CreateUser): Promise<string> => {
 };
 
 // Login (no auth needed)
-export const loginUser = async (data: UserDto): Promise<string> => {
+export const loginUser = async (data: LoginUser): Promise<string> => {
   try {
     const response = await fetch(`${USERS_API}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-
+// eslint-disable-next-line no-debugger
+debugger;
     if (!response.ok) throw new Error(`Login failed: ${response.statusText}`);
     return await response.text(); // JWT token string
   } catch (err) {

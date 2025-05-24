@@ -46,7 +46,7 @@ namespace UsersCell.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login(User request)
+        public async Task<IActionResult> Login(LoginUser request)
         {
             var token = await _usersService.Login(request);
             return Ok(token);

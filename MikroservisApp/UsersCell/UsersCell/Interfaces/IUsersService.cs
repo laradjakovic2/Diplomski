@@ -10,7 +10,7 @@ namespace UsersCell.Interfaces
         public Task<User> Get(int id);
         public Task<string> Create(CreateUser request);
 
-        public Task<string> Login(User request);
+        public Task<string> Login(LoginUser request);
         public Task Update(User request);
         public Task Delete(int id);
     }

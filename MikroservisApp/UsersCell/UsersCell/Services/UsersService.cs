@@ -13,6 +13,12 @@ namespace UsersCell.Services
 
         public int? RoleId { get; set; }
     }
+
+    public class LoginUser
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
     public class UsersService(AppDbContext _context, TokenProvider tokenProvider) : IUsersService
     {
         public async Task<List<User>> GetAll()
@@ -74,7 +80,7 @@ namespace UsersCell.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<string> Login(User request)
+        public async Task<string> Login(LoginUser request)
         {
             var user = _context.Users.Where(t => t.Email == request.Email).SingleOrDefault();
 
