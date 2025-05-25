@@ -13,14 +13,21 @@ export interface CompetitionDto extends CreateCompetition{
 }
 
 export interface CreateWorkout {
-  competitionId: number;
-  name: string;
+  title: string;
   description?: string;
-  type: string; // e.g. "Strength", "Endurance"
-  durationInMinutes?: number;
+  competitionId: number;
+  scoreType: ScoreType;
 }
 
 export interface Workout {
+  id: number;
+  title: string;
+  description?: string;
+  competitionId: number;
+  scoreType: ScoreType;
+}
+
+export interface WorkoutDto {
   id: number;
   title: string;
   description?: string;

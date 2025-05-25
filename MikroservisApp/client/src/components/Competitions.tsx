@@ -1,9 +1,16 @@
 import { EllipsisOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Drawer, Dropdown, Table } from "antd";
+import { Button, Drawer, Dropdown, Modal, Table } from "antd";
 import { useCallback, useEffect, useState } from "react";
-import { CompetitionDto } from "../models/competitions";
+import {
+  CompetitionDto,
+  UserRegisteredForCompetition,
+} from "../models/competitions";
 import CompetitionForm from "./CompetitionForm";
-import { getAllCompetitions } from "../api/competitionsService";
+import {
+  getAllCompetitions,
+  registerUserForCompetition,
+} from "../api/competitionsService";
+import WorkoutForm from "./WorkoutForm";
 
 function Competitions() {
   //const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -13,15 +20,52 @@ function Competitions() {
     CompetitionDto | undefined
   >(undefined);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [isWorkoutDrawerOpen, setIsWorkoutDrawerOpen] =
+    useState<boolean>(false);
+  const [isRegisterUserModalOpen, setIsRegisterUserModalOpen] =
+    useState<boolean>(false);
 
   const handleOpenDrawer = useCallback((entity?: CompetitionDto) => {
     setCompetition(entity);
     setIsDrawerOpen(true);
   }, []);
+
+  const handleWorkoutDrawerOpen = useCallback(
+    (competition?: CompetitionDto) => {
+      setIsWorkoutDrawerOpen(true);
+      setCompetition(competition);
+    },
+    []
+  );
+
+  const handleRegisterUserDrawerOpen = useCallback(
+    (competition?: CompetitionDto) => {
+      setIsRegisterUserModalOpen(true);
+      setCompetition(competition);
+    },
+    []
+  );
+
   const handleDrawerClose = useCallback(() => {
     setCompetition(undefined);
     setIsDrawerOpen(false);
+    setIsWorkoutDrawerOpen(false);
+    setIsRegisterUserModalOpen(false);
   }, []);
+
+  const handleRegisterToCompetition = useCallback(
+    async (competitionId: number, userId: number) => {
+      const command: UserRegisteredForCompetition = {
+        userId: userId,
+        competitionId: competitionId,
+      };
+
+      await registerUserForCompetition(command);
+
+      handleDrawerClose();
+    },
+    [handleDrawerClose]
+  );
   /*
   const handleDeleteModalOpen = useCallback((activity: CompetitionDto) => {
     setIsDeleteModalOpen(true);
@@ -69,12 +113,14 @@ function Competitions() {
     {
       title: "Start Date",
       dataIndex: "startDate",
-      render: (value?: Date) => value ? new Date(value).toLocaleDateString() : "",
+      render: (value?: Date) =>
+        value ? new Date(value).toLocaleDateString() : "",
     },
     {
       title: "End Date",
       dataIndex: "endDate",
-      render: (value?: Date) => value ? new Date(value).toLocaleDateString() : "",
+      render: (value?: Date) =>
+        value ? new Date(value).toLocaleDateString() : "",
     },
     {
       title: "Location",
@@ -97,7 +143,23 @@ function Competitions() {
           },
           {
             key: "edit",
-            label: <div onClick={() => handleOpenDrawer(t)}>{"Delete"}</div>,
+            label: <div onClick={() => handleOpenDrawer(t)}>{"<Edit"}</div>,
+          },
+          {
+            key: "add-workout",
+            label: (
+              <div onClick={() => handleWorkoutDrawerOpen(t)}>
+                {"Add workout"}
+              </div>
+            ),
+          },
+          {
+            key: "register",
+            label: (
+              <div onClick={() => handleRegisterUserDrawerOpen(t)}>
+                {"Register for competition"}
+              </div>
+            ),
           },
         ].filter(Boolean) as { key: string; label: JSX.Element }[];
 
@@ -146,7 +208,7 @@ function Competitions() {
       />
 
       <Drawer
-        title={!selectedCompetition ? "Edit" : "Create"}
+        title={selectedCompetition ? "Edit" : "Create"}
         open={!!isDrawerOpen}
         onClose={() => handleDrawerClose()}
         destroyOnClose
@@ -157,6 +219,35 @@ function Competitions() {
           onClose={() => handleDrawerClose()}
         />
       </Drawer>
+
+      {selectedCompetition !== undefined ? (
+        <Drawer
+          title={"Workout"}
+          open={!!isWorkoutDrawerOpen}
+          onClose={() => handleDrawerClose()}
+          destroyOnClose
+          width={700}
+        >
+          <WorkoutForm
+            competition={selectedCompetition}
+            onClose={() => handleDrawerClose()}
+          />
+        </Drawer>
+      ) : (
+        <></>
+      )}
+
+      {selectedCompetition ? (
+        <Modal
+          open={isRegisterUserModalOpen}
+          // TODO
+          onOk={() => handleRegisterToCompetition(selectedCompetition?.id, 1)}
+        >
+          Register to competition {selectedCompetition.title}?
+        </Modal>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
