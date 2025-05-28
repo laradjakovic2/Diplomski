@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import CompetitionsGrid from "../components/CompetitionsGrid";
+import Competitions from "../../components/Competitions";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/competitions/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
     <>
-      <CompetitionsGrid />
+      <Competitions />
     </>
   );
 }

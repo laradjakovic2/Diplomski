@@ -11,6 +11,7 @@ const Sidebar: React.FC = () => {
       style={{
         overflow: 'auto',
         height: '100vh',
+        width: '15vw',
         position: 'fixed',
         left: 0,
         top: 0,
@@ -36,6 +37,12 @@ const Sidebar: React.FC = () => {
         </Menu.Item>
         <Menu.Item key="/competitions" icon={<UserOutlined />}>
           <Link to="/competitions">Competitions</Link>
+        </Menu.Item>
+        <Menu.Item key="/login" icon={<UserOutlined />}>
+          <Link to="/login">Login</Link>
+        </Menu.Item>
+        <Menu.Item key="/calendar" icon={<UserOutlined />}>
+          <Link to="/calendar">Calendar</Link>
         </Menu.Item>
       </Menu>
     </Sider>

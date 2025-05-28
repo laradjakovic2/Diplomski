@@ -13,8 +13,11 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as UsersImport } from './routes/users'
 import { Route as TrainingsImport } from './routes/trainings'
-import { Route as CompetitionsImport } from './routes/competitions'
+import { Route as LoginImport } from './routes/login'
+import { Route as CalendarImport } from './routes/calendar'
 import { Route as IndexImport } from './routes/index'
+import { Route as CompetitionsIndexImport } from './routes/competitions/index'
+import { Route as CompetitionsIdImport } from './routes/competitions/$id'
 
 // Create/Update Routes
 
@@ -30,15 +33,33 @@ const TrainingsRoute = TrainingsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const CompetitionsRoute = CompetitionsImport.update({
-  id: '/competitions',
-  path: '/competitions',
+const LoginRoute = LoginImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CalendarRoute = CalendarImport.update({
+  id: '/calendar',
+  path: '/calendar',
   getParentRoute: () => rootRoute,
 } as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CompetitionsIndexRoute = CompetitionsIndexImport.update({
+  id: '/competitions/',
+  path: '/competitions/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CompetitionsIdRoute = CompetitionsIdImport.update({
+  id: '/competitions/$id',
+  path: '/competitions/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,11 +74,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/competitions': {
-      id: '/competitions'
-      path: '/competitions'
-      fullPath: '/competitions'
-      preLoaderRoute: typeof CompetitionsImport
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarImport
+      parentRoute: typeof rootRoute
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
     '/trainings': {
@@ -74,6 +102,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsersImport
       parentRoute: typeof rootRoute
     }
+    '/competitions/$id': {
+      id: '/competitions/$id'
+      path: '/competitions/$id'
+      fullPath: '/competitions/$id'
+      preLoaderRoute: typeof CompetitionsIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/competitions/': {
+      id: '/competitions/'
+      path: '/competitions'
+      fullPath: '/competitions'
+      preLoaderRoute: typeof CompetitionsIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -81,47 +123,84 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/competitions': typeof CompetitionsRoute
+  '/calendar': typeof CalendarRoute
+  '/login': typeof LoginRoute
   '/trainings': typeof TrainingsRoute
   '/users': typeof UsersRoute
+  '/competitions/$id': typeof CompetitionsIdRoute
+  '/competitions': typeof CompetitionsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/competitions': typeof CompetitionsRoute
+  '/calendar': typeof CalendarRoute
+  '/login': typeof LoginRoute
   '/trainings': typeof TrainingsRoute
   '/users': typeof UsersRoute
+  '/competitions/$id': typeof CompetitionsIdRoute
+  '/competitions': typeof CompetitionsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/competitions': typeof CompetitionsRoute
+  '/calendar': typeof CalendarRoute
+  '/login': typeof LoginRoute
   '/trainings': typeof TrainingsRoute
   '/users': typeof UsersRoute
+  '/competitions/$id': typeof CompetitionsIdRoute
+  '/competitions/': typeof CompetitionsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/competitions' | '/trainings' | '/users'
+  fullPaths:
+    | '/'
+    | '/calendar'
+    | '/login'
+    | '/trainings'
+    | '/users'
+    | '/competitions/$id'
+    | '/competitions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/competitions' | '/trainings' | '/users'
-  id: '__root__' | '/' | '/competitions' | '/trainings' | '/users'
+  to:
+    | '/'
+    | '/calendar'
+    | '/login'
+    | '/trainings'
+    | '/users'
+    | '/competitions/$id'
+    | '/competitions'
+  id:
+    | '__root__'
+    | '/'
+    | '/calendar'
+    | '/login'
+    | '/trainings'
+    | '/users'
+    | '/competitions/$id'
+    | '/competitions/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CompetitionsRoute: typeof CompetitionsRoute
+  CalendarRoute: typeof CalendarRoute
+  LoginRoute: typeof LoginRoute
   TrainingsRoute: typeof TrainingsRoute
   UsersRoute: typeof UsersRoute
+  CompetitionsIdRoute: typeof CompetitionsIdRoute
+  CompetitionsIndexRoute: typeof CompetitionsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CompetitionsRoute: CompetitionsRoute,
+  CalendarRoute: CalendarRoute,
+  LoginRoute: LoginRoute,
   TrainingsRoute: TrainingsRoute,
   UsersRoute: UsersRoute,
+  CompetitionsIdRoute: CompetitionsIdRoute,
+  CompetitionsIndexRoute: CompetitionsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -135,22 +214,34 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/competitions",
+        "/calendar",
+        "/login",
         "/trainings",
-        "/users"
+        "/users",
+        "/competitions/$id",
+        "/competitions/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/competitions": {
-      "filePath": "competitions.tsx"
+    "/calendar": {
+      "filePath": "calendar.tsx"
+    },
+    "/login": {
+      "filePath": "login.tsx"
     },
     "/trainings": {
       "filePath": "trainings.tsx"
     },
     "/users": {
       "filePath": "users.tsx"
+    },
+    "/competitions/$id": {
+      "filePath": "competitions/$id.tsx"
+    },
+    "/competitions/": {
+      "filePath": "competitions/index.tsx"
     }
   }
 }

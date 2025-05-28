@@ -15,7 +15,7 @@ const RootLayout: React.FC = () => {
         <Content style={{ width: "100%" }}>
           <div
             style={{
-              padding: 24,
+              paddingLeft: 90,
               //minHeight: 360,
               width: "100%",
               boxSizing: "border-box",
