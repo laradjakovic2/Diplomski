@@ -1,18 +1,77 @@
 import { useCallback, useEffect, useState } from "react";
-import { Row, Col, Card, Table, Typography, Drawer, Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Row, Col, Card, Table, Typography, Drawer, Button, Input } from "antd";
+import { DownOutlined, PlusOutlined, UpOutlined } from "@ant-design/icons";
 import { useParams } from "@tanstack/react-router";
 import { getCompetitionById } from "../../api/competitionsService";
-import { CompetitionDto } from "../../models/competitions";
+import { CompetitionDto, WorkoutDto } from "../../models/competitions";
 import WorkoutForm from "./WorkoutForm";
+import { ScoreType } from "../../models/Enums";
 
 const { Title } = Typography;
 
-const workouts = [
-  { title: "Workout 1", description: "Deadlift + Burpees" },
-  { title: "Workout 2", description: "Pull-ups + Rowing" },
-  { title: "Workout 3", description: "Squats + Running" },
-  { title: "Workout 4", description: "Clean & Jerk + Double Unders" },
+const workouts: WorkoutDto[] = [
+  {
+    title: "Workout 1",
+    description: "Deadlift + Burpees",
+    id: 1,
+    competitionId: 1,
+    scoreType: ScoreType.Reps,
+    results: [
+      {
+        id: 1,
+        userId: 1,
+        userEmail: "lara.dakovic@fer.hr",
+        workoutId: 1,
+        score: 234,
+      },
+      {
+        id: 2,
+        userId: 1,
+        userEmail: "lara.dakovic@fer.hr",
+        workoutId: 1,
+        score: 234,
+      },
+      {
+        id: 3,
+        userId: 1,
+        userEmail: "lara.dakovic@fer.hr",
+        workoutId: 1,
+        score: 234,
+      },
+    ],
+  },
+  {
+    title: "Workout 2",
+    description: "Pull-ups + Rowing",
+    id: 2,
+    competitionId: 1,
+    scoreType: ScoreType.Reps,
+    results: [],
+  },
+  {
+    title: "Workout 3",
+    description: "Squats + Running",
+    id: 3,
+    competitionId: 1,
+    scoreType: ScoreType.Reps,
+    results: [],
+  },
+  {
+    title: "Workout 4",
+    description: "Clean & Jerk + Double Unders",
+    id: 4,
+    competitionId: 1,
+    scoreType: ScoreType.Reps,
+    results: [
+      {
+        id: 1,
+        userId: 1,
+        userEmail: "lara.dakovic@fer.hr",
+        workoutId: 1,
+        score: 234,
+      },
+    ],
+  },
 ];
 
 const scoreData = [
@@ -64,11 +123,20 @@ function CompetitionDetails() {
   const handleDrawerClose = useCallback(() => {
     setIsWorkoutDrawerOpen(false);
   }, []);
+  const [expandedWorkoutId, setExpandedWorkoutId] = useState<number | null>(
+    null
+  );
+  const [scores, setScores] = useState<Record<number, string>>({}); // key: resultId, value: score
+
+  const handleScoreChange = (resultId: number, value: string) => {
+    setScores((prev) => ({ ...prev, [resultId]: value }));
+  };
 
   useEffect(() => {
     const fetchCompetition = async () => {
       try {
         const data = await getCompetitionById(+competitionId);
+        console.log(data);
         setCompetition(data);
       } catch (err) {
         setError("Failed to load competitions." + { err });
@@ -78,7 +146,7 @@ function CompetitionDetails() {
     fetchCompetition();
   }, [competitionId]);
 
-  if (error) return <div>{error}</div>;
+  // if (error) return <div>{error}</div>;
   return (
     <>
       <div>
@@ -88,14 +156,14 @@ function CompetitionDetails() {
           <Button
             key="1"
             type="primary"
-            style={{marginTop: 25, marginLeft: 15}}
+            style={{ marginTop: 25, marginLeft: 15 }}
             onClick={() => setIsWorkoutDrawerOpen(true)}
           >
             <PlusOutlined />
             Add workout
           </Button>
         </Row>
-        
+
         <Row gutter={24}>
           {/* LEFT: Workouts */}
           <Col span={12}>
@@ -103,8 +171,68 @@ function CompetitionDetails() {
             <Row gutter={[16, 16]}>
               {workouts.map((workout, index) => (
                 <Col span={12} key={index}>
-                  <Card title={workout.title} bordered>
+                  <Card
+                    title={
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        <span>{workout.title}</span>
+                        <Button
+                          type="link"
+                          icon={
+                            expandedWorkoutId === workout.id ? (
+                              <UpOutlined />
+                            ) : (
+                              <DownOutlined />
+                            )
+                          }
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedWorkoutId((prev) =>
+                              prev === workout.id ? null : workout.id
+                            );
+                          }}
+                        />
+                      </div>
+                    }
+                    bordered
+                    headStyle={{ backgroundColor: "#e6f7ff" }}
+                  >
                     <p>{workout.description}</p>
+
+                    {expandedWorkoutId === workout.id && (
+                      <Table
+                        size="small"
+                        dataSource={workout.results}
+                        pagination={false}
+                        rowKey="id"
+                        columns={[
+                          {
+                            title: "User",
+                            dataIndex: "userEmail",
+                            key: "userEmail",
+                          },
+                          {
+                            title: "Score",
+                            dataIndex: "score",
+                            key: "score",
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            render: (text: string, record: any) => (
+                              <Input
+                                value={scores[record.id] ?? record.score}
+                                onChange={(e) =>
+                                  handleScoreChange(record.id, e.target.value)
+                                }
+                              />
+                            ),
+                          },
+                        ]}
+                      />
+                    )}
                   </Card>
                 </Col>
               ))}

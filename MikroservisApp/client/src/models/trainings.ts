@@ -44,6 +44,7 @@ export interface RegistrationDto {
   export interface UserRegisteredForTraining {
     userId: number;
     trainingId: number;
+    userEmail: string;
   }
   
   export interface CreateTrainingTypeMembership {

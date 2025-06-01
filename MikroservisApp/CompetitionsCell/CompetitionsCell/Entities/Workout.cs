@@ -9,7 +9,8 @@ namespace CompetitionsCell.Entities
         public int? CompetitionId { get; set; }
 
         public int ScoreType { get; set; }
-
+        
         public virtual Competition? Competition { get; set; }
+        public virtual ICollection<Result> Results { get; set; } = new List<Result>();
     }
 }

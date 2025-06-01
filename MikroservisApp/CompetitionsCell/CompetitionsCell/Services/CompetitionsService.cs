@@ -66,7 +66,12 @@ namespace CompetitionsCell.Services
 
         public async Task<Competition?> Get(int id)
         {
-            return _context.Competitions.Where(t => t.Id == id).SingleOrDefault();
+            return _context.Competitions
+                .Include(c => c.CompetitionMemberships)
+                .Include(c => c.Workouts)
+                    .ThenInclude(w => w.Results)
+                .Where(t => t.Id == id)
+                .SingleOrDefault();
         }
 
         public async Task CreateCompetition(CreateCompetition request)
@@ -150,8 +155,6 @@ namespace CompetitionsCell.Services
 
             if (entity == null)
             {
-                //TODO provjeriti radi li ovo
-                request.Workout = null;
                 _context.Add(request);
             }
             else

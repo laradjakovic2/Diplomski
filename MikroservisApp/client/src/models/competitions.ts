@@ -1,5 +1,12 @@
 import { ScoreType } from "./Enums"
 
+export interface CompetitionMembership {
+  id: number;
+  competitionId: number;
+  userId: number;
+  userEmail: string;
+}
+
 export interface CreateCompetition {
   title: string;
   description?: string;
@@ -10,6 +17,7 @@ export interface CreateCompetition {
 
 export interface CompetitionDto extends CreateCompetition{
   id: number;
+  competitionMemberships?: CompetitionMembership[];
 }
 
 export interface CreateWorkout {
@@ -33,6 +41,8 @@ export interface WorkoutDto {
   description?: string;
   competitionId: number;
   scoreType: ScoreType;
+  competition?: CompetitionDto;
+  results: Result[];
 }
 
 export interface CreateCompetitionPayment {
@@ -48,7 +58,7 @@ export interface UserRegisteredForCompetition {
 }
 
 export interface Result {
-  is: number;
+  id: number;
   userId: number;
   userEmail: string;
   workoutId: number;

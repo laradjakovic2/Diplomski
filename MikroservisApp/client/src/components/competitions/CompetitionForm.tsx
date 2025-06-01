@@ -7,6 +7,7 @@ import {
   createCompetition,
   updateCompetition,
 } from "../../api/competitionsService";
+import dayjs from "dayjs";
 
 interface Props {
   onClose: () => void;
@@ -19,7 +20,12 @@ function CompetitionForm({ onClose, Competition }: Props) {
   useEffect(() => {
     if (Competition) {
       for (const [key, value] of Object.entries(Competition)) {
-        form.setFieldsValue({ [key]: value });
+        if(key==='startDate' || key==='endDate'){
+          form.setFieldsValue({ [key]: dayjs(value) });
+        }else{
+          form.setFieldsValue({ [key]: value });
+        }
+        
       }
     }
   }, [form, Competition]);
@@ -28,10 +34,6 @@ function CompetitionForm({ onClose, Competition }: Props) {
     async (values: CreateCompetition | CompetitionDto) => {
       const command = {
         ...values,
-        title: "Trening 2",
-        startDate: new Date(),
-        endDate: new Date(),
-        location: "zagreb",
       };
 
       if (!Competition?.id) {
@@ -95,3 +97,4 @@ function CompetitionForm({ onClose, Competition }: Props) {
 }
 
 export default CompetitionForm;
+

@@ -15,6 +15,8 @@ function Trainings() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   const handleOpenDrawer = useCallback((entity?: TrainingDto) => {
+    // eslint-disable-next-line no-debugger
+    debugger;
     setTraining(entity);
     setIsDrawerOpen(true);
   }, []);
@@ -70,13 +72,17 @@ function Trainings() {
       title: "Start Date",
       dataIndex: "startDate",
       render: (value?: Date) =>
-        value ? new Date(value).toLocaleDateString() : "",
+        value
+          ? `${new Date(value).toLocaleDateString()} ${new Date(value).toLocaleTimeString()}`
+          : "",
     },
     {
       title: "End Date",
       dataIndex: "endDate",
       render: (value?: Date) =>
-        value ? new Date(value).toLocaleDateString() : "",
+        value
+          ? `${new Date(value).toLocaleDateString()} ${new Date(value).toLocaleTimeString()}`
+          : "",
     },
     {
       title: "Trainer",
@@ -99,7 +105,7 @@ function Trainings() {
           },
           {
             key: "edit",
-            label: <div onClick={() => handleOpenDrawer(t)}>{"Delete"}</div>,
+            label: <div onClick={() => handleOpenDrawer(t)}>{"Edit"}</div>,
           },
         ].filter(Boolean) as { key: string; label: JSX.Element }[];
 

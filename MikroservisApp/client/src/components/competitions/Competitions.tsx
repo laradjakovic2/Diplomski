@@ -240,7 +240,7 @@ function Competitions() {
       {selectedCompetition ? (
         <Modal
           open={isRegisterUserModalOpen}
-          // TODO
+          onCancel={() => handleDrawerClose()}
           onOk={() => handleRegisterToCompetition(selectedCompetition?.id, 1)}
         >
           Register to competition {selectedCompetition.title}?

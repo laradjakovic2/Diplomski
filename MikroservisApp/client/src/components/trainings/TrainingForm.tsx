@@ -5,6 +5,7 @@ import "../../App.css";
 import { createTraining, updateTraining } from "../../api/trainingsService";
 import { CreateTraining, Training, TrainingDto } from "../../models/trainings";
 import { ScoreType } from "../../models/Enums";
+import dayjs from "dayjs";
 
 interface Props {
   initialStartDate?: Date;
@@ -24,7 +25,11 @@ function TrainingForm({
   useEffect(() => {
     if (training) {
       for (const [key, value] of Object.entries(training)) {
-        form.setFieldsValue({ [key]: value });
+        if (key === "startDate" || key === "endDate") {
+          form.setFieldsValue({ [key]: dayjs(value) });
+        } else {
+          form.setFieldsValue({ [key]: value });
+        }
       }
     }
   }, [form, training]);
@@ -33,9 +38,6 @@ function TrainingForm({
     async (values: CreateTraining | Training) => {
       const command = {
         ...values,
-        title: "Trening 2",
-        startDate: new Date(),
-        endDate: new Date(),
         trainerId: 1,
         trainingTypeId: 1,
         scoreType: ScoreType.Time,
@@ -78,7 +80,7 @@ function TrainingForm({
         label={"Start"}
         //initialValue={initialStartDate ? initialStartDate : new Date()}
       >
-        <DatePicker />
+        <DatePicker showTime />
       </Form.Item>
 
       <Form.Item
@@ -86,7 +88,7 @@ function TrainingForm({
         label={"End"}
         //initialValue={initialEndDate ? initialEndDate : new Date()}
       >
-        <DatePicker />
+        <DatePicker showTime />
       </Form.Item>
 
       {!training?.id && (

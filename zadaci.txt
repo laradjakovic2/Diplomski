@@ -29,7 +29,11 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
--forme za workout itd
+-dohvat competitiona po id-U
+-trainingDetails
+-update rezultata za training
+
+
 -kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
 
 -slanje mailova ne radi na NotificationsCell
