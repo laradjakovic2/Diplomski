@@ -1,10 +1,14 @@
-import { Button,  Form, Input, Row } from "antd";
+import { Button, Form, Input, Row } from "antd";
 import { useCallback, useEffect } from "react";
 import { SaveOutlined } from "@ant-design/icons";
-import "../App.css";
-import { CompetitionDto, CreateWorkout, WorkoutDto } from "../models/competitions";
-import { createWorkout, updateWorkout } from "../api/competitionsService";
-import { ScoreType } from "../models/Enums";
+import "../../App.css";
+import {
+  CompetitionDto,
+  CreateWorkout,
+  WorkoutDto,
+} from "../../models/competitions";
+import { createWorkout, updateWorkout } from "../../api/competitionsService";
+import { ScoreType } from "../../models/Enums";
 
 interface Props {
   onClose: () => void;
@@ -28,7 +32,7 @@ function WorkoutForm({ onClose, workout, competition }: Props) {
       const command: CreateWorkout = {
         ...values,
         competitionId: competition.id,
-        scoreType: ScoreType.Reps
+        scoreType: ScoreType.Reps,
       };
 
       if (!workout?.id) {

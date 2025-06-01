@@ -1,5 +1,5 @@
-import { CreateUser } from "../models/users";
-import { registerUser } from "../api/usersService";
+import { CreateUser } from "../../models/users";
+import { registerUser } from "../../api/usersService";
 import { Button, DatePicker, Form, Input } from "antd";
 
 function RegisterForm() {

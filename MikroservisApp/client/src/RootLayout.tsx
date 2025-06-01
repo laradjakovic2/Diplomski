@@ -11,8 +11,8 @@ const RootLayout: React.FC = () => {
     <Layout style={{ minHeight: "100vh" }}>
       <Sidebar />
 
-      <Layout style={{ width: '100%'}} >
-        <Content style={{ width: "100%" }}>
+      <Layout style={{ width: "100vw", background: "white" }}>
+        <Content style={{ width: "100%", background: "white" }}>
           <div
             style={{
               paddingLeft: 90,

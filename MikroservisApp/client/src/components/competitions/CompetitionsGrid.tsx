@@ -1,7 +1,7 @@
 import { Card, Col, Row } from "antd";
 import {  useEffect, useState } from "react";
-import { CompetitionDto } from "../models/competitions";
-import { getAllCompetitions } from "../api/competitionsService";
+import { CompetitionDto } from "../../models/competitions";
+import { getAllCompetitions } from "../../api/competitionsService";
 import { Link } from "@tanstack/react-router";
 
 function Competitions() {

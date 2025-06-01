@@ -4,12 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import {
   CompetitionDto,
   UserRegisteredForCompetition,
-} from "../models/competitions";
+} from "../../models/competitions";
 import CompetitionForm from "./CompetitionForm";
 import {
   getAllCompetitions,
   registerUserForCompetition,
-} from "../api/competitionsService";
+} from "../../api/competitionsService";
 import WorkoutForm from "./WorkoutForm";
 
 function Competitions() {

@@ -1,8 +1,8 @@
 import { EllipsisOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Drawer, Dropdown, Table } from "antd";
 import { useCallback, useEffect, useState } from "react";
-import { getAllTrainings } from "../api/trainingsService";
-import { TrainingDto } from "../models/trainings";
+import { getAllTrainings } from "../../api/trainingsService";
+import { TrainingDto } from "../../models/trainings";
 import TrainingForm from "./TrainingForm";
 
 function Trainings() {
@@ -69,12 +69,14 @@ function Trainings() {
     {
       title: "Start Date",
       dataIndex: "startDate",
-      render: (value?: Date) => value ? new Date(value).toLocaleDateString() : "",
+      render: (value?: Date) =>
+        value ? new Date(value).toLocaleDateString() : "",
     },
     {
       title: "End Date",
       dataIndex: "endDate",
-      render: (value?: Date) => value ? new Date(value).toLocaleDateString() : "",
+      render: (value?: Date) =>
+        value ? new Date(value).toLocaleDateString() : "",
     },
     {
       title: "Trainer",

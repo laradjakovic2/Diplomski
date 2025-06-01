@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Button, Form, Input } from 'antd';
-import RegisterForm from '../components/RegisterForm';
+import RegisterForm from '../components/users/RegisterForm';
 import { loginUser } from '../api/usersService';
 import { LoginUser } from '../models/users';
 

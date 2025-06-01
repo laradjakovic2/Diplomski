@@ -1,8 +1,8 @@
 import { EllipsisOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Table } from "antd";
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../api/usersService";
-import { UserDto } from "../models/users";
+import { getAllUsers } from "../../api/usersService";
+import { UserDto } from "../../models/users";
 
 function Users() {
   //const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);

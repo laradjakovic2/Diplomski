@@ -1,51 +1,51 @@
 import { Button, DatePicker, Form, Input, Row } from "antd";
 import { useCallback, useEffect } from "react";
 import { SaveOutlined } from "@ant-design/icons";
-import "../App.css";
-import { createTraining, updateTraining } from "../api/trainingsService";
-import { CreateTraining, Training, TrainingDto } from "../models/trainings";
-import { ScoreType } from "../models/Enums";
+import "../../App.css";
+import { CompetitionDto, CreateCompetition } from "../../models/competitions";
+import {
+  createCompetition,
+  updateCompetition,
+} from "../../api/competitionsService";
 
 interface Props {
   onClose: () => void;
-  training?: TrainingDto;
+  Competition?: CompetitionDto;
 }
 
-function TrainingForm({ onClose, training }: Props) {
+function CompetitionForm({ onClose, Competition }: Props) {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    if (training) {
-      for (const [key, value] of Object.entries(training)) {
+    if (Competition) {
+      for (const [key, value] of Object.entries(Competition)) {
         form.setFieldsValue({ [key]: value });
       }
     }
-  }, [form, training]);
+  }, [form, Competition]);
 
   const handleSubmit = useCallback(
-    async (values: CreateTraining | Training) => {
+    async (values: CreateCompetition | CompetitionDto) => {
       const command = {
         ...values,
-        title: 'Trening 2',
+        title: "Trening 2",
         startDate: new Date(),
         endDate: new Date(),
-        trainerId: 1,
-        trainingTypeId: 1,
-        scoreType: ScoreType.Time,
+        location: "zagreb",
       };
 
-      if (!training?.id) {
-        await createTraining({ ...command });
+      if (!Competition?.id) {
+        await createCompetition({ ...command });
       } else {
-        await updateTraining({
+        await updateCompetition({
           ...command,
-          id: training.id,
+          id: Competition.id,
         });
       }
 
       onClose();
     },
-    [training, onClose]
+    [Competition, onClose]
   );
 
   return (
@@ -62,6 +62,7 @@ function TrainingForm({ onClose, training }: Props) {
       >
         <Input />
       </Form.Item>
+
       <Form.Item name="description" label={"Description"}>
         <Input />
       </Form.Item>
@@ -74,7 +75,11 @@ function TrainingForm({ onClose, training }: Props) {
         <DatePicker />
       </Form.Item>
 
-      {!training?.id && (
+      <Form.Item name="location" label={"Location"}>
+        <Input />
+      </Form.Item>
+
+      {!Competition?.id && (
         <Row className="form-buttons">
           <Button type="default" onClick={() => onClose()}>
             {"Cancel"}
@@ -89,4 +94,4 @@ function TrainingForm({ onClose, training }: Props) {
   );
 }
 
-export default TrainingForm;
+export default CompetitionForm;

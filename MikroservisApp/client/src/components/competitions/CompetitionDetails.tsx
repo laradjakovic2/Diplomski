@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { Row, Col, Card, Table, Typography, Drawer, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { getCompetitionById } from "../api/competitionsService";
 import { useParams } from "@tanstack/react-router";
-import { CompetitionDto } from "../models/competitions";
+import { getCompetitionById } from "../../api/competitionsService";
+import { CompetitionDto } from "../../models/competitions";
 import WorkoutForm from "./WorkoutForm";
 
 const { Title } = Typography;
