@@ -73,6 +73,8 @@ export const deleteCompetition = async (id: number): Promise<void> => {
 
 export const createWorkout = async (workout: CreateWorkout): Promise<void> => {
   try {
+    // eslint-disable-next-line no-debugger
+    debugger;
     const response = await fetch(`${BASE_URL}/workout`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

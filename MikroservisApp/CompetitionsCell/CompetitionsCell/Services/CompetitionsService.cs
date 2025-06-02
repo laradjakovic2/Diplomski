@@ -66,12 +66,19 @@ namespace CompetitionsCell.Services
 
         public async Task<Competition?> Get(int id)
         {
-            return _context.Competitions
-                .Include(c => c.CompetitionMemberships)
-                .Include(c => c.Workouts)
-                    .ThenInclude(w => w.Results)
+            var competition = _context.Competitions
+                //.Include(c => c.CompetitionMemberships)
+                /*.Include(c => c.Workouts)
+                    .ThenInclude(w => w.Results)*/
                 .Where(t => t.Id == id)
                 .SingleOrDefault();
+
+            var workouts= _context.Workouts.Include(w => w.Results).Where(t => t.CompetitionId == id).ToList();
+            var memberships = _context.CompetitionMemberships.Where(t => t.CompetitionId == id).ToList();
+            competition.Workouts = workouts;
+            competition.CompetitionMemberships = memberships;
+
+            return competition;
         }
 
         public async Task CreateCompetition(CreateCompetition request)
@@ -135,11 +142,12 @@ namespace CompetitionsCell.Services
                 UserEmail = request.UserEmail,
             };
             _context.Add(entity);
-            //await _context.SaveChangesAsync();
-
+            await _context.SaveChangesAsync();
+/*TODO otkomentirati i popraviti, ako koristim save changes onda se ovo dolje ne izvrsi
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
             await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
+            */
         }
 
         public async Task PayCompetitionMembership(CreateCompetitionPayment request)

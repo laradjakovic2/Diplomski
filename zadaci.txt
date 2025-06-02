@@ -24,12 +24,15 @@ ako dva servisa razlicitu poruku
 -------------------------------------------------------------------------------------------------
 SPAJANJE NA BAZU UNUTAR KONTEJNERA za queryje:
 docker exec -it microservice-postgres psql -U postgres
+\c CompetitionsCell
+SELECT * FROM "CompetitionMemberships";
 NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -rabbit isto preko yaml-amqp://guest:guest@localhost:5672 - promijeniti iz localhost u rabbitmq
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
--dohvat competitiona po id-U
+-dohvat competitiona po id-U-done
+-update rezultata za competition
 -trainingDetails
 -update rezultata za training
 

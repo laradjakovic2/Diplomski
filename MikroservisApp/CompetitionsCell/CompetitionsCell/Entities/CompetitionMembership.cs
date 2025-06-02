@@ -8,6 +8,6 @@ namespace CompetitionsCell.Entities
         public int UserId { get; set; }
         public string? UserEmail { get; set; }
 
-        public virtual Competition? Competition { get; set; }
+        //public virtual Competition? Competition { get; set; }
     }
 }

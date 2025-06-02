@@ -3,76 +3,10 @@ import { Row, Col, Card, Table, Typography, Drawer, Button, Input } from "antd";
 import { DownOutlined, PlusOutlined, UpOutlined } from "@ant-design/icons";
 import { useParams } from "@tanstack/react-router";
 import { getCompetitionById } from "../../api/competitionsService";
-import { CompetitionDto, WorkoutDto } from "../../models/competitions";
+import { CompetitionDto} from "../../models/competitions";
 import WorkoutForm from "./WorkoutForm";
-import { ScoreType } from "../../models/Enums";
 
 const { Title } = Typography;
-
-const workouts: WorkoutDto[] = [
-  {
-    title: "Workout 1",
-    description: "Deadlift + Burpees",
-    id: 1,
-    competitionId: 1,
-    scoreType: ScoreType.Reps,
-    results: [
-      {
-        id: 1,
-        userId: 1,
-        userEmail: "lara.dakovic@fer.hr",
-        workoutId: 1,
-        score: 234,
-      },
-      {
-        id: 2,
-        userId: 1,
-        userEmail: "lara.dakovic@fer.hr",
-        workoutId: 1,
-        score: 234,
-      },
-      {
-        id: 3,
-        userId: 1,
-        userEmail: "lara.dakovic@fer.hr",
-        workoutId: 1,
-        score: 234,
-      },
-    ],
-  },
-  {
-    title: "Workout 2",
-    description: "Pull-ups + Rowing",
-    id: 2,
-    competitionId: 1,
-    scoreType: ScoreType.Reps,
-    results: [],
-  },
-  {
-    title: "Workout 3",
-    description: "Squats + Running",
-    id: 3,
-    competitionId: 1,
-    scoreType: ScoreType.Reps,
-    results: [],
-  },
-  {
-    title: "Workout 4",
-    description: "Clean & Jerk + Double Unders",
-    id: 4,
-    competitionId: 1,
-    scoreType: ScoreType.Reps,
-    results: [
-      {
-        id: 1,
-        userId: 1,
-        userEmail: "lara.dakovic@fer.hr",
-        workoutId: 1,
-        score: 234,
-      },
-    ],
-  },
-];
 
 const scoreData = [
   {
@@ -117,7 +51,6 @@ function CompetitionDetails() {
   const { id: competitionId } = useParams({ from: "/competitions/$id" });
 
   const [competition, setCompetition] = useState<CompetitionDto | undefined>();
-  const [error, setError] = useState<string | undefined>();
   const [isWorkoutDrawerOpen, setIsWorkoutDrawerOpen] =
     useState<boolean>(false);
   const handleDrawerClose = useCallback(() => {
@@ -139,14 +72,13 @@ function CompetitionDetails() {
         console.log(data);
         setCompetition(data);
       } catch (err) {
-        setError("Failed to load competitions." + { err });
+        console.log(err);
       }
     };
 
     fetchCompetition();
   }, [competitionId]);
 
-  // if (error) return <div>{error}</div>;
   return (
     <>
       <div>
@@ -169,7 +101,7 @@ function CompetitionDetails() {
           <Col span={12}>
             <Title level={3}>Workouts</Title>
             <Row gutter={[16, 16]}>
-              {workouts.map((workout, index) => (
+              {competition?.workouts.map((workout, index) => (
                 <Col span={12} key={index}>
                   <Card
                     title={
@@ -207,7 +139,7 @@ function CompetitionDetails() {
                     {expandedWorkoutId === workout.id && (
                       <Table
                         size="small"
-                        dataSource={workout.results}
+                        dataSource={competition.competitionMemberships}
                         pagination={false}
                         rowKey="id"
                         columns={[

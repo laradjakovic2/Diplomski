@@ -57,6 +57,7 @@ function Competitions() {
     async (competitionId: number, userId: number) => {
       const command: UserRegisteredForCompetition = {
         userId: userId,
+        userEmail: 'lara.dakovic@fer.hr',
         competitionId: competitionId,
       };
 

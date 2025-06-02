@@ -33,6 +33,7 @@ function WorkoutForm({ onClose, workout, competition }: Props) {
     async (values: CreateWorkout | WorkoutDto) => {
       const command: CreateWorkout = {
         ...values,
+        scoreType: ScoreType.Reps,
         competitionId: competition.id,
       };
 
@@ -70,10 +71,7 @@ function WorkoutForm({ onClose, workout, competition }: Props) {
       </Form.Item>
 
       <Form.Item name="scoreType" label={"Score"}>
-        <Select
-          placeholder="Select score"
-          style={{ width: "100%" }}
-        >
+        <Select placeholder="Select score" style={{ width: "100%" }}>
           {Object.values(ScoreType).map((type) => (
             <Option key={type} value={type}>
               {type}

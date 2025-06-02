@@ -18,6 +18,7 @@ export interface CreateCompetition {
 export interface CompetitionDto extends CreateCompetition{
   id: number;
   competitionMemberships?: CompetitionMembership[];
+  workouts: WorkoutDto[];
 }
 
 export interface CreateWorkout {
@@ -54,6 +55,7 @@ export interface CreateCompetitionPayment {
 
 export interface UserRegisteredForCompetition {
   userId: number;
+  userEmail: string;
   competitionId: number;
 }
 

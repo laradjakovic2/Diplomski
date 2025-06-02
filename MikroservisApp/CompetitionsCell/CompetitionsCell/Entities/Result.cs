@@ -11,6 +11,6 @@ namespace CompetitionsCell.Entities
 
         public string? Score { get; set; }
 
-        public virtual Workout? Workout { get; set; }
+        //public virtual Workout? Workout { get; set; }
     }
 }
