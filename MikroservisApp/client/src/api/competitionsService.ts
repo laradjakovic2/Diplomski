@@ -1,4 +1,4 @@
-import { CompetitionDto, CreateCompetition, CreateCompetitionPayment, CreateWorkout, Result, UserRegisteredForCompetition, Workout } from "../models/competitions";
+import { CompetitionDto, CreateCompetition, CreateCompetitionPayment, CreateWorkout, UpdateScoreRequest, UserRegisteredForCompetition, Workout } from "../models/competitions";
 import { apiConfig } from "./api";
 
 const BASE_URL = apiConfig.competitionsApi + "/competitions";
@@ -129,7 +129,7 @@ export const registerUserForCompetition = async (request: UserRegisteredForCompe
   }
 };
 
-export const updateCompetitionScore = async (result: Result): Promise<void> => {
+export const updateCompetitionScore = async (result: UpdateScoreRequest): Promise<void> => {
   try {
     const response = await fetch(`${BASE_URL}/update-score`, {
       method: "PUT",

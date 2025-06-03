@@ -1,4 +1,4 @@
-import { ScoreType } from "./Enums"
+import { ScoreType } from "./Enums";
 
 export interface CompetitionMembership {
   id: number;
@@ -15,7 +15,7 @@ export interface CreateCompetition {
   endDate: Date;
 }
 
-export interface CompetitionDto extends CreateCompetition{
+export interface CompetitionDto extends CreateCompetition {
   id: number;
   competitionMemberships?: CompetitionMembership[];
   workouts: WorkoutDto[];
@@ -64,7 +64,19 @@ export interface Result {
   userId: number;
   userEmail: string;
   workoutId: number;
-  score: number;
+  score: string;
+}
+
+export interface UpdateResult {
+  id?: number;
+  userId: number;
+  userEmail: string;
+  workoutId: number;
+  score: string;
+}
+
+export interface UpdateScoreRequest {
+  scores: UpdateResult[];
 }
 
 export interface MediaRequestModel {

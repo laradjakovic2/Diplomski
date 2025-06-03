@@ -85,7 +85,7 @@ namespace CompetitionsCell.Controllers
         }
 
         [HttpPut("update-score")]
-        public async Task<IActionResult> UpdateScore([FromBody] Result request)
+        public async Task<IActionResult> UpdateScore([FromBody] UpdateScoreRequest request)
         {
             await _competitionsService.UpdateScore(request);
             return Ok();

@@ -46,6 +46,23 @@ namespace CompetitionsCell.Services
         public double Total { get; set; }
     }
 
+    public class UpdateResult
+    {
+        public int? Id { get; set; }
+
+        public int? WorkoutId { get; set; }
+
+        public int UserId { get; set; }
+        public string? UserEmail { get; set; }
+
+        public string? Score { get; set; }
+    }
+
+    public class UpdateScoreRequest
+    {
+        public List<UpdateResult> Scores { get; set; }
+    }
+
     public class CompetitionsService : ICompetitionsService
     {
         private AppDbContext _context;
@@ -73,7 +90,7 @@ namespace CompetitionsCell.Services
                 .Where(t => t.Id == id)
                 .SingleOrDefault();
 
-            var workouts= _context.Workouts.Include(w => w.Results).Where(t => t.CompetitionId == id).ToList();
+            var workouts = _context.Workouts.Include(w => w.Results).Where(t => t.CompetitionId == id).ToList();
             var memberships = _context.CompetitionMemberships.Where(t => t.CompetitionId == id).ToList();
             competition.Workouts = workouts;
             competition.CompetitionMemberships = memberships;
@@ -143,11 +160,11 @@ namespace CompetitionsCell.Services
             };
             _context.Add(entity);
             await _context.SaveChangesAsync();
-/*TODO otkomentirati i popraviti, ako koristim save changes onda se ovo dolje ne izvrsi
-            byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
+            /*TODO otkomentirati i popraviti, ako koristim save changes onda se ovo dolje ne izvrsi
+                        byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
-            await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
-            */
+                        await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
+                        */
         }
 
         public async Task PayCompetitionMembership(CreateCompetitionPayment request)
@@ -157,17 +174,27 @@ namespace CompetitionsCell.Services
             await _rabbitMqSenderPayments.SendMessage(messageBodyBytes);
         }
 
-        public async Task UpdateScore(Result request)
+        public async Task UpdateScore(UpdateScoreRequest request)
         {
-            var entity = _context.Results.Where(t => t.Id == request.Id).SingleOrDefault();
+            foreach (var score in request.Scores)
+            {
+                if (score.Id == null)
+                {
+                    var entity = new Result
+                    {
+                        WorkoutId = score.WorkoutId,
+                        UserId = score.UserId,
+                        UserEmail = score.UserEmail,
+                        Score = score.Score
+                    };
 
-            if (entity == null)
-            {
-                _context.Add(request);
-            }
-            else
-            {
-                entity.Score = request.Score;
+                    _context.Results.Add(entity);
+                }
+                else
+                {
+                    var entity = _context.Results.Where(t => t.Id == score.Id).SingleOrDefault();
+                    entity.Score = score.Score;
+                }
             }
 
             await _context.SaveChangesAsync();

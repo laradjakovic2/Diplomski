@@ -2,8 +2,15 @@ import { useCallback, useEffect, useState } from "react";
 import { Row, Col, Card, Table, Typography, Drawer, Button, Input } from "antd";
 import { DownOutlined, PlusOutlined, UpOutlined } from "@ant-design/icons";
 import { useParams } from "@tanstack/react-router";
-import { getCompetitionById } from "../../api/competitionsService";
-import { CompetitionDto} from "../../models/competitions";
+import {
+  getCompetitionById,
+  updateCompetitionScore,
+} from "../../api/competitionsService";
+import {
+  CompetitionDto,
+  UpdateResult,
+  UpdateScoreRequest,
+} from "../../models/competitions";
 import WorkoutForm from "./WorkoutForm";
 
 const { Title } = Typography;
@@ -53,13 +60,11 @@ function CompetitionDetails() {
   const [competition, setCompetition] = useState<CompetitionDto | undefined>();
   const [isWorkoutDrawerOpen, setIsWorkoutDrawerOpen] =
     useState<boolean>(false);
-  const handleDrawerClose = useCallback(() => {
-    setIsWorkoutDrawerOpen(false);
-  }, []);
-  const [expandedWorkoutId, setExpandedWorkoutId] = useState<number | null>(
-    null
-  );
-  const [scores, setScores] = useState<Record<number, string>>({}); // key: resultId, value: score
+
+  const [expandedWorkoutId, setExpandedWorkoutId] = useState<
+    number | undefined
+  >(undefined);
+  const [scores, setScores] = useState<Record<number, string>>({}); // key: userId, value: score
 
   const handleScoreChange = (resultId: number, value: string) => {
     setScores((prev) => ({ ...prev, [resultId]: value }));
@@ -78,6 +83,50 @@ function CompetitionDetails() {
 
     fetchCompetition();
   }, [competitionId]);
+
+  const handleClose = useCallback(() => {
+    setScores({});
+    setIsWorkoutDrawerOpen(false);
+    setExpandedWorkoutId(undefined);
+  }, []);
+
+  const handleUpdateScore = useCallback(async () => {
+    console.log(scores);
+    //TODO uzeti info iz scores liste
+    if (expandedWorkoutId) {
+      const scores: UpdateResult[] = [
+        {
+          //id: 0,
+          userId: 1,
+          userEmail: "laradjakovic00@gmail.com",
+          workoutId: expandedWorkoutId,
+          score: "23",
+        },
+        {
+          //id: 0,
+          userId: 2,
+          userEmail: "petra.ivanovic@gmail.com",
+          workoutId: expandedWorkoutId,
+          score: "26",
+        },
+        {
+          //id: 0,
+          userId: 3,
+          userEmail: "ivana.domic@gmail.com",
+          workoutId: expandedWorkoutId,
+          score: "67",
+        },
+      ];
+
+      const request: UpdateScoreRequest = {
+        scores: scores,
+      };
+
+      await updateCompetitionScore(request);
+
+      handleClose();
+    }
+  }, [expandedWorkoutId, handleClose, scores]);
 
   return (
     <>
@@ -122,10 +171,10 @@ function CompetitionDetails() {
                               <DownOutlined />
                             )
                           }
-                          onClick={(e) => {
+                          onClick={(e: { stopPropagation: () => void }) => {
                             e.stopPropagation();
                             setExpandedWorkoutId((prev) =>
-                              prev === workout.id ? null : workout.id
+                              prev === workout.id ? undefined : workout.id
                             );
                           }}
                         />
@@ -137,33 +186,40 @@ function CompetitionDetails() {
                     <p>{workout.description}</p>
 
                     {expandedWorkoutId === workout.id && (
-                      <Table
-                        size="small"
-                        dataSource={competition.competitionMemberships}
-                        pagination={false}
-                        rowKey="id"
-                        columns={[
-                          {
-                            title: "User",
-                            dataIndex: "userEmail",
-                            key: "userEmail",
-                          },
-                          {
-                            title: "Score",
-                            dataIndex: "score",
-                            key: "score",
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            render: (text: string, record: any) => (
-                              <Input
-                                value={scores[record.id] ?? record.score}
-                                onChange={(e) =>
-                                  handleScoreChange(record.id, e.target.value)
-                                }
-                              />
-                            ),
-                          },
-                        ]}
-                      />
+                      <>
+                        <Table
+                          size="small"
+                          dataSource={competition.competitionMemberships}
+                          pagination={false}
+                          rowKey="id"
+                          columns={[
+                            {
+                              title: "User",
+                              dataIndex: "userEmail",
+                              key: "userEmail",
+                            },
+                            {
+                              title: "Score",
+                              dataIndex: "score",
+                              key: "score",
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              render: (text: string, record: any) => (
+                                <Input
+                                  value={scores[record.userId] ?? record.score}
+                                  onChange={(e: {
+                                    target: { value: string };
+                                  }) =>
+                                    handleScoreChange(record.userId, e.target.value)
+                                  }
+                                />
+                              ),
+                            },
+                          ]}
+                        />
+                        <Button onClick={handleUpdateScore}>
+                          Update score
+                        </Button>
+                      </>
                     )}
                   </Card>
                 </Col>
@@ -187,13 +243,13 @@ function CompetitionDetails() {
         <Drawer
           title={"Add workout"}
           open={!!isWorkoutDrawerOpen}
-          onClose={() => handleDrawerClose()}
+          onClose={() => handleClose()}
           destroyOnClose
           width={700}
         >
           <WorkoutForm
             competition={competition}
-            onClose={() => handleDrawerClose()}
+            onClose={() => handleClose()}
           />
         </Drawer>
       )}
