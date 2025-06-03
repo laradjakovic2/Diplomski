@@ -55,7 +55,7 @@ namespace CompetitionsCell.Services
         public int UserId { get; set; }
         public string? UserEmail { get; set; }
 
-        public string? Score { get; set; }
+        public string Score { get; set; }
     }
 
     public class UpdateScoreRequest
@@ -159,6 +159,7 @@ namespace CompetitionsCell.Services
                 UserEmail = request.UserEmail,
             };
             _context.Add(entity);
+
             await _context.SaveChangesAsync();
             /*TODO otkomentirati i popraviti, ako koristim save changes onda se ovo dolje ne izvrsi
                         byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));

@@ -64,7 +64,7 @@ export interface Result {
   userId: number;
   userEmail: string;
   workoutId: number;
-  score: string;
+  score: string | number;
 }
 
 export interface UpdateResult {
@@ -72,7 +72,7 @@ export interface UpdateResult {
   userId: number;
   userEmail: string;
   workoutId: number;
-  score: string;
+  score: string | number;
 }
 
 export interface UpdateScoreRequest {

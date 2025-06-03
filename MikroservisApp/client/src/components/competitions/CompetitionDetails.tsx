@@ -60,14 +60,58 @@ function CompetitionDetails() {
   const [competition, setCompetition] = useState<CompetitionDto | undefined>();
   const [isWorkoutDrawerOpen, setIsWorkoutDrawerOpen] =
     useState<boolean>(false);
-
   const [expandedWorkoutId, setExpandedWorkoutId] = useState<
     number | undefined
   >(undefined);
-  const [scores, setScores] = useState<Record<number, string>>({}); // key: userId, value: score
+  const [scores, setScores] = useState<UpdateResult[]>([]);
 
-  const handleScoreChange = (resultId: number, value: string) => {
-    setScores((prev) => ({ ...prev, [resultId]: value }));
+  const handleScoreChange = (userId: number, value: string | number) => {
+    const result = scores.find((s) => s.userId === userId);
+
+    if (result) {
+      setScores((prevScores) => [
+        ...prevScores.filter((s) => s.userId !== userId),
+        {
+          //id: result.id,
+          userId: userId,
+          userEmail: result.userEmail,
+          workoutId: result?.workoutId,
+          score: value,
+        },
+      ]);
+    }
+  };
+
+  const handleWorkoutExpand = (workoutId: number) => {
+    const scores: UpdateResult[] = [];
+
+    competition?.competitionMemberships?.forEach((m) => {
+      const result = competition.workouts
+        .find((w) => w.id === expandedWorkoutId)
+        ?.results.find((r) => r.userId === m.userId);
+
+      if (result) {
+        scores.push({
+          id: result.id,
+          userId: m.userId,
+          userEmail: m.userEmail,
+          workoutId: expandedWorkoutId || 0,
+          score: result?.score || 0,
+        });
+      } else {
+        scores.push({
+          userId: m.userId,
+          userEmail: m.userEmail,
+          workoutId: expandedWorkoutId || 0,
+          score: 0,
+        });
+      }
+    });
+    setScores(scores);
+
+    setExpandedWorkoutId((prev) =>
+      prev === workoutId ? undefined : workoutId
+    );
   };
 
   useEffect(() => {
@@ -82,51 +126,24 @@ function CompetitionDetails() {
     };
 
     fetchCompetition();
-  }, [competitionId]);
+  }, [competitionId, expandedWorkoutId]);
 
   const handleClose = useCallback(() => {
-    setScores({});
+    setScores([]);
     setIsWorkoutDrawerOpen(false);
     setExpandedWorkoutId(undefined);
   }, []);
 
   const handleUpdateScore = useCallback(async () => {
-    console.log(scores);
-    //TODO uzeti info iz scores liste
-    if (expandedWorkoutId) {
-      const scores: UpdateResult[] = [
-        {
-          //id: 0,
-          userId: 1,
-          userEmail: "laradjakovic00@gmail.com",
-          workoutId: expandedWorkoutId,
-          score: "23",
-        },
-        {
-          //id: 0,
-          userId: 2,
-          userEmail: "petra.ivanovic@gmail.com",
-          workoutId: expandedWorkoutId,
-          score: "26",
-        },
-        {
-          //id: 0,
-          userId: 3,
-          userEmail: "ivana.domic@gmail.com",
-          workoutId: expandedWorkoutId,
-          score: "67",
-        },
-      ];
+    const request: UpdateScoreRequest = {
+      scores: scores,
+    };
+    // eslint-disable-next-line no-debugger
+    debugger;
+    await updateCompetitionScore(request);
 
-      const request: UpdateScoreRequest = {
-        scores: scores,
-      };
-
-      await updateCompetitionScore(request);
-
-      handleClose();
-    }
-  }, [expandedWorkoutId, handleClose, scores]);
+    handleClose();
+  }, [handleClose, scores]);
 
   return (
     <>
@@ -173,9 +190,7 @@ function CompetitionDetails() {
                           }
                           onClick={(e: { stopPropagation: () => void }) => {
                             e.stopPropagation();
-                            setExpandedWorkoutId((prev) =>
-                              prev === workout.id ? undefined : workout.id
-                            );
+                            handleWorkoutExpand(workout.id);
                           }}
                         />
                       </div>
@@ -189,7 +204,7 @@ function CompetitionDetails() {
                       <>
                         <Table
                           size="small"
-                          dataSource={competition.competitionMemberships}
+                          dataSource={scores}
                           pagination={false}
                           rowKey="id"
                           columns={[
@@ -202,14 +217,16 @@ function CompetitionDetails() {
                               title: "Score",
                               dataIndex: "score",
                               key: "score",
-                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                              render: (text: string, record: any) => (
+                              render: (_, record: UpdateResult) => (
                                 <Input
-                                  value={scores[record.userId] ?? record.score}
+                                  value={record.score}
                                   onChange={(e: {
                                     target: { value: string };
                                   }) =>
-                                    handleScoreChange(record.userId, e.target.value)
+                                    handleScoreChange(
+                                      record.userId,
+                                      e.target.value
+                                    )
                                   }
                                 />
                               ),

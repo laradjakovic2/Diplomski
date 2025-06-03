@@ -32,7 +32,7 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -------------------------------------------------------------------------------------------------
 TODO:
 -dohvat competitiona po id-U-done
--update rezultata za competition-update radi al sad srediti da uzima iz forme podatke
+-update rezultata za competition-update radi al srediti da postavi id ako vec postoji i promijeni se redosljed kod update-a
 -trainingDetails
 -update rezultata za training
 
