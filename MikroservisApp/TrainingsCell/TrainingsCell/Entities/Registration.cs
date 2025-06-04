@@ -12,6 +12,6 @@ namespace TrainingsCell.Entities
 
         public string Score { get; set; }
 
-        public virtual Training Training {get;set;}
+        //public virtual Training Training {get;set;}
     }
 }

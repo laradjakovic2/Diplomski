@@ -17,5 +17,7 @@
         public int ScoreType { get; set; }
 
         public virtual TrainingType? TrainingType { get; set; }
+
+        public virtual ICollection<Registration> RegisteredAthletes { get; set; } = new List<Registration>();
     }
 }

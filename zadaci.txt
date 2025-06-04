@@ -32,9 +32,13 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -------------------------------------------------------------------------------------------------
 TODO:
 -dohvat competitiona po id-U-done
--update rezultata za competition-update radi al srediti da postavi id ako vec postoji i promijeni se redosljed kod update-a
--trainingDetails
--update rezultata za training
+-update rezultata za competition-update radi al srediti da postavi id ako vec postoji i promijeni se redosljed kod update-a-done
+-update rezultata za training-done
+-update rezultata za svakog usera preko kalendara
+-trainingDetails-pogledati gdje smjestiti-to ce bit kao za trenere
+-za netjecanja ukupnu tablicu srediti
+
+-rabbit update na register za trening i competition trenutno zakomentiran
 
 
 -kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku

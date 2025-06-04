@@ -1,4 +1,4 @@
-import { TrainingDto, CreateTraining, Training, UserRegisteredForTraining, CreateTrainingTypeMembership, Registration } from "../models/trainings";
+import { TrainingDto, CreateTraining, Training, UserRegisteredForTraining, CreateTrainingTypeMembership, Registration, CreateTrainingType } from "../models/trainings";
 import { apiConfig } from "./api";
 
 // 1. GET /trainings
@@ -124,6 +124,21 @@ export const updateScore = async (data: Registration): Promise<void> => {
     if (!response.ok) throw new Error(`Server error: ${response.status} ${response.statusText}`);
   } catch (err) {
     console.error("Error updating score", err);
+    throw err;
+  }
+};
+
+export const createTrainingType = async (trainingType: CreateTrainingType): Promise<void> => {
+  try {
+    const response = await fetch(apiConfig.trainingsApi + "/trainingType", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(trainingType),
+    });
+
+    if (!response.ok) throw new Error(`Server error: ${response.status} ${response.statusText}`);
+  } catch (err) {
+    console.error("Error creating training", err);
     throw err;
   }
 };

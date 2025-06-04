@@ -16,12 +16,20 @@ import {
 } from "../../api/trainingsService";
 import dayjs from "dayjs";
 import { UserRegisteredForTraining } from "../../models/trainings";
+import { useNavigate } from "@tanstack/react-router";
+
+type TrainingEvent = CalendarEvent & {
+  id?: number;
+  description?: string;
+};
 
 const localizer = momentLocalizer(moment);
 
 function FullCalendar() {
-  const [events, setEvents] = useState<CalendarEvent[]>([]);
-  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | undefined>(
+  const navigate = useNavigate();
+
+  const [events, setEvents] = useState<TrainingEvent[]>([]);
+  const [selectedEvent, setSelectedEvent] = useState<TrainingEvent | undefined>(
     undefined
   );
   const [isTrainingFormVisible, setIsTrainingFormVisible] =
@@ -47,14 +55,15 @@ function FullCalendar() {
   const handleRegisterForTraining = useCallback(async () => {
     const command: UserRegisteredForTraining = {
       userId: 1,
-      trainingId: 1,
+      trainingId: selectedEvent?.id || 0,
       userEmail: "lara.dakovic@fer.hr",
     };
-
+// eslint-disable-next-line no-debugger
+debugger;
     await registerUserForTraining(command);
 
     handleCloseDrawer();
-  }, []);
+  }, [selectedEvent?.id]);
 
   useEffect(() => {
     const fetchTrainings = async () => {
@@ -63,14 +72,13 @@ function FullCalendar() {
 
         const evs = data.map((t) => {
           return {
-            //id: t.id,
+            id: t.id,
             title: t.title,
             start: dayjs(t.startDate).toDate(),
             end: dayjs(t.endDate).toDate(),
             description: t.description,
           };
         });
-
         setEvents(evs);
       } catch (err) {
         console.log(err);
@@ -80,7 +88,7 @@ function FullCalendar() {
     fetchTrainings();
   }, []);
 
-  const handleSelectEvent = (event: CalendarEvent) => {
+  const handleSelectTraining = (event: TrainingEvent) => {
     setSelectedEvent(event);
     setIsModalVisible(true);
   };
@@ -97,7 +105,7 @@ function FullCalendar() {
         selectable
         defaultView={Views.WEEK}
         onSelectSlot={handleSelectSlot}
-        onSelectEvent={handleSelectEvent}
+        onSelectEvent={handleSelectTraining}
         style={{ height: "100%" }}
       />
 
@@ -109,6 +117,16 @@ function FullCalendar() {
           <>
             <Button key="close" onClick={handleCloseDrawer}>
               Close
+            </Button>
+            <Button
+              onClick={() =>
+                navigate({
+                  to: "/trainings/$id",
+                  params: { id: selectedEvent?.id?.toString() || "" },
+                })
+              }
+            >
+              Details
             </Button>
             <Button
               key="add"

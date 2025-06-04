@@ -1,42 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\",
+  "WorkspaceRootPath": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\interfaces\\itrainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\interfaces\\itrainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\services\\trainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\services\\trainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\services\\trainingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\controllers\\trainingtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\controllers\\trainingtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\entities\\training.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\entities\\training.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\controllers\\trainingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\controllers\\trainingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\controllers\\trainingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\rabbitmqsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\rabbitmqsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\entities\\training.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\entities\\training.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\entities\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\entities\\registration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\controllers\\trainingtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\controllers\\trainingtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|c:\\users\\zeraxo\\source\\repos\\diplomski\\mikroservisapp\\trainingscell\\trainingscell\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D963C57C-5975-4F9E-954A-8526214916CC}|TrainingsCell\\TrainingsCell.csproj|solutionrelative:trainingscell\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,76 +42,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Dockerfile",
-              "RelativeDocumentMoniker": "TrainingsCell\\Dockerfile",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Dockerfile",
-              "RelativeToolTip": "TrainingsCell\\Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-14T20:08:08.861Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ITrainingsService.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Interfaces\\ITrainingsService.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\Interfaces\\ITrainingsService.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Interfaces\\ITrainingsService.cs",
-              "RelativeToolTip": "TrainingsCell\\Interfaces\\ITrainingsService.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAwwBwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T13:05:22.786Z"
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\appsettings.json",
+              "RelativeDocumentMoniker": "TrainingsCell\\appsettings.json",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\appsettings.json",
+              "RelativeToolTip": "TrainingsCell\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-04T12:54:31.916Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "TrainingTypeController.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingTypeController.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\Controllers\\TrainingTypeController.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingTypeController.cs",
-              "RelativeToolTip": "TrainingsCell\\Controllers\\TrainingTypeController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCAAAAAkAAAAAAAAAA==",
+              "Title": "Registration.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Registration.cs",
+              "RelativeDocumentMoniker": "TrainingsCell\\Entities\\Registration.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Registration.cs",
+              "RelativeToolTip": "TrainingsCell\\Entities\\Registration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T13:04:16.868Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RabbitMqSender.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\RabbitMqSender.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\RabbitMqSender.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\RabbitMqSender.cs",
-              "RelativeToolTip": "TrainingsCell\\RabbitMqSender.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T16:15:39.128Z"
+              "WhenOpened": "2025-06-04T10:13:52.927Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Training.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Training.cs",
-              "RelativeDocumentMoniker": "TrainingsCell\\Entities\\Training.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Training.cs",
-              "RelativeToolTip": "TrainingsCell\\Entities\\Training.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAA5wBIAAAAkAAAAAAAAAA==",
+              "Title": "TrainingTypeController.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingTypeController.cs",
+              "RelativeDocumentMoniker": "TrainingsCell\\Controllers\\TrainingTypeController.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingTypeController.cs",
+              "RelativeToolTip": "TrainingsCell\\Controllers\\TrainingTypeController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACAAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T21:59:58.805Z"
+              "WhenOpened": "2025-05-14T13:04:16.868Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "Training.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Training.cs",
+              "RelativeDocumentMoniker": "TrainingsCell\\Entities\\Training.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Entities\\Training.cs",
+              "RelativeToolTip": "TrainingsCell\\Entities\\Training.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-01T21:59:58.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "AppDbContext.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\AppDbContext.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\AppDbContext.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\AppDbContext.cs",
               "RelativeToolTip": "TrainingsCell\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -123,23 +114,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "TrainingsService.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Services\\TrainingsService.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Services\\TrainingsService.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\Services\\TrainingsService.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Services\\TrainingsService.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Services\\TrainingsService.cs",
               "RelativeToolTip": "TrainingsCell\\Services\\TrainingsService.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAuwCwAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAAmwEMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:00:11.671Z"
+              "WhenOpened": "2025-02-25T09:00:11.671Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Program.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\Program.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Program.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Program.cs",
               "RelativeToolTip": "TrainingsCell\\Program.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAlwDsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -147,15 +139,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "TrainingsController.cs",
-              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingsController.cs",
+              "DocumentMoniker": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingsController.cs",
               "RelativeDocumentMoniker": "TrainingsCell\\Controllers\\TrainingsController.cs",
-              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingsController.cs",
+              "ToolTip": "C:\\Users\\Zeraxo\\source\\repos\\Diplomski\\MikroservisApp\\TrainingsCell\\TrainingsCell\\Controllers\\TrainingsController.cs",
               "RelativeToolTip": "TrainingsCell\\Controllers\\TrainingsController.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAQwCIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAkwCIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T22:06:36.766Z"
+              "WhenOpened": "2025-02-23T22:06:36.766Z",
+              "EditorCaption": ""
             }
           ]
         }

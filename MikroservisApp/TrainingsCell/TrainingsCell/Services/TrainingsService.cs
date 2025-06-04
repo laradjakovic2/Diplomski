@@ -61,7 +61,11 @@ namespace TrainingsCell.Services
 
         public async Task<Training> Get(int id)
         {
-            return _context.Trainings.Where(t => t.Id == id).SingleOrDefault();
+            var training = _context.Trainings.Where(t => t.Id == id).SingleOrDefault();
+
+            training.RegisteredAthletes = _context.Registrations.Where(t => t.TrainingId == id).ToList();
+
+            return training;
         }
 
         public async Task Create(CreateTraining request)
@@ -114,12 +118,13 @@ namespace TrainingsCell.Services
                 Score = ""
             };
             _context.Registrations.Add(entity);
-            //await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
+            //TODO ovo posloziti da radi nakon save changes
             //await _rabbitMqSenderUsers.SendMessage(messageBodyBytes); //obavijesti usere
-            await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
+            //await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
         }
 
         public async Task RegisterUserForTrainingType(CreateTrainingTypeMembership request)

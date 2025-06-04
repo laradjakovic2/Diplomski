@@ -66,20 +66,16 @@ function CompetitionDetails() {
   const [scores, setScores] = useState<UpdateResult[]>([]);
 
   const handleScoreChange = (userId: number, value: string | number) => {
-    const result = scores.find((s) => s.userId === userId);
-
-    if (result) {
-      setScores((prevScores) => [
-        ...prevScores.filter((s) => s.userId !== userId),
-        {
-          //id: result.id,
-          userId: userId,
-          userEmail: result.userEmail,
-          workoutId: result?.workoutId,
-          score: value,
-        },
-      ]);
-    }
+    setScores((prevScores) =>
+      prevScores.map((s) =>
+        s.userId === userId
+          ? {
+              ...s,
+              score: value,
+            }
+          : s
+      )
+    );
   };
 
   const handleWorkoutExpand = (workoutId: number) => {
@@ -87,7 +83,7 @@ function CompetitionDetails() {
 
     competition?.competitionMemberships?.forEach((m) => {
       const result = competition.workouts
-        .find((w) => w.id === expandedWorkoutId)
+        .find((w) => w.id === workoutId)
         ?.results.find((r) => r.userId === m.userId);
 
       if (result) {
@@ -95,14 +91,14 @@ function CompetitionDetails() {
           id: result.id,
           userId: m.userId,
           userEmail: m.userEmail,
-          workoutId: expandedWorkoutId || 0,
+          workoutId: workoutId,
           score: result?.score || 0,
         });
       } else {
         scores.push({
           userId: m.userId,
           userEmail: m.userEmail,
-          workoutId: expandedWorkoutId || 0,
+          workoutId: workoutId,
           score: 0,
         });
       }
@@ -138,8 +134,7 @@ function CompetitionDetails() {
     const request: UpdateScoreRequest = {
       scores: scores,
     };
-    // eslint-disable-next-line no-debugger
-    debugger;
+
     await updateCompetitionScore(request);
 
     handleClose();

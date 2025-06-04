@@ -2,27 +2,42 @@ import { EllipsisOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Drawer, Dropdown, Table } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { getAllTrainings } from "../../api/trainingsService";
-import { TrainingDto } from "../../models/trainings";
+import { TrainingDto, TrainingType } from "../../models/trainings";
 import TrainingForm from "./TrainingForm";
+import TrainingTypeForm from "./TrainingTypeForm";
+import { useNavigate } from "@tanstack/react-router";
 
 function Trainings() {
   //const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
+
   const [trainings, setTrainings] = useState<TrainingDto[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [selectedTraining, setTraining] = useState<TrainingDto | undefined>(
     undefined
   );
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [selectedTrainingType, setTrainingType] = useState<
+    TrainingType | undefined
+  >(undefined);
+  const [isTrainingTypeDrawerOpen, setIsTrainingTypeDrawerOpen] =
+    useState<boolean>(false);
 
   const handleOpenDrawer = useCallback((entity?: TrainingDto) => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     setTraining(entity);
     setIsDrawerOpen(true);
   }, []);
+
+  const handleTrainingTypeOpenDrawer = useCallback((entity?: TrainingType) => {
+    setTrainingType(entity);
+    setIsTrainingTypeDrawerOpen(true);
+  }, []);
+
   const handleDrawerClose = useCallback(() => {
     setTraining(undefined);
+    setTrainingType(undefined);
     setIsDrawerOpen(false);
+    setIsTrainingTypeDrawerOpen(false);
   }, []);
   /*
   const handleDeleteModalOpen = useCallback((activity: TrainingDto) => {
@@ -138,6 +153,15 @@ function Trainings() {
           <PlusOutlined />
           Add
         </Button>
+
+        <Button
+          key="1"
+          type="primary"
+          onClick={() => handleTrainingTypeOpenDrawer()}
+        >
+          <PlusOutlined />
+          Add training type
+        </Button>
       </div>
 
       <Table
@@ -147,7 +171,11 @@ function Trainings() {
         rowKey={(activity: TrainingDto): string => activity.id.toString()}
         //loading={isLoading}
         onRow={(t: TrainingDto) => ({
-          onClick: () => handleOpenDrawer(t),
+          onClick: () =>
+            navigate({
+              to: "/trainings/$id",
+              params: { id: t.id.toString() || "" },
+            }),
         })}
         //onChange={handleTableChange}
         bordered
@@ -162,6 +190,19 @@ function Trainings() {
       >
         <TrainingForm
           training={selectedTraining}
+          onClose={() => handleDrawerClose()}
+        />
+      </Drawer>
+
+      <Drawer
+        title={"Create training type"}
+        open={!!isTrainingTypeDrawerOpen}
+        onClose={() => handleDrawerClose()}
+        destroyOnClose
+        width={700}
+      >
+        <TrainingTypeForm
+          trainingType={selectedTrainingType}
           onClose={() => handleDrawerClose()}
         />
       </Drawer>
