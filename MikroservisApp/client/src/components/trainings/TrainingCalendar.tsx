@@ -58,8 +58,8 @@ function FullCalendar() {
       trainingId: selectedEvent?.id || 0,
       userEmail: "lara.dakovic@fer.hr",
     };
-// eslint-disable-next-line no-debugger
-debugger;
+    // eslint-disable-next-line no-debugger
+    debugger;
     await registerUserForTraining(command);
 
     handleCloseDrawer();
@@ -153,7 +153,11 @@ debugger;
         destroyOnClose
         width={700}
       >
-        <TrainingForm onClose={handleCloseDrawer} />
+        <TrainingForm
+          onClose={handleCloseDrawer}
+          initialStartDate={selectedEvent?.start}
+          initialEndDate={selectedEvent?.end}
+        />
       </Drawer>
     </div>
   );

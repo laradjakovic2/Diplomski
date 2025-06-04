@@ -31,15 +31,11 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
--dohvat competitiona po id-U-done
--update rezultata za competition-update radi al srediti da postavi id ako vec postoji i promijeni se redosljed kod update-a-done
--update rezultata za training-done
--update rezultata za svakog usera preko kalendara
--trainingDetails-pogledati gdje smjestiti-to ce bit kao za trenere
--za netjecanja ukupnu tablicu srediti
+-poslozit kaj vidi trener a kaj user
+-za natjecanja ukupnu tablicu srediti
+-sredit competition payment
 
 -rabbit update na register za trening i competition trenutno zakomentiran
-
 
 -kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
 
@@ -49,6 +45,8 @@ TODO:
 
 -pokrenuti sve preko dockera-pokrece se ali u fazi testiranja- vidjeti dal se napredna komunikacija preko servisa radi(mail, rabbit)
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi, ali trenutno direktno zovem api poseban svaki
+
+-osposobit mediaCell
 
 
 -baza users-hashiranje password
@@ -66,8 +64,7 @@ DONE:
 -spremanje slika sa competition
 -apiGateway dodan
 -jwt token-autorizacija-login logika dodana(ne provjerava password), samo usersCell koristi autorizaciju
--funkcije sa fe na be:
--trainings-done
--competitions-done
--register users-a-done
--users-done
+-funkcije sa fe na be:-trainings-done-competitions-done-register users-a-done-users-done
+-dohvat competitiona po id-U-done
+-update rezultata za competition
+-update rezultata za training-done

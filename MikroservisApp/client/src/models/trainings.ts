@@ -32,14 +32,13 @@ export interface CreateTraining {
   description?: string;
   startDate: Date;
   endDate: Date;
-  trainerId: number;
+  trainerId?: number;
   trainingTypeId: number;
   scoreType: ScoreType;
 }
 
 export interface Training extends CreateTraining {
   id: number;
-  registeredAthletes: Registration[];
 }
 
 export interface UserRegisteredForTraining {
@@ -67,6 +66,7 @@ export interface TrainingType extends CreateTrainingType {
 export interface Registration {
   id:number;
   userId: number;
+  userEmail: string; //bolje je traziti po userEmail jer u userId nemamo uvid zbog mikroservisa, npr ako trener prijavljuje trening
   trainingId: number;
   score: string | number;
 }

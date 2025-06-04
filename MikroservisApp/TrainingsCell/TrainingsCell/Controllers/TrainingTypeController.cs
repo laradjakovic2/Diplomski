@@ -20,6 +20,13 @@ namespace TrainingsCell.Controllers
             _trainingsService = trainingsService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _trainingsService.GetAllTrainingTypes();
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

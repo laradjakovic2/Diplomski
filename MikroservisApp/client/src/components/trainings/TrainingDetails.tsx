@@ -1,21 +1,28 @@
 import { useCallback, useEffect, useState } from "react";
-import { Row, Card, Table, Typography, Button, Input } from "antd";
+import { Row, Card, Table, Button, Input, Col, Form } from "antd";
 import { useParams } from "@tanstack/react-router";
-import { Registration, TrainingDto } from "../../models/trainings";
-import { getTrainingById, updateScore } from "../../api/trainingsService";
-
-const { Title } = Typography;
+import {
+  Registration,
+  TrainingDto,
+  UserRegisteredForTraining,
+} from "../../models/trainings";
+import {
+  getTrainingById,
+  registerUserForTraining,
+  updateScore,
+} from "../../api/trainingsService";
 
 function TrainingDetails() {
+  const [form] = Form.useForm();
   const { id: trainingId } = useParams({ from: "/trainings/$id" });
 
   const [training, setTraining] = useState<TrainingDto | undefined>();
   const [scores, setScores] = useState<Registration[]>([]);
 
-  const handleScoreChange = (userId: number, value: string | number) => {
+  const handleScoreChange = (userEmail: string, value: string | number) => {
     setScores((prevScores) =>
       prevScores.map((s) =>
-        s.userId === userId
+        s.userEmail === userEmail
           ? {
               ...s,
               score: value,
@@ -29,7 +36,7 @@ function TrainingDetails() {
     const fetchTraining = async () => {
       try {
         const data = await getTrainingById(+trainingId);
-        
+
         setTraining(data);
         setScores(data.registeredAthletes);
       } catch (err) {
@@ -45,8 +52,8 @@ function TrainingDetails() {
   }, []);
 
   const handleUpdateScore = useCallback(
-    async (userId: number) => {
-      const score = scores.find((s) => s.userId === userId);
+    async (userEmail: string) => {
+      const score = scores.find((s) => s.userEmail === userEmail);
 
       if (score) {
         await updateScore(score);
@@ -57,60 +64,105 @@ function TrainingDetails() {
     [handleClose, scores]
   );
 
+  const handleRegisterForTraining = useCallback(
+    async (values: UserRegisteredForTraining) => {
+      const command: UserRegisteredForTraining = {
+        userId: 0,
+        trainingId: training?.id || 0,
+        userEmail: values.userEmail,
+      };
+
+      await registerUserForTraining(command);
+
+      handleClose();
+    },
+    [handleClose, training?.id]
+  );
+
   return (
     <>
       <div>
-        <Row>
-          <Title level={2}>{training?.title}</Title>
+        <Form
+          form={form}
+          labelCol={{ span: 7 }}
+          wrapperCol={{ span: 17 }}
+          onFinish={handleRegisterForTraining}
+        >
+          <Row gutter={24}>
+            <Col>
+              <Form.Item
+                name="userEmail"
+                label={"User Email"}
+                rules={[{ max: 500, message: "Too long" }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col>
+              <Button htmlType="submit">Add user to training</Button>
+            </Col>
+          </Row>
+        </Form>
 
-          <div>{training?.description}</div>
-        </Row>
-
-        <Row gutter={48}>
-          <Card
-            title={"Results"}
-            bordered
-            headStyle={{ backgroundColor: "#e6f7ff" }}
-          >
-            <>
-              <Table
-                size="small"
-                dataSource={scores}
-                pagination={false}
-                rowKey="id"
-                columns={[
-                  {
-                    title: "User",
-                    dataIndex: "userEmail",
-                    key: "userEmail",
-                  },
-                  {
-                    title: "Score",
-                    dataIndex: "score",
-                    key: "score",
-                    render: (_, record: Registration) => (
-                      <Input
-                        value={record.score}
-                        onChange={(e: { target: { value: string } }) =>
-                          handleScoreChange(record.userId, e.target.value)
-                        }
-                      />
-                    ),
-                  },
-                  {
-                    title: "Update",
-                    dataIndex: "update",
-                    key: "update",
-                    render: (_, record: Registration) => (
-                      <Button onClick={() => handleUpdateScore(record.userId)}>
-                        Update score
-                      </Button>
-                    ),
-                  },
-                ]}
-              />
-            </>
-          </Card>
+        <Row gutter={24}>
+          <Col span={10}>
+            <Card
+              title={training?.title}
+              bordered
+              headStyle={{ backgroundColor: "#e6f7ff" }}
+            >
+              <div>{training?.description}</div>
+            </Card>
+          </Col>
+          <Col span={14}>
+            <Card
+              title={"Results"}
+              bordered
+              headStyle={{ backgroundColor: "#e6f7ff" }}
+            >
+              <>
+                <Table
+                  size="small"
+                  dataSource={scores}
+                  pagination={false}
+                  rowKey="id"
+                  columns={[
+                    {
+                      title: "User",
+                      dataIndex: "userEmail",
+                      key: "userEmail",
+                    },
+                    {
+                      title: "Score",
+                      dataIndex: "score",
+                      key: "score",
+                      render: (_, record: Registration) => (
+                        <Input
+                          value={record.score}
+                          onChange={(e: { target: { value: string } }) =>
+                            handleScoreChange(record.userEmail, e.target.value)
+                          }
+                        />
+                      ),
+                    },
+                    {
+                      title: "Update",
+                      dataIndex: "update",
+                      key: "update",
+                      render: (_, record: Registration) => (
+                        <Button
+                          type="primary"
+                          onClick={() => handleUpdateScore(record.userEmail)}
+                        >
+                          Update score
+                        </Button>
+                      ),
+                    },
+                  ]}
+                />
+              </>
+            </Card>
+          </Col>
         </Row>
       </div>
     </>

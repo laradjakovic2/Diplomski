@@ -17,6 +17,8 @@ namespace TrainingsCell.Services
     {
         public int UserId { get; set; }
 
+        public string UserEmail { get; set; }
+
         public int TrainingTypeId { get; set; }
     }
 
@@ -146,6 +148,11 @@ namespace TrainingsCell.Services
             entity.Score = request.Score;
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<TrainingType>> GetAllTrainingTypes()
+        {
+            return _context.TrainingTypes.ToList();
         }
 
         public async Task<TrainingType> GetTrainingType(int id)

@@ -100,10 +100,6 @@ function Trainings() {
           : "",
     },
     {
-      title: "Trainer",
-      dataIndex: "trainerEmail",
-    },
-    {
       title: "Actions",
       key: "actions",
       render: (t: TrainingDto) => {

@@ -1,11 +1,23 @@
-import { Button, DatePicker, Form, Input, Row } from "antd";
-import { useCallback, useEffect } from "react";
+import { Button, DatePicker, Form, Input, Row, Select } from "antd";
+import { useCallback, useEffect, useState } from "react";
 import { SaveOutlined } from "@ant-design/icons";
 import "../../App.css";
-import { createTraining, updateTraining } from "../../api/trainingsService";
-import { CreateTraining, Training, TrainingDto } from "../../models/trainings";
+import {
+  createTraining,
+  getAllTrainingTypes,
+  updateTraining,
+} from "../../api/trainingsService";
+import {
+  CreateTraining,
+  Training,
+  TrainingDto,
+  TrainingTypeDto,
+} from "../../models/trainings";
 import { ScoreType } from "../../models/Enums";
 import dayjs from "dayjs";
+
+const { Option } = Select;
+const { TextArea } = Input;
 
 interface Props {
   initialStartDate?: Date;
@@ -17,12 +29,27 @@ interface Props {
 function TrainingForm({
   onClose,
   training,
-  /*initialEndDate,
-  initialStartDate,*/
+  initialEndDate,
+  initialStartDate,
 }: Props) {
   const [form] = Form.useForm();
+  const [trainingTypes, setTrainingTypes] = useState<TrainingTypeDto[]>([]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllTrainingTypes();
+        console.log(data);
+        setTrainingTypes(data);
+        // eslint-disable-next-line no-debugger
+        debugger;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
+
     if (training) {
       for (const [key, value] of Object.entries(training)) {
         if (key === "startDate" || key === "endDate") {
@@ -39,10 +66,10 @@ function TrainingForm({
       const command = {
         ...values,
         trainerId: 1,
-        trainingTypeId: 1,
         scoreType: ScoreType.Time,
       };
-
+      // eslint-disable-next-line no-debugger
+      debugger;
       if (!training?.id) {
         await createTraining({ ...command });
       } else {
@@ -72,13 +99,13 @@ function TrainingForm({
         <Input />
       </Form.Item>
       <Form.Item name="description" label={"Description"}>
-        <Input />
+        <TextArea />
       </Form.Item>
 
       <Form.Item
         name="startDate"
         label={"Start"}
-        //initialValue={initialStartDate ? initialStartDate : new Date()}
+        initialValue={initialStartDate ? dayjs(initialStartDate) : dayjs()}
       >
         <DatePicker showTime />
       </Form.Item>
@@ -86,22 +113,32 @@ function TrainingForm({
       <Form.Item
         name="endDate"
         label={"End"}
-        //initialValue={initialEndDate ? initialEndDate : new Date()}
+        initialValue={
+          initialEndDate ? dayjs(initialEndDate) : dayjs().add(1, "hour")
+        }
       >
         <DatePicker showTime />
       </Form.Item>
 
-      {!training?.id && (
-        <Row className="form-buttons">
-          <Button type="default" onClick={() => onClose()}>
-            {"Cancel"}
-          </Button>
-          <Button type="primary" htmlType="submit">
-            <SaveOutlined />
-            {"Save"}
-          </Button>
-        </Row>
-      )}
+      <Form.Item name="traininTypeId" label={"Training type"}>
+        <Select placeholder="Select training type" style={{ width: "100%" }}>
+          {trainingTypes?.map((type) => (
+            <Option key={type.id} value={type.id}>
+              {type.title}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+
+      <Row className="form-buttons">
+        <Button type="default" onClick={() => onClose()}>
+          {"Cancel"}
+        </Button>
+        <Button type="primary" htmlType="submit">
+          <SaveOutlined />
+          {"Save"}
+        </Button>
+      </Row>
     </Form>
   );
 }

@@ -65,7 +65,6 @@ public class RabbitMqListener : BackgroundService
                     {
                         var deserialized = JsonSerializer.Deserialize<CreateCompetitionPayment>(message);
 
-                        //spremi ili nesto
                         if (deserialized != null)
                         {
                             await paymentService.SaveCompetitionPayment(deserialized);

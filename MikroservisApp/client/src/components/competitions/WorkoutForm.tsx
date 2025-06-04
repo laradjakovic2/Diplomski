@@ -11,6 +11,7 @@ import { createWorkout, updateWorkout } from "../../api/competitionsService";
 import { ScoreType } from "../../models/Enums";
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 interface Props {
   onClose: () => void;
@@ -67,7 +68,7 @@ function WorkoutForm({ onClose, workout, competition }: Props) {
       </Form.Item>
 
       <Form.Item name="description" label={"Description"}>
-        <Input />
+        <TextArea />
       </Form.Item>
 
       <Form.Item name="scoreType" label={"Score"}>
