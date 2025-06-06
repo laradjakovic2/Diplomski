@@ -1,11 +1,14 @@
 import { Card, Col, Row } from "antd";
 import { useEffect, useState } from "react";
-import { CompetitionDto } from "../../models/competitions";
-import { getAllCompetitions } from "../../api/competitionsService";
+import {
+  CompetitionDto,
+} from "../../models/competitions";
+import {
+  getAllCompetitions,
+} from "../../api/competitionsService";
 import { Link } from "@tanstack/react-router";
 
 function Competitions() {
-  const [error, setError] = useState<string | undefined>();
   const [competitions, setCompetitions] = useState<
     CompetitionDto[] | undefined
   >();
@@ -15,14 +18,12 @@ function Competitions() {
         const data = await getAllCompetitions();
         setCompetitions(data);
       } catch (err) {
-        setError("Failed to load Competitions." + { err });
+        console.log("Failed to load Competitions." + { err });
       }
     };
 
     fetchCompetitions();
   }, []);
-
-  if (error) return <div>{error}</div>;
 
   return (
     <div>

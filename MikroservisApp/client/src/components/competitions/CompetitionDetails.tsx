@@ -130,7 +130,7 @@ function CompetitionDetails() {
     setExpandedWorkoutId(undefined);
   }, []);
 
-  const handleUpdateScore = useCallback(async () => {
+  const handleUpdateScoreSubmit = useCallback(async () => {
     const request: UpdateScoreRequest = {
       scores: scores,
     };
@@ -228,7 +228,7 @@ function CompetitionDetails() {
                             },
                           ]}
                         />
-                        <Button onClick={handleUpdateScore}>
+                        <Button onClick={handleUpdateScoreSubmit}>
                           Update score
                         </Button>
                       </>

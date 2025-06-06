@@ -120,13 +120,13 @@ namespace TrainingsCell.Services
                 Score = ""
             };
             _context.Registrations.Add(entity);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
 
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
             //TODO ovo posloziti da radi nakon save changes
             //await _rabbitMqSenderUsers.SendMessage(messageBodyBytes); //obavijesti usere
-            //await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
+            await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
         }
 
         public async Task RegisterUserForTrainingType(CreateTrainingTypeMembership request)

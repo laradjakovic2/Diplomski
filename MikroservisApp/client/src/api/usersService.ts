@@ -69,8 +69,7 @@ export const loginUser = async (data: LoginUser): Promise<string> => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-// eslint-disable-next-line no-debugger
-debugger;
+
     if (!response.ok) throw new Error(`Login failed: ${response.statusText}`);
     return await response.text(); // JWT token string
   } catch (err) {

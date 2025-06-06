@@ -13,23 +13,13 @@ function RouteComponent() {
   const handleLogin = async (credentials: LoginUser) => {
     try {
       const token = await loginUser(credentials);
-      localStorage.setItem("token", token); // <- Spremanje tokena
+      localStorage.setItem("token", token); //Spremanje tokena
       // Nastavi s autoriziranim radnjama
     } catch (err) {
       console.error("Login error", err);
     }
   };
-  /*
-    const handleRegister = async (user: CreateUser) => {
-      try {
-        const token = await registerUser(user);
-        localStorage.setItem("token", token);
-        // Možda odmah logiraš korisnika i preusmjeriš
-      } catch (err) {
-        console.error("Registration error", err);
-      }
-    };
-  */
+
   return (
     <div style={{ width: "50%" }}>
       <div>Login</div>

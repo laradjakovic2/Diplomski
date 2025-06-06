@@ -1,3 +1,4 @@
+
 APIGateway 8080:8080
 
 CompetitionsCell 5001:5001
@@ -31,11 +32,13 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
+-rabbit update na register za trening i competition trenutno zakomentiran
+-srediti register na comp i trening da salje notifi
+-microservice-rabbitmq:5672 mozda probat
+
 -poslozit kaj vidi trener a kaj user
 -za natjecanja ukupnu tablicu srediti
--sredit competition payment
-
--rabbit update na register za trening i competition trenutno zakomentiran
+-sredit competition payment - kod registracije usera pojavi se forma i redirecta na placanje
 
 -kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
 
@@ -47,7 +50,6 @@ TODO:
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi, ali trenutno direktno zovem api poseban svaki
 
 -osposobit mediaCell
-
 
 -baza users-hashiranje password
 -umjesto laradjakovic00 mail, koristiti od app za mailove

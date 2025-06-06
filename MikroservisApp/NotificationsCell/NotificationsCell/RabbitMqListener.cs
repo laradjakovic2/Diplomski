@@ -1,5 +1,4 @@
-﻿
-namespace NotificationsCell;
+﻿namespace NotificationsCell;
 
 using Microsoft.Extensions.Hosting;
 using NotificationsCell.Services;
@@ -52,6 +51,8 @@ public class RabbitMqListener : BackgroundService
             _channel = await _connection.CreateChannelAsync();
 
             await _channel.ExchangeDeclareAsync(ExchangeName, ExchangeType.Direct);
+
+            Console.WriteLine("spojeno " + ExchangeName);
 
             foreach (var (qName, rKey) in _queues)
             {

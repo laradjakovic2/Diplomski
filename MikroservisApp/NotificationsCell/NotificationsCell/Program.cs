@@ -27,10 +27,9 @@ builder.Services.AddCors(options =>
     });
 });
 
-/* ovo otkomentirati za pokretanje sa dockerom*/
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5005);  // Listen on port 80
+    options.ListenAnyIP(5005);
 });
 
 var app = builder.Build();

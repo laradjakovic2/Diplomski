@@ -46,12 +46,15 @@ export interface WorkoutDto {
   results: Result[];
 }
 
-export interface CreateCompetitionPayment {
-  userId: number;
-  competitionId: number;
-  amount: number;
-  paymentMethod: "Cash" | "Card" | "Online";
-}
+export interface CreateCompetitionPayment
+{
+    userId: number;
+    competitionId: number;
+    userEmail: string;
+    price: number;
+    tax: number;
+    total: number;
+};
 
 export interface UserRegisteredForCompetition {
   userId: number;
