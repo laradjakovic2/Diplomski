@@ -49,11 +49,13 @@ namespace TrainingsCell.Services
         private AppDbContext _context;
         public IRabbitMqSender _rabbitMqSenderUsers;
         public IRabbitMqSender _rabbitMqSenderNotifications;
-        public TrainingsService(AppDbContext context)
+        public TrainingsService(AppDbContext context,
+        IRabbitMqSenderUsers rabbitMqSenderUsers,
+        IRabbitMqSenderNotifications rabbitMqSenderNotifications)
         {
-            _rabbitMqSenderUsers = new RabbitMqSender("NotifyUser", "training-user", "training-user");
-            _rabbitMqSenderNotifications = new RabbitMqSender("SendNotification", "training-notification", "training-notification");
-            _context = context;
+            _rabbitMqSenderUsers = rabbitMqSenderUsers;
+            _rabbitMqSenderNotifications = rabbitMqSenderNotifications;
+           _context = context;
         }
 
         public async Task<List<Training>> GetAll()
@@ -120,8 +122,11 @@ namespace TrainingsCell.Services
                 Score = ""
             };
             _context.Registrations.Add(entity);
-            //await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+        }
 
+        public async Task NotifyRegistration(UserRegisteredForTraining request)
+        {
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
             //TODO ovo posloziti da radi nakon save changes

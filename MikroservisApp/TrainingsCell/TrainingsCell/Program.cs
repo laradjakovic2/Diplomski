@@ -2,13 +2,27 @@
 using TrainingsCell.Services;
 using TrainingsCell;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IConnection>(sp =>
+{
+    var factory = new ConnectionFactory
+    {
+        Uri = new Uri("amqp://guest:guest@localhost:5672"),
+        ClientProvidedName = "Training sender"
+    };
+
+    // Force async call to run synchronously at startup
+    return factory.CreateConnectionAsync().GetAwaiter().GetResult();
+});
+builder.Services.AddScoped<IRabbitMqSenderUsers, RabbitMqSenderUsers>();
+builder.Services.AddScoped<IRabbitMqSenderNotifications, RabbitMqSenderNotifications>();
 builder.Services.AddScoped<ITrainingsService, TrainingsService>();
 
-//DbContext
+//DbContexta
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Database"));

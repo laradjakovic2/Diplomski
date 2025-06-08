@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using System.Net;
 
 namespace NotificationsCell.Services
@@ -25,18 +24,26 @@ namespace NotificationsCell.Services
             return smtpClient;
         }
 
-        public bool SendEmailAsync(string sendTo, string subject, string body)
+        public async Task<bool> SendEmailAsync(string sendTo, string subject, string body)
         {
-            MailMessage message = new MailMessage(this.sendFrom, sendTo);
-            message.Subject = subject;
-            message.Body = body;
+            using var message = new MailMessage(sendFrom, sendTo)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = false
+            };
 
             try
             {
-                _client.Send(message);
+                await _client.SendMailAsync(message);
+                Console.WriteLine("Email poslan na {SendTo} sa subjectom '{Subject}'", sendTo, subject);
                 return true;
             }
-            catch (Exception e)
+            catch (SmtpException)
+            {
+                return false;
+            }
+            catch (Exception)
             {
                 return false;
             }

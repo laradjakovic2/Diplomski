@@ -15,6 +15,7 @@ namespace TrainingsCell.Interfaces
 
         public Task RegisterUserForTrainingType(CreateTrainingTypeMembership request);
         public Task RegisterUserForTraining(UserRegisteredForTraining request);
+        public Task NotifyRegistration(UserRegisteredForTraining request);
         public Task UpdateScore(Registration request);
         public Task<List<TrainingType>> GetAllTrainingTypes();
         public Task<TrainingType> GetTrainingType(int id);

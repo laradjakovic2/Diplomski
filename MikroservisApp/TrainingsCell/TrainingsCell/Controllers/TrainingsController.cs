@@ -59,6 +59,8 @@ namespace TrainingsCell.Controllers
         public IActionResult RegisterUserForTraining([FromBody] UserRegisteredForTraining request)
         {
             _trainingsService.RegisterUserForTraining(request);
+
+            _trainingsService.NotifyRegistration(request);
             return Ok();
         }
 
