@@ -10,14 +10,14 @@ namespace TrainingsCell.Services
         public int UserId { get; set; }
         public int TrainingId { get; set; }
 
-        public string UserEmail { get; set; }
+        public required string UserEmail { get; set; }
     }
 
     public class CreateTrainingTypeMembership
     {
         public int UserId { get; set; }
 
-        public string UserEmail { get; set; }
+        public required string UserEmail { get; set; }
 
         public int TrainingTypeId { get; set; }
     }
@@ -40,8 +40,8 @@ namespace TrainingsCell.Services
 
     public class CreateTrainingType
     {
-        public string Description { get; set; }
-        public string Title { get; set; }
+        public string? Description { get; set; }
+        public required string Title { get; set; }
     }
 
     public class TrainingsService : ITrainingsService
@@ -55,7 +55,7 @@ namespace TrainingsCell.Services
         {
             _rabbitMqSenderUsers = rabbitMqSenderUsers;
             _rabbitMqSenderNotifications = rabbitMqSenderNotifications;
-           _context = context;
+            _context = context;
         }
 
         public async Task<List<Training>> GetAll()
@@ -94,6 +94,11 @@ namespace TrainingsCell.Services
         {
             var entity = _context.Trainings.Where(t => t.Id == request.Id).SingleOrDefault();
 
+            if (entity == null)
+            {
+                return;
+            }
+
             entity.Title = request.Title;
             entity.Description = request.Description;
 
@@ -129,7 +134,7 @@ namespace TrainingsCell.Services
         {
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
-            //TODO ovo posloziti da radi nakon save changes
+            //RADI SLANJE, myb ni ne treba userima slati
             //await _rabbitMqSenderUsers.SendMessage(messageBodyBytes); //obavijesti usere
             await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
         }
@@ -149,6 +154,10 @@ namespace TrainingsCell.Services
         public async Task UpdateScore(Registration request)
         {
             var entity = _context.Registrations.Where(t => t.Id == request.Id).SingleOrDefault();
+            if (entity == null)
+            {
+                return;
+            }
 
             entity.Score = request.Score;
 
@@ -169,7 +178,7 @@ namespace TrainingsCell.Services
         {
             var entity = new TrainingType
             {
-                Description = request.Description,
+                Description = request.Description != null ? request.Description : "",
                 Title = request.Title,
             };
 
@@ -180,6 +189,11 @@ namespace TrainingsCell.Services
         public async Task UpdateTrainingType(TrainingType request)
         {
             var entity = _context.TrainingTypes.Where(t => t.Id == request.Id).SingleOrDefault();
+
+            if (entity == null)
+            {
+                return;
+            }
 
             entity.Title = request.Title;
             entity.Description = request.Description;

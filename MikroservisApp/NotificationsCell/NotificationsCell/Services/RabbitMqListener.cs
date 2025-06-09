@@ -102,7 +102,7 @@ namespace NotificationsCell.Services
                         catch (Exception ex)
                         {
                             Console.WriteLine($"[ERROR] Greška kod obrade poruke: {ex.Message}");
-                            await _channel.BasicNackAsync(args.DeliveryTag, false, requeue: true); // Retry
+                            await _channel.BasicNackAsync(args.DeliveryTag, false, requeue: false);
                         }
                     };
 

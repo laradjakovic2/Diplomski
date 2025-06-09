@@ -32,9 +32,9 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
--rabbit update na register za trening i competition trenutno zakomentiran
--srediti register na comp i trening da salje notifi
--microservice-rabbitmq:5672 mozda probat
+-trening to notification radi lokalno
+-testirat competition do notification komunikaciju
+-microservice-rabbitmq:5672 mozda probat sredit da radi u kontejneru
 
 -poslozit kaj vidi trener a kaj user
 -za natjecanja ukupnu tablicu srediti
@@ -70,3 +70,4 @@ DONE:
 -dohvat competitiona po id-U-done
 -update rezultata za competition
 -update rezultata za training-done
+-lokalno radi slanje mailova i komunikacija trening- notification(competition-notification isto vjv)
