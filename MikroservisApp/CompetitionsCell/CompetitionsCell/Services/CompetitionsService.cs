@@ -160,12 +160,14 @@ namespace CompetitionsCell.Services
             };
             _context.Add(entity);
 
-            //await _context.SaveChangesAsync();
-            //TODO otkomentirati i popraviti, ako koristim save changes onda se ovo dolje ne izvrsi
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task NotifyRegistration(UserRegisteredForCompetition request)
+        {
             byte[] messageBodyBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(request));
 
             await _rabbitMqSenderNotifications.SendMessage(messageBodyBytes); //obavijesti notifications
-                        
         }
 
         public async Task PayCompetitionMembership(CreateCompetitionPayment request)

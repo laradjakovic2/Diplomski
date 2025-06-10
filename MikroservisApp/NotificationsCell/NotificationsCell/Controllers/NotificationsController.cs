@@ -17,9 +17,9 @@ namespace NotificationsCell.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            _emailService.SendEmailAsync("lara.dakovic@fer.hr", "bok", "bokic");
+            await _emailService.SendEmailAsync("lara.dakovic@fer.hr", "bok", "bokic");
             return Ok("hej notification");
         }
     }

@@ -81,6 +81,8 @@ namespace CompetitionsCell.Controllers
         public IActionResult RegisterUserForCompetition([FromBody] UserRegisteredForCompetition request)
         {
             _competitionsService.RegisterUserForCompetition(request);
+            _competitionsService.NotifyRegistration(request);
+
             return Ok();
         }
 

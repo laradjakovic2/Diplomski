@@ -16,6 +16,8 @@ namespace CompetitionsCell.Interfaces
 
         public Task RegisterUserForCompetition(UserRegisteredForCompetition request);
 
+        public Task NotifyRegistration(UserRegisteredForCompetition request);
+
         public Task PayCompetitionMembership(CreateCompetitionPayment request);
         public Task UpdateScore(UpdateScoreRequest request);
     }

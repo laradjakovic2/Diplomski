@@ -11,7 +11,7 @@ builder.Services.AddSingleton<IConnection>(sp =>
 {
     var factory = new ConnectionFactory
     {
-        Uri = new Uri("amqp://guest:guest@localhost:5672"),
+        Uri = new Uri("amqp://guest:guest@rabbitmq:5672"),
         ClientProvidedName = "Training sender"
     };
 

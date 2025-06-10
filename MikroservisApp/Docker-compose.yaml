@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16
-    container_name: microservice-postgres
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -19,11 +19,20 @@ services:
       
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: microservice-rabbitmq
+    container_name: rabbitmq
+    #hostname: rabbitmq
     restart: always
     ports:
       - "5672:5672"      # RabbitMQ TCP port
       - "15672:15672"     # Web UI (default je 15672)
+    #expose:
+     #- 15672
+     #- 5672
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
@@ -46,8 +55,10 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=lara2001
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
     networks:
       - microservice-moja-mreza
 
@@ -66,8 +77,10 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=lara2001
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
     networks:
       - microservice-moja-mreza
 
@@ -86,8 +99,10 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=lara2001
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
     networks:
       - microservice-moja-mreza
 
@@ -101,8 +116,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
     networks:
       - microservice-moja-mreza
 
@@ -121,8 +138,10 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=lara2001
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
     networks:
       - microservice-moja-mreza
 
@@ -141,8 +160,10 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=lara2001
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
     networks:
       - microservice-moja-mreza
 
@@ -156,12 +177,18 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_RUNNING_IN_CONTAINER=true
     depends_on:
-      - userscell
-      - trainingscell
-      - competitionscell
-      - notificationscell
-      - paymentscell
-      - mediacell
+      userscell:
+        condition: service_started
+      trainingscell:
+        condition: service_started
+      competitionscell:
+        condition: service_started
+      notificationscell:
+        condition: service_started
+      paymentscell:
+        condition: service_started
+      mediacell:
+        condition: service_started
     networks:
       - microservice-moja-mreza
 
@@ -170,3 +197,4 @@ volumes:
 
 networks:
   microservice-moja-mreza:
+    external: true
