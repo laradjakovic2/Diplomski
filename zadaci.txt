@@ -36,22 +36,14 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
--trening to notification radi lokalno
--testirat competition do notification komunikaciju-preslozit ko za treninge
-
--microservice-rabbitmq:5672 mozda, probat sredit da radi u kontejneru
--vidi se queue i posalje se, ali spajanje nikako
-
--poslozit kaj vidi trener a kaj user
 -za natjecanja ukupnu tablicu srediti
 -sredit competition payment - kod registracije usera pojavi se forma i redirecta na placanje
 
--kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
+-poslozit kaj vidi trener a kaj user
+-osposobit mediaCell-api call
 
 -pokrenuti sve preko dockera-pokrece se ali u fazi testiranja- vidjeti dal se napredna komunikacija preko servisa radi(rabbit)
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi, ali trenutno direktno zovem api poseban svaki
-
--osposobit mediaCell
 
 -baza users-hashiranje password
 -umjesto laradjakovic00 mail, koristiti od app za mailove
@@ -74,3 +66,6 @@ DONE:
 -update rezultata za training-done
 -lokalno radi slanje mailova i komunikacija trening- notification(competition-notification isto vjv)
 -slanje mailova radi i u kontejneru
+-trening to notification radi lokalno preko rabbit
+-competition to notification radi lokalno preko rabbit
+-radi trening, comp do notification preko rabbita,dolazi mail

@@ -19,15 +19,11 @@ public class RabbitMqSender : IRabbitMqSender
     public async Task SendMessage(byte[] messageBodyBytes)
     {
         // Kreira se kanal per-poziv (thread-safe i lightweight)
-        Console.WriteLine("Creating RabbitMq channel...");
         await using var channel = await _connection.CreateChannelAsync();
 
         await channel.ExchangeDeclareAsync(_exchangeName, ExchangeType.Direct);
-        Console.WriteLine("exchange declare");
         await channel.QueueDeclareAsync(_queueName, false, false, false, null);
-        Console.WriteLine("queue declare...");
         await channel.QueueBindAsync(_queueName, _exchangeName, _routingKey, null);
-        Console.WriteLine("bind...");
 
         var props = new BasicProperties
         {
@@ -36,7 +32,6 @@ public class RabbitMqSender : IRabbitMqSender
         };
 
         await channel.BasicPublishAsync(_exchangeName, _routingKey, mandatory: true, basicProperties: props, body: messageBodyBytes);
-        Console.WriteLine("publish...");
         // Kanal se automatski zatvara jer koristiš `await using`
     }
 }
