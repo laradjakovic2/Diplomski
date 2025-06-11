@@ -49,6 +49,7 @@ namespace TrainingsCell.Services
         private AppDbContext _context;
         public IRabbitMqSender _rabbitMqSenderUsers;
         public IRabbitMqSender _rabbitMqSenderNotifications;
+        
         public TrainingsService(AppDbContext context,
         IRabbitMqSenderUsers rabbitMqSenderUsers,
         IRabbitMqSenderNotifications rabbitMqSenderNotifications)

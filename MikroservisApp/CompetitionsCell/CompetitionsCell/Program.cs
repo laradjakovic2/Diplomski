@@ -2,10 +2,25 @@
 using CompetitionsCell.Interfaces;
 using CompetitionsCell.Services;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IConnection>(sp =>
+{
+    var factory = new ConnectionFactory
+    {
+        Uri = new Uri("amqp://guest:guest@rabbitmq:5672"),
+        ClientProvidedName = "Competition sender"
+    };
+
+    // Force async call to run synchronously at startup
+    return factory.CreateConnectionAsync().GetAwaiter().GetResult();
+});
+builder.Services.AddScoped<IRabbitMqSenderPayments, RabbitMqSenderPayments>();
+builder.Services.AddScoped<IRabbitMqSenderNotifications, RabbitMqSenderNotifications>();
+
 builder.Services.AddScoped<ICompetitionsService, CompetitionsService>();
 
 builder.Services.AddHttpClient<MediaServiceClient>(client =>

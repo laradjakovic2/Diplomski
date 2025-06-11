@@ -37,8 +37,10 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -------------------------------------------------------------------------------------------------
 TODO:
 -trening to notification radi lokalno
--testirat competition do notification komunikaciju
--microservice-rabbitmq:5672 mozda probat sredit da radi u kontejneru
+-testirat competition do notification komunikaciju-preslozit ko za treninge
+
+-microservice-rabbitmq:5672 mozda, probat sredit da radi u kontejneru
+-vidi se queue i posalje se, ali spajanje nikako
 
 -poslozit kaj vidi trener a kaj user
 -za natjecanja ukupnu tablicu srediti
@@ -46,11 +48,7 @@ TODO:
 
 -kad pokrenem preko kontejnera msm da rabbitmq posalje, vidi se queue, ali nez dal notification dobije poruku
 
--slanje mailova ne radi na NotificationsCell
--kad pokrenem training i notification bez kontejnera - prima notification poruku ali se mail ne posalje
--myb credentials za slanje mailova
-
--pokrenuti sve preko dockera-pokrece se ali u fazi testiranja- vidjeti dal se napredna komunikacija preko servisa radi(mail, rabbit)
+-pokrenuti sve preko dockera-pokrece se ali u fazi testiranja- vidjeti dal se napredna komunikacija preko servisa radi(rabbit)
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi, ali trenutno direktno zovem api poseban svaki
 
 -osposobit mediaCell

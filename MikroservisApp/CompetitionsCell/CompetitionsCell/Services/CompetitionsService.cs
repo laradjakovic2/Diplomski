@@ -11,7 +11,7 @@ namespace CompetitionsCell.Services
         public int UserId { get; set; }
         public int CompetitionId { get; set; }
 
-        public string UserEmail { get; set; }
+        public required string UserEmail { get; set; }
     }
 
     public class CreateCompetition
@@ -40,7 +40,7 @@ namespace CompetitionsCell.Services
     {
         public int UserId { get; set; }
         public int CompetitionId { get; set; }
-        public string UserEmail { get; set; }
+        public required string UserEmail { get; set; }
         public double Price { get; set; }
         public double Tax { get; set; }
         public double Total { get; set; }
@@ -60,7 +60,7 @@ namespace CompetitionsCell.Services
 
     public class UpdateScoreRequest
     {
-        public List<UpdateResult> Scores { get; set; }
+        public List<UpdateResult> Scores { get; set; } = new List<UpdateResult>();
     }
 
     public class CompetitionsService : ICompetitionsService
@@ -69,10 +69,13 @@ namespace CompetitionsCell.Services
 
         public IRabbitMqSender _rabbitMqSenderNotifications;
         public IRabbitMqSender _rabbitMqSenderPayments;
-        public CompetitionsService(AppDbContext context)
+
+        public CompetitionsService(AppDbContext context,
+        IRabbitMqSenderPayments rabbitMqSenderPayments,
+        IRabbitMqSenderNotifications rabbitMqSenderNotifications)
         {
-            _rabbitMqSenderNotifications = new RabbitMqSender("SendNotification", "competition-notification", "competition-notification");
-            _rabbitMqSenderPayments = new RabbitMqSender("SendPayment", "competition-payment", "competition-payment");
+            _rabbitMqSenderNotifications = rabbitMqSenderNotifications;
+            _rabbitMqSenderPayments = rabbitMqSenderPayments;
             _context = context;
         }
 
@@ -89,6 +92,11 @@ namespace CompetitionsCell.Services
                     .ThenInclude(w => w.Results)*/
                 .Where(t => t.Id == id)
                 .SingleOrDefault();
+
+            if (competition == null)
+            {
+                return null;
+            }
 
             var workouts = _context.Workouts.Include(w => w.Results).Where(t => t.CompetitionId == id).ToList();
             var memberships = _context.CompetitionMemberships.Where(t => t.CompetitionId == id).ToList();
@@ -117,6 +125,10 @@ namespace CompetitionsCell.Services
         {
             var entity = _context.Competitions.Where(t => t.Id == request.Id).SingleOrDefault();
 
+            if(entity == null){
+                return;
+            }
+
             entity.Title = request.Title;
             entity.Description = request.Description;
             entity.Location = request.Location;
@@ -143,6 +155,11 @@ namespace CompetitionsCell.Services
         public async Task UpdateWorkout(Workout request)
         {
             var entity = _context.Workouts.Where(t => t.Id == request.Id).SingleOrDefault();
+
+            if (entity == null)
+            {
+                return;
+            }
 
             entity.Title = request.Title;
             entity.Description = request.Description;
@@ -196,6 +213,10 @@ namespace CompetitionsCell.Services
                 else
                 {
                     var entity = _context.Results.Where(t => t.Id == score.Id).SingleOrDefault();
+                    if (entity == null)
+                    {
+                        return;
+                    }
                     entity.Score = score.Score;
                 }
             }

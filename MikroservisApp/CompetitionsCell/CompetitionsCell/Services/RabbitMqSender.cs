@@ -1,5 +1,7 @@
 ﻿using RabbitMQ.Client;
-using TrainingsCell.Interfaces;
+using CompetitionsCell.Interfaces;
+
+namespace CompetitionsCell.Services;
 
 public class RabbitMqSender : IRabbitMqSender
 {
