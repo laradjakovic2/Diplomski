@@ -34,7 +34,7 @@ namespace NotificationsCell.Services
             _factory = new ConnectionFactory
             {
                 Uri = new Uri("amqp://guest:guest@localhost:5672"),
-                ClientProvidedName = "User receiver"
+                ClientProvidedName = "Notification receiver"
             };
             _scopeFactory = scopeFactory;
         }
@@ -43,12 +43,17 @@ namespace NotificationsCell.Services
         {
             using var scope = _scopeFactory.CreateScope();
             var emailService = scope.ServiceProvider.GetRequiredService<EmailService>();
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
                 {
+                    Console.WriteLine("Creating RabbitMQ connection...");
                     _connection = await _factory.CreateConnectionAsync();
+                    Console.WriteLine("done connection...");
+                    Console.WriteLine("Creating RabbitMQ channel...");
                     _channel = await _connection.CreateChannelAsync();
+                    Console.WriteLine("done channel...");
 
                     await _channel.ExchangeDeclareAsync(ExchangeName, ExchangeType.Direct);
 
