@@ -15,11 +15,18 @@ namespace PaymentsCell.Controllers
             _paymentService = paymentService;
         }
 
-        [HttpGet]
+        [HttpGet("single")]
         public IActionResult GetCompetitionPayment([FromQuery] string userEmail, [FromQuery] int competitionId)
         {
             var payment = _paymentService.GetCompetitionPayment(userEmail, competitionId);
             return Ok(payment);
+        }
+
+        [HttpGet]
+        public IActionResult GetCompetitionPayments()
+        {
+            var payments = _paymentService.GetAllCompetitionPayments();
+            return Ok(payments);
         }
 
         [HttpPut]

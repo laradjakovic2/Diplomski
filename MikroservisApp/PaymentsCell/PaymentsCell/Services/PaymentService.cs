@@ -21,6 +21,13 @@ namespace PaymentsCell.Services
             return entity;
         }
 
+        public async Task<List<CompetitionPayment>> GetAllCompetitionPayments()
+        {
+            var entities = _context.CompetitionPayments.ToList();
+
+            return entities;
+        }
+
         public async Task<int> SaveCompetitionPayment(CreateCompetitionPayment payment)
         {
             var competitionPayment = new CompetitionPayment

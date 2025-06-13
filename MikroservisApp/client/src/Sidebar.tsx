@@ -1,6 +1,6 @@
-import { Layout, Menu } from 'antd';
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
-import { Link } from '@tanstack/react-router';
+import { Layout, Menu } from "antd";
+import { HomeOutlined, UserOutlined } from "@ant-design/icons";
+import { Link } from "@tanstack/react-router";
 
 const { Sider } = Layout;
 
@@ -9,10 +9,10 @@ const Sidebar: React.FC = () => {
     <Sider
       collapsible
       style={{
-        overflow: 'auto',
-        height: '100vh',
-        width: '15vw',
-        position: 'fixed',
+        overflow: "auto",
+        height: "100vh",
+        width: "15vw",
+        position: "fixed",
         left: 0,
         top: 0,
         bottom: 0,
@@ -22,10 +22,10 @@ const Sidebar: React.FC = () => {
         style={{
           height: 32,
           margin: 16,
-          background: 'rgba(255, 255, 255, 0.3)',
+          background: "rgba(255, 255, 255, 0.3)",
         }}
       />
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['/']}>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={["/"]}>
         <Menu.Item key="/" icon={<HomeOutlined />}>
           <Link to="/">Home</Link>
         </Menu.Item>
@@ -43,6 +43,9 @@ const Sidebar: React.FC = () => {
         </Menu.Item>
         <Menu.Item key="/calendar" icon={<UserOutlined />}>
           <Link to="/calendar">Calendar</Link>
+        </Menu.Item>
+        <Menu.Item key="/payments" icon={<UserOutlined />}>
+          <Link to="/payments">Payments</Link>
         </Menu.Item>
       </Menu>
     </Sider>
