@@ -3,7 +3,7 @@
     public enum EntityType
     {
         User = 1,
-        Training,
-        Competition,
+        Training=2,
+        Competition=3,
     }
 }

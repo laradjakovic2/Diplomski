@@ -1,47 +1,107 @@
 ﻿using MediaCell.Entities;
 using MediaCell.Enums;
 using MediaCell.Interfaces;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Azure.Storage;
 
-namespace MediaCell.Services
+namespace MediaCell.Services;
+
+public class MediaService : IMediaService
 {
-    public class MediaService : IMediaService
+    private readonly AppDbContext _context;
+
+    private const string connectionString = "UseDevelopmentStorage=true";
+    private const string containerName = "images";
+    public MediaService(AppDbContext context)
     {
-        private readonly AppDbContext _context;
-        public MediaService(AppDbContext context)
+        _context = context;
+    }
+
+
+    public async Task<int> SaveMediaUrlDb(Media media)
+    {
+        _context.Medias.Add(media);
+        await _context.SaveChangesAsync();
+
+        return media.Id;
+    }
+
+    #region Local
+    public async Task<Media?> GetMediaFromDb(int relatedEntityId, EntityType entityType)
+    {
+        var media = _context.Medias
+            .Where(cm => cm.RelatedEntityId == relatedEntityId && cm.EntityType == entityType)
+            .SingleOrDefault();
+
+        return media;
+    }
+
+    public async Task<string> SaveFileWWWRoot(IFormFile file)
+    {
+        var filePath = Path.Combine("wwwroot/uploads", file.FileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
         {
-            _context = context;
+            await file.CopyToAsync(stream);
         }
 
-        public async Task<int> SaveMediaRecordAsync(Media media)
-        {
-            _context.Medias.Add(media);
-            await _context.SaveChangesAsync();
+        return $"/uploads/{file.FileName}";
+    }
 
-            return media.Id;
+    #endregion
+
+    #region Azurites
+    public async Task<string?> SaveFileAzurites(IFormFile file)
+    {
+        try
+        {
+            var blobServiceClient = new BlobServiceClient(connectionString);
+            var containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+            await containerClient.CreateIfNotExistsAsync();
+
+            var blobClient = containerClient.GetBlobClient(file.FileName);
+            using var stream = file.OpenReadStream();
+            await blobClient.UploadAsync(stream, overwrite: true);
+
+            var blobUrl = blobClient.Uri.ToString();
+
+            return blobUrl;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return null;
         }
 
-        public async Task<string?> GetImageUrlAsync(int relatedEntityId, EntityType entityType)
-        {
-            var media = _context.Medias
-                .Where(cm => cm.RelatedEntityId == relatedEntityId && cm.EntityType == entityType)
-                .SingleOrDefault();
+    }
 
-            return media?.Url;
+    public async Task<BlobDownloadInfo?> GetFileFromUrlAzurites(string url)
+    {
+        // Azurite podaci (standardni)
+        const string accountName = "devstoreaccount1";
+        const string accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
+        var credential = new StorageSharedKeyCredential(accountName, accountKey);
+        var blobUri = new Uri(url);
+
+        var blobClient = new BlobClient(blobUri, credential);
+
+        try
+        {
+            var exists = await blobClient.ExistsAsync();
+            if (!exists) return null;
+
+            var downloadInfo = await blobClient.DownloadAsync();
+            return downloadInfo;
         }
-
-        public async Task<string> SaveFileAsync(IFormFile file)
+        catch (Exception)
         {
-            var filePath = Path.Combine("wwwroot/uploads", file.FileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return $"/uploads/{file.FileName}";
+            return null;
         }
     }
+    #endregion
 }
+
 
 public class MediaRequestModel
 {

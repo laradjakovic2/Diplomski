@@ -1,4 +1,3 @@
-
 APIGateway 8080:8080
 
 CompetitionsCell 5001:5001
@@ -35,8 +34,10 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -rabbit isto preko yaml-amqp://guest:guest@localhost:5672 - promijeniti iz localhost u rabbitmq
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
+pokretanje Azurite:
+docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite
+-----------------------------------------------------------------
 TODO:
--osposobit mediaCell-api call-azurite
 -sredit competition payment - updateati entitete, userId, price itd..
 
 -poslozit kaj vidi trener a kaj user
@@ -47,8 +48,13 @@ TODO:
 
 -baza users-hashiranje password
 -umjesto laradjakovic00 mail, koristiti od app za mailove
--istraziti gdje na cloud to mozemo stvarno spremit, zasad sprema samo na wwwroot
+-istraziti gdje na cloud to mozemo stvarno spremit, zasad sprema na wwwroot ili azurites(imitacija Azure Blob storage)
 -APIGateway dodati autorizaciju prosljeduje samo ako je autoriziran
+
+PITATI MENTORA:
+-ima li acc za spremanje na cloud Azure Blob storage
+-Payment kako trenutno radi, simulacija samo, je li to ok pristup
+-slanje mailova trenutno ide preko mog privatnog, ima li neki MailGun
 
 
 DONE:
@@ -70,3 +76,4 @@ DONE:
 -competition to notification radi lokalno preko rabbit
 -radi trening, comp do notification preko rabbita,dolazi mail
 -radi competition-payment i salje poruku do payments servisa i sprema info
+-mediaCell radi spremanje i salje url - azurite - dobro za lokalno testiranje Azure blob storage-a, pitati ima li

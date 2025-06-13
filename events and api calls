@@ -1,6 +1,9 @@
+
 Mikroservis------------------------Sinkronizacija i komunikacija ------------------------	Opis
 
 Trainings → Notifications	---------Event (training_registered)------------	Kada korisnik prijavi trening, Notifications servis šalje email potvrde.
 Competitions → Notifications	---------Event (competition_registered)------------	Kada korisnik prijavi natjecanje, Notifications servis šalje email potvrde.
 Competitions → Payments	-------------Event (competition_registration_succ)----	Kada se korisnik prijavi na natjecanje, Payments servis traži uplatu kotizacije.
+
+msm da mi ovo cak ne treba nego direktno zove Media servis
 Media → Trainings / Competitions--- 	API poziv	------------------------------Treninzi i natjecanja dohvaćaju slike putem API-ja iz Media servisa.
