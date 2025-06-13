@@ -5,6 +5,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\paymentscell\\paymentscell\\rabbitmqlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|solutionrelative:paymentscell\\rabbitmqlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\paymentscell\\paymentscell\\models\\createcompetitionpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|solutionrelative:paymentscell\\models\\createcompetitionpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\paymentscell\\paymentscell\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|solutionrelative:paymentscell\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\paymentscell\\paymentscell\\interfaces\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|solutionrelative:paymentscell\\interfaces\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|d:\\faks\\diplomski\\mikroservisapp\\paymentscell\\paymentscell\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9885AA6F-27A0-4920-809A-80B21835881C}|PaymentsCell\\PaymentsCell.csproj|solutionrelative:paymentscell\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +30,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PaymentsController.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Controllers\\PaymentsController.cs",
+              "RelativeDocumentMoniker": "PaymentsCell\\Controllers\\PaymentsController.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Controllers\\PaymentsController.cs",
+              "RelativeToolTip": "PaymentsCell\\Controllers\\PaymentsController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBgAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T20:04:33.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IPaymentService.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Interfaces\\IPaymentService.cs",
+              "RelativeDocumentMoniker": "PaymentsCell\\Interfaces\\IPaymentService.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Interfaces\\IPaymentService.cs",
+              "RelativeToolTip": "PaymentsCell\\Interfaces\\IPaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T20:04:02.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "PaymentsCell\\Services\\PaymentService.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Services\\PaymentService.cs",
+              "RelativeToolTip": "PaymentsCell\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwA4AAABoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T20:00:46.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CreateCompetitionPayment.cs",
+              "DocumentMoniker": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Models\\CreateCompetitionPayment.cs",
+              "RelativeDocumentMoniker": "PaymentsCell\\Models\\CreateCompetitionPayment.cs",
+              "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\Models\\CreateCompetitionPayment.cs",
+              "RelativeToolTip": "PaymentsCell\\Models\\CreateCompetitionPayment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T20:00:15.702Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +92,7 @@
               "RelativeDocumentMoniker": "PaymentsCell\\RabbitMqListener.cs",
               "ToolTip": "D:\\faks\\Diplomski\\MikroservisApp\\PaymentsCell\\PaymentsCell\\RabbitMqListener.cs",
               "RelativeToolTip": "PaymentsCell\\RabbitMqListener.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAYwEIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-04T20:06:37.452Z",
               "EditorCaption": ""

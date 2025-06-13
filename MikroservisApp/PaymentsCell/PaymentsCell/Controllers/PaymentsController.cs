@@ -15,7 +15,14 @@ namespace PaymentsCell.Controllers
             _paymentService = paymentService;
         }
 
-        [HttpPut("competiton-payment")]
+        [HttpGet]
+        public IActionResult GetCompetitionPayment([FromQuery] string userEmail, [FromQuery] int competitionId)
+        {
+            var payment = _paymentService.GetCompetitionPayment(userEmail, competitionId);
+            return Ok(payment);
+        }
+
+        [HttpPut]
         public IActionResult CreateCompetitionPayment([FromBody] CreateCompetitionPayment request)
         {
             _paymentService.SaveCompetitionPayment(request);

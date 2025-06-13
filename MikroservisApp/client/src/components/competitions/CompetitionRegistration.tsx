@@ -46,9 +46,9 @@ function CompetitionRegistration() {
       const command: CreateCompetitionPayment = {
         ...values,
         competitionId: +competitionId,
-        price: 100,
-        tax: 25,
-        total: 125,
+        price: competition?.price || 0,
+        tax: competition?.tax || 0,
+        totalPrice: competition?.totalPrice || 0,
       };
 
       await payCompetitionMembership({
@@ -56,12 +56,13 @@ function CompetitionRegistration() {
       });
       onClose();
     },
-    [competitionId, onClose]
+    [competition?.price, competition?.tax, competition?.totalPrice, competitionId, onClose]
   );
 
   return (
     <>
       <Title level={3}>{competition?.title}</Title>
+      <div>Price: {competition?.totalPrice}</div>
       <Title level={4}>Payment data</Title>
       <Form
         form={form}

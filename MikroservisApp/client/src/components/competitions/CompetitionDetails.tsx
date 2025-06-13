@@ -146,6 +146,7 @@ function CompetitionDetails() {
       <div>
         <Row>
           <Title level={2}>{competition?.title}</Title>
+          <div>Price: {competition?.totalPrice}</div>
 
           <Button
             key="1"
@@ -242,7 +243,7 @@ function CompetitionDetails() {
 
           {/* RIGHT: Scores */}
           <Col span={12}>
-            <Title level={3}>Rezultati</Title>
+            <Title level={3}>Results</Title>
             <Table
               dataSource={scoreData}
               columns={scoreColumns}

@@ -13,10 +13,13 @@ export interface CreateCompetition {
   location?: string;
   startDate: Date;
   endDate: Date;
+  price: number;
+  tax: number;
 }
 
 export interface CompetitionDto extends CreateCompetition {
   id: number;
+  totalPrice: number;
   competitionMemberships?: CompetitionMembership[];
   workouts: WorkoutDto[];
 }
@@ -48,12 +51,12 @@ export interface WorkoutDto {
 
 export interface CreateCompetitionPayment
 {
-    userId: number;
-    competitionId: number;
-    userEmail: string;
-    price: number;
-    tax: number;
-    total: number;
+  userId: number;
+  competitionId: number;
+  userEmail: string;
+  price: number;
+  tax: number;
+  totalPrice: number;
 };
 
 export interface UserRegisteredForCompetition {

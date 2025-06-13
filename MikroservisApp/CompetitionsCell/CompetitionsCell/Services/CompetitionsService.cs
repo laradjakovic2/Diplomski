@@ -24,6 +24,9 @@ namespace CompetitionsCell.Services
         public DateTime EndDate { get; set; }
 
         public string? Location { get; set; }
+        public double Price { get; set; }
+
+        public double Tax { get; set; }
     }
 
     public class CreateWorkout
@@ -43,7 +46,7 @@ namespace CompetitionsCell.Services
         public required string UserEmail { get; set; }
         public double Price { get; set; }
         public double Tax { get; set; }
-        public double Total { get; set; }
+        public double TotalPrice { get; set; }
     }
 
     public class UpdateResult
@@ -114,7 +117,10 @@ namespace CompetitionsCell.Services
                 Title = request.Title,
                 Location = request.Location,
                 StartDate = request.StartDate,
-                EndDate = request.EndDate
+                EndDate = request.EndDate,
+                Price = request.Price,
+                Tax = request.Tax,
+                TotalPrice= request.Price + request.Tax
             };
 
             _context.Add(entity);
@@ -134,6 +140,9 @@ namespace CompetitionsCell.Services
             entity.Location = request.Location;
             entity.StartDate = request.StartDate;
             entity.EndDate = request.EndDate;
+            entity.Price = request.Price;
+            entity.Tax = request.Tax;
+            entity.TotalPrice = request.Price + request.Tax;
 
             await _context.SaveChangesAsync();
         }

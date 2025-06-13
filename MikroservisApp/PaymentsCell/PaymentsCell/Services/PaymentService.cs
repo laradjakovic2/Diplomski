@@ -12,6 +12,15 @@ namespace PaymentsCell.Services
             _context = context;
         }
 
+        public async Task<CompetitionPayment> GetCompetitionPayment(string userEmail, int competitionId)
+        {
+            var entity = _context.CompetitionPayments
+                   .Where(p => p.UserEmail == userEmail && p.CompetitionId == competitionId)
+                   .SingleOrDefault();
+
+            return entity;
+        }
+
         public async Task<int> SaveCompetitionPayment(CreateCompetitionPayment payment)
         {
             var competitionPayment = new CompetitionPayment
@@ -21,7 +30,7 @@ namespace PaymentsCell.Services
                 CompetitionId = payment.CompetitionId,
                 Price = payment.Price,
                 Tax = payment.Tax,
-                Total = payment.Total,
+                Total = payment.TotalPrice,
             };
 
             _context.CompetitionPayments.Add(competitionPayment);

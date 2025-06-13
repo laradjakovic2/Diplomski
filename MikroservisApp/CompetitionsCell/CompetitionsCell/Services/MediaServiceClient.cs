@@ -14,6 +14,7 @@ public class MediaServiceClient
         _httpClient = httpClient;
     }
 
+    //trenutno nije u planu ovako raditi nego direktni poziv na media servis
     public async Task<int> UploadImageAsync(MediaRequestModel request)
     {
         using (var content = new MultipartFormDataContent())
