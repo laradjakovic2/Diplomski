@@ -111,6 +111,7 @@ function TrainingDetails() {
               bordered
               headStyle={{ backgroundColor: "#e6f7ff" }}
             >
+              <div>{training?.startDate?.toString()}</div>
               <div>{training?.description}</div>
             </Card>
           </Col>

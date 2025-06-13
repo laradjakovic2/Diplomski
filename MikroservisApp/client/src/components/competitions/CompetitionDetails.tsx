@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Row, Col, Card, Table, Typography, Drawer, Button, Input } from "antd";
 import { DownOutlined, PlusOutlined, UpOutlined } from "@ant-design/icons";
-import { useParams } from "@tanstack/react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 import {
   getCompetitionById,
   updateCompetitionScore,
@@ -55,7 +55,8 @@ const scoreColumns = [
 ];
 
 function CompetitionDetails() {
-  const { id: competitionId } = useParams({ from: "/competitions/$id" });
+  const navigate = useNavigate();
+  const { id: competitionId } = useParams({ from: "/competitions/$id/" });
 
   const [competition, setCompetition] = useState<CompetitionDto | undefined>();
   const [isWorkoutDrawerOpen, setIsWorkoutDrawerOpen] =
@@ -250,7 +251,21 @@ function CompetitionDetails() {
             />
           </Col>
         </Row>
+        <Row>
+          <Button
+            type="primary"
+            onClick={() => {
+              navigate({
+                to: "/competitions/$id/registration",
+                params: { id: competitionId },
+              });
+            }}
+          >
+            Register
+          </Button>
+        </Row>
       </div>
+
       {competition && (
         <Drawer
           title={"Add workout"}

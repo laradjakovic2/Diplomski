@@ -24,7 +24,7 @@ ako dva servisa razlicitu poruku
 -isti exchange i razliciti routing kljucevi i queue - npr ako povezana tematski poruka (ili razliciti exchange ako tematski odvojene)
 -------------------------------------------------------------------------------------------------
 SPAJANJE NA BAZU UNUTAR KONTEJNERA za queryje:
-docker exec -it microservice-postgres psql -U postgres
+docker exec -it postgres psql -U postgres
 \c CompetitionsCell
 SELECT * FROM "CompetitionMemberships";
 ---------------------------------------------------------------------------
@@ -36,13 +36,13 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 -baza isto preko kontejnera - U APPSETTINGS HOST PROMIJENITI iz localhost u postgres
 -------------------------------------------------------------------------------------------------
 TODO:
--za natjecanja ukupnu tablicu srediti
--sredit competition payment - kod registracije usera pojavi se forma i redirecta na placanje
+-osposobit mediaCell-api call-azurite
+-sredit competition payment - updateati entitete, userId, price itd..
 
 -poslozit kaj vidi trener a kaj user
--osposobit mediaCell-api call
+-za natjecanja ukupnu tablicu srediti
 
--pokrenuti sve preko dockera-pokrece se ali u fazi testiranja- vidjeti dal se napredna komunikacija preko servisa radi(rabbit)
+-kontejnerizirati i klijenta
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi, ali trenutno direktno zovem api poseban svaki
 
 -baza users-hashiranje password
@@ -69,3 +69,4 @@ DONE:
 -trening to notification radi lokalno preko rabbit
 -competition to notification radi lokalno preko rabbit
 -radi trening, comp do notification preko rabbita,dolazi mail
+-radi competition-payment i salje poruku do payments servisa i sprema info
