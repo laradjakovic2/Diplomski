@@ -38,9 +38,6 @@ pokretanje Azurite:
 docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite
 -----------------------------------------------------------------
 TODO:
--sredit competition payment - updateati entitete, userId, price itd..
--testirati komunnikaciju i spremanje paymenta
--tablica paymenta
 -myb dohvatiti za usere sva njegova placanja-api poziv na payments servise ili direktno??hmm
 
 -poslozit kaj vidi trener a kaj user
@@ -80,3 +77,4 @@ DONE:
 -radi trening, comp do notification preko rabbita,dolazi mail
 -radi competition-payment i salje poruku do payments servisa i sprema info
 -mediaCell radi spremanje i salje url - azurite - dobro za lokalno testiranje Azure blob storage-a, pitati ima li
+-competition-payment komunikacija sredena, payment info se sprema u bazu

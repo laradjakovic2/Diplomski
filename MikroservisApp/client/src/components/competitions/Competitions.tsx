@@ -124,6 +124,18 @@ function Competitions() {
         value ? new Date(value).toLocaleDateString() : "",
     },
     {
+      title: "Price",
+      dataIndex: "price",
+    },
+    {
+      title: "Tax",
+      dataIndex: "tax",
+    },
+    {
+      title: "Total price",
+      dataIndex: "totalPrice",
+    },
+    {
       title: "Location",
       dataIndex: "location",
     },

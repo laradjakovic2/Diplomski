@@ -23,9 +23,9 @@ namespace PaymentsCell.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCompetitionPayments()
+        public async Task<IActionResult> GetAll()
         {
-            var payments = _paymentService.GetAllCompetitionPayments();
+            var payments = await _paymentService.GetAllCompetitionPayments();
             return Ok(payments);
         }
 

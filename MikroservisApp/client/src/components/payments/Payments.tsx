@@ -10,6 +10,7 @@ function Payments() {
     const fetchPayments = async () => {
       try {
         const data = await getAllPayments();
+        console.log(data);
         setPayments(data);
       } catch (err) {
         console.log("Failed to load Payments." + { err });
@@ -51,9 +52,6 @@ function Payments() {
         style={{ width: "100%" }}
         columns={columns}
         dataSource={payments}
-        rowKey={(activity: CompetitionPaymentDto): string =>
-          activity.id.toString()
-        }
         bordered
       />
     </>
