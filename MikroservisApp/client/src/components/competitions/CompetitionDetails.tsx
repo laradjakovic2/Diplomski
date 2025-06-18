@@ -15,44 +15,24 @@ import WorkoutForm from "./WorkoutForm";
 
 const { Title } = Typography;
 
-const scoreData = [
-  {
-    key: "1",
-    name: "Ana Kovač",
-    workout1: "120 pts",
-    workout2: "100 pts",
-    workout3: "95 pts",
-    workout4: "110 pts",
-    total: "425 pts",
-  },
-  {
-    key: "2",
-    name: "Ivan Horvat",
-    workout1: "110 pts",
-    workout2: "105 pts",
-    workout3: "98 pts",
-    workout4: "115 pts",
-    total: "428 pts",
-  },
-  {
-    key: "3",
-    name: "Marija Petrović",
-    workout1: "95 pts",
-    workout2: "90 pts",
-    workout3: "100 pts",
-    workout4: "105 pts",
-    total: "390 pts",
-  },
-];
+interface ColumnProp {
+  title: string;
+  dataIndex: string;
+  key: string;
+  sort: number;
+}
 
-const scoreColumns = [
-  { title: "Natjecatelj", dataIndex: "name", key: "name" },
-  { title: "Workout 1", dataIndex: "workout1", key: "workout1" },
-  { title: "Workout 2", dataIndex: "workout2", key: "workout2" },
-  { title: "Workout 3", dataIndex: "workout3", key: "workout3" },
-  { title: "Workout 4", dataIndex: "workout4", key: "workout4" },
-  { title: "Ukupno", dataIndex: "total", key: "total" },
-];
+interface ScoreItem {
+  key: string;
+  userEmail: string;
+  workout1?: number | string;
+  workout2?: number | string;
+  workout3?: number | string;
+  workout4?: number | string;
+  workout5?: number | string;
+  workout6?: number | string;
+  total: number | string;
+}
 
 function CompetitionDetails() {
   const navigate = useNavigate();
@@ -65,6 +45,23 @@ function CompetitionDetails() {
     number | undefined
   >(undefined);
   const [scores, setScores] = useState<UpdateResult[]>([]);
+  const [totalScoreColumns, setTotalScoreColumns] = useState<ColumnProp[]>([
+    { title: "Name", dataIndex: "name", key: "name", sort: -1 },
+    { title: "Workout 0", dataIndex: "workout0", key: "workout0", sort: 0 },
+    { title: "Workout 1", dataIndex: "workout1", key: "workout1", sort: 0 },
+    { title: "Total", dataIndex: "total", key: "total", sort: 100 },
+  ]);
+  const [totalScoreData, setTotalScoreData] = useState<ScoreItem[]>([
+    {
+      key: "1",
+      userEmail: "Ana Kovač",
+      workout1: "120 pts",
+      workout2: "100 pts",
+      workout3: "95 pts",
+      workout4: "110 pts",
+      total: "425 pts",
+    },
+  ]);
 
   const handleScoreChange = (userId: number, value: string | number) => {
     setScores((prevScores) =>
@@ -117,13 +114,55 @@ function CompetitionDetails() {
         const data = await getCompetitionById(+competitionId);
         console.log(data);
         setCompetition(data);
+
+        const totalScoreCols: ColumnProp[] = [];
+
+        data.workouts.forEach((workout, index) => {
+          totalScoreCols.push({
+            title: workout.title,
+            dataIndex: workout.id.toString(),
+            key: workout.id.toString(),
+            sort: index,
+          });
+        });
+
+        setTotalScoreColumns(totalScoreCols.sort((c) => c.sort));
+        setTotalScoreData([
+          {
+            key: "1",
+            userEmail: "Ana Kovač",
+            workout1: "120 pts",
+            workout2: "100 pts",
+            workout3: "95 pts",
+            workout4: "110 pts",
+            total: "425 pts",
+          },
+          {
+            key: "2",
+            userEmail: "Ivan Horvat",
+            workout1: "110 pts",
+            workout2: "105 pts",
+            workout3: "98 pts",
+            workout4: "115 pts",
+            total: "428 pts",
+          },
+          {
+            key: "3",
+            userEmail: "Marija Petrović",
+            workout1: "95 pts",
+            workout2: "90 pts",
+            workout3: "100 pts",
+            workout4: "105 pts",
+            total: "390 pts",
+          },
+        ]);
       } catch (err) {
         console.log(err);
       }
     };
 
     fetchCompetition();
-  }, [competitionId, expandedWorkoutId]);
+  }, [competitionId, expandedWorkoutId, totalScoreColumns]);
 
   const handleClose = useCallback(() => {
     setScores([]);
@@ -245,13 +284,14 @@ function CompetitionDetails() {
           <Col span={12}>
             <Title level={3}>Results</Title>
             <Table
-              dataSource={scoreData}
-              columns={scoreColumns}
+              dataSource={totalScoreData}
+              columns={totalScoreColumns}
               pagination={false}
               bordered
             />
           </Col>
         </Row>
+
         <Row>
           <Button
             type="primary"
