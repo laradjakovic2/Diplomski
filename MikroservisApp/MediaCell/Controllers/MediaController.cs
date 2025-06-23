@@ -25,7 +25,6 @@ namespace MediaCell.Controllers
                 return Ok(media.Url);
 
             return NotFound("File not found");
-
         }
 
         //ovo bas i nije dobro, bolje je da se dohvati url i onda display sliku sa clouda

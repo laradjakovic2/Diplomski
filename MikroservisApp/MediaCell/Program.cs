@@ -18,10 +18,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Kestrel konfiguracija za Docker
+builder.Services.AddCors(options =>
+{
+    string reactOrigin = "http://localhost:5173";
+    options.AddPolicy("WebClientUrl", builder =>
+    {
+        builder.WithOrigins(reactOrigin)
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
+    });
+});
+
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5006); // Listen on port 80
+    options.ListenAnyIP(5006);
 });
 
 var app = builder.Build();
@@ -38,6 +49,9 @@ app.UseSwaggerUI();
 //app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.MapControllers();
 

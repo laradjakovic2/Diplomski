@@ -13,6 +13,9 @@ public class MediaService : IMediaService
 
     private const string connectionString = "UseDevelopmentStorage=true";
     private const string containerName = "images";
+    private const string rootPath = "wwwroot";
+    private const string uploadsFolder = "uploads";
+    private const string baseUrl = "http://localhost:5006";
     public MediaService(AppDbContext context)
     {
         _context = context;
@@ -39,14 +42,24 @@ public class MediaService : IMediaService
 
     public async Task<string> SaveFileWWWRoot(IFormFile file)
     {
-        var filePath = Path.Combine("wwwroot/uploads", file.FileName);
+        if (file == null) throw new ArgumentNullException(nameof(file));
 
-        using (var stream = new FileStream(filePath, FileMode.Create))
+        var uploadPath = Path.Combine(rootPath, uploadsFolder);
+        if (!Directory.Exists(uploadPath))
+        {
+            Directory.CreateDirectory(uploadPath);
+        }
+
+        var extension = Path.GetExtension(file.FileName);
+        var fileName = $"{Guid.NewGuid()}{extension}";
+        var fullFilePath = Path.Combine(uploadPath, fileName);
+
+        using (var stream = new FileStream(fullFilePath, FileMode.Create))
         {
             await file.CopyToAsync(stream);
         }
 
-        return $"/uploads/{file.FileName}";
+        return $"{baseUrl}/{uploadsFolder}/{fileName}";
     }
 
     #endregion

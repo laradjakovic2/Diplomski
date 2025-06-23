@@ -17,6 +17,10 @@ export interface CreateCompetition {
   tax: number;
 }
 
+export interface UpdateCompetition extends CreateCompetition {
+  id: number;
+}
+
 export interface CompetitionDto extends CreateCompetition {
   id: number;
   totalPrice: number;
@@ -83,10 +87,4 @@ export interface UpdateResult {
 
 export interface UpdateScoreRequest {
   scores: UpdateResult[];
-}
-
-export interface MediaRequestModel {
-  file: File;
-  entityId: number;
-  entityType: "Competition" | "Training" | "User"; // prilagodi enum vrijednosti
 }

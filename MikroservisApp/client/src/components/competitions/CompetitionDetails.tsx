@@ -1,5 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import { Row, Col, Card, Table, Typography, Drawer, Button, Input } from "antd";
+import {
+  Row,
+  Col,
+  Card,
+  Table,
+  Typography,
+  Drawer,
+  Button,
+  Input,
+  Image,
+} from "antd";
 import { DownOutlined, PlusOutlined, UpOutlined } from "@ant-design/icons";
 import { useNavigate, useParams } from "@tanstack/react-router";
 import {
@@ -12,6 +22,8 @@ import {
   UpdateScoreRequest,
 } from "../../models/competitions";
 import WorkoutForm from "./WorkoutForm";
+import { EntityType } from "../../models/Enums";
+import { getFileUrl } from "../../api/mediaService";
 
 const { Title } = Typography;
 
@@ -59,6 +71,7 @@ function CompetitionDetails() {
   const { id: competitionId } = useParams({ from: "/competitions/$id/" });
 
   const [competition, setCompetition] = useState<CompetitionDto | undefined>();
+  const [imageUrl, setImageUrl] = useState<string | undefined>();
   const [isWorkoutDrawerOpen, setIsWorkoutDrawerOpen] =
     useState<boolean>(false);
   const [expandedWorkoutId, setExpandedWorkoutId] = useState<
@@ -115,8 +128,13 @@ function CompetitionDetails() {
     const fetchCompetition = async () => {
       try {
         const data = await getCompetitionById(+competitionId);
+        const imageUrl = await getFileUrl(
+          +competitionId,
+          EntityType.Competition
+        );
         console.log(data);
         setCompetition(data);
+        setImageUrl(imageUrl);
       } catch (err) {
         console.log(err);
       }
@@ -158,6 +176,11 @@ function CompetitionDetails() {
             Add workout
           </Button>
         </Row>
+        {imageUrl && (
+          <Row>
+            <Image width={450} src={imageUrl} />
+          </Row>
+        )}
 
         <Row gutter={24}>
           {/* LEFT: Workouts */}

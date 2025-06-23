@@ -46,10 +46,9 @@ builder.Services.AddCors(options =>
     });
 });
 
-/* ovo otkomentirati za pokretanje sa dockerom ili u yaml podesiti da slusa na tom portu*/
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5003);  // Listen on port 80
+    options.ListenAnyIP(5003);
 });
 
 var app = builder.Build();

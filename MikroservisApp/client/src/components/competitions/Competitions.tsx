@@ -11,6 +11,7 @@ import {
   registerUserForCompetition,
 } from "../../api/competitionsService";
 import WorkoutForm from "./WorkoutForm";
+import MediaForm from "../media/MediaForm";
 
 function Competitions() {
   //const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -22,6 +23,7 @@ function Competitions() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [isWorkoutDrawerOpen, setIsWorkoutDrawerOpen] =
     useState<boolean>(false);
+  const [isMediaDrawerOpen, setIsMediaDrawerOpen] = useState<boolean>(false);
   const [isRegisterUserModalOpen, setIsRegisterUserModalOpen] =
     useState<boolean>(false);
 
@@ -46,18 +48,24 @@ function Competitions() {
     []
   );
 
+  const handleMediaDrawerOpen = useCallback((competition?: CompetitionDto) => {
+    setIsMediaDrawerOpen(true);
+    setCompetition(competition);
+  }, []);
+
   const handleDrawerClose = useCallback(() => {
     setCompetition(undefined);
     setIsDrawerOpen(false);
     setIsWorkoutDrawerOpen(false);
     setIsRegisterUserModalOpen(false);
+    setIsMediaDrawerOpen(false);
   }, []);
 
   const handleRegisterToCompetition = useCallback(
     async (competitionId: number, userId: number) => {
       const command: UserRegisteredForCompetition = {
         userId: userId,
-        userEmail: 'lara.dakovic@fer.hr',
+        userEmail: "lara.dakovic@fer.hr",
         competitionId: competitionId,
       };
 
@@ -167,6 +175,12 @@ function Competitions() {
             ),
           },
           {
+            key: "add-image",
+            label: (
+              <div onClick={() => handleMediaDrawerOpen(t)}>{"Add image"}</div>
+            ),
+          },
+          {
             key: "register",
             label: (
               <div onClick={() => handleRegisterUserDrawerOpen(t)}>
@@ -258,6 +272,23 @@ function Competitions() {
         >
           Register to competition {selectedCompetition.title}?
         </Modal>
+      ) : (
+        <></>
+      )}
+
+      {selectedCompetition !== undefined ? (
+        <Drawer
+          title={"Competition images"}
+          open={!!isMediaDrawerOpen}
+          onClose={() => handleDrawerClose()}
+          destroyOnClose
+          width={700}
+        >
+          <MediaForm
+            entityId={selectedCompetition.id}
+            onClose={() => handleDrawerClose()}
+          />
+        </Drawer>
       ) : (
         <></>
       )}
