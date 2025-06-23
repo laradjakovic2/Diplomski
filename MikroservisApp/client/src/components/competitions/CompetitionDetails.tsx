@@ -131,6 +131,7 @@ function CompetitionDetails() {
         );
         console.log(data);
         setCompetition(data);
+        setImageUrl(imageUrl);
 
         const totalScoreCols: ColumnProp[] = [];
 
@@ -173,7 +174,6 @@ function CompetitionDetails() {
             total: "390 pts",
           },
         ]);
-        setImageUrl(imageUrl);
       } catch (err) {
         console.log(err);
       }
