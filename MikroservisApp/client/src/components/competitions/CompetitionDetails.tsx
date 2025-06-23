@@ -132,7 +132,7 @@ function CompetitionDetails() {
         console.log(data);
         setCompetition(data);
         setImageUrl(imageUrl);
-
+        /*
         const totalScoreCols: ColumnProp[] = [];
 
         data.workouts.forEach((workout, index) => {
@@ -174,6 +174,7 @@ function CompetitionDetails() {
             total: "390 pts",
           },
         ]);
+        */
       } catch (err) {
         console.log(err);
       }

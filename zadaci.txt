@@ -40,8 +40,11 @@ docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-
 TODO:
 -myb dohvatiti za usere sva njegova placanja-api poziv na payments servise ili direktno??hmm
 
--poslozit kaj vidi trener a kaj user
+-training-media
+-user-media
+
 -za natjecanja ukupnu tablicu srediti
+-poslozit kaj vidi trener a kaj user
 
 -kontejnerizirati i klijenta
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi, ali trenutno direktno zovem api poseban svaki
@@ -78,3 +81,4 @@ DONE:
 -radi competition-payment i salje poruku do payments servisa i sprema info
 -mediaCell radi spremanje i salje url - azurite - dobro za lokalno testiranje Azure blob storage-a, pitati ima li
 -competition-payment komunikacija sredena, payment info se sprema u bazu
+-competition-media upload i display
