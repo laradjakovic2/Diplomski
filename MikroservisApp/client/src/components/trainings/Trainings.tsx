@@ -6,6 +6,8 @@ import { TrainingDto, TrainingType } from "../../models/trainings";
 import TrainingForm from "./TrainingForm";
 import TrainingTypeForm from "./TrainingTypeForm";
 import { useNavigate } from "@tanstack/react-router";
+import MediaForm from "../media/MediaForm";
+import { EntityType } from "../../models/Enums";
 
 function Trainings() {
   //const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -22,7 +24,8 @@ function Trainings() {
   >(undefined);
   const [isTrainingTypeDrawerOpen, setIsTrainingTypeDrawerOpen] =
     useState<boolean>(false);
-
+  const [isMediaDrawerOpen, setIsMediaDrawerOpen] = useState<boolean>(false);
+  
   const handleOpenDrawer = useCallback((entity?: TrainingDto) => {
     setTraining(entity);
     setIsDrawerOpen(true);
@@ -33,11 +36,17 @@ function Trainings() {
     setIsTrainingTypeDrawerOpen(true);
   }, []);
 
+  const handleMediaDrawerOpen = useCallback((entity?: TrainingDto) => {
+      setIsMediaDrawerOpen(true);
+      setTraining(entity);
+    }, []);
+
   const handleDrawerClose = useCallback(() => {
     setTraining(undefined);
     setTrainingType(undefined);
     setIsDrawerOpen(false);
     setIsTrainingTypeDrawerOpen(false);
+    setIsMediaDrawerOpen(false);
   }, []);
   /*
   const handleDeleteModalOpen = useCallback((activity: TrainingDto) => {
@@ -117,6 +126,12 @@ function Trainings() {
           {
             key: "edit",
             label: <div onClick={() => handleOpenDrawer(t)}>{"Edit"}</div>,
+          },
+          {
+            key: "add-image",
+            label: (
+              <div onClick={() => handleMediaDrawerOpen(t)}>{"Add image"}</div>
+            ),
           },
         ].filter(Boolean) as { key: string; label: JSX.Element }[];
 
@@ -202,6 +217,24 @@ function Trainings() {
           onClose={() => handleDrawerClose()}
         />
       </Drawer>
+
+      {selectedTraining !== undefined ? (
+        <Drawer
+          title={"Training images"}
+          open={!!isMediaDrawerOpen}
+          onClose={() => handleDrawerClose()}
+          destroyOnClose
+          width={700}
+        >
+          <MediaForm
+            entityId={selectedTraining.id}
+            entityType={EntityType.Training}
+            onClose={() => handleDrawerClose()}
+          />
+        </Drawer>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

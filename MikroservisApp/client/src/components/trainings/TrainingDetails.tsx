@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Row, Card, Table, Button, Input, Col, Form } from "antd";
+import { Row, Card, Table, Button, Input, Col, Form, Image } from "antd";
 import { useParams } from "@tanstack/react-router";
 import {
   Registration,
@@ -11,6 +11,8 @@ import {
   registerUserForTraining,
   updateScore,
 } from "../../api/trainingsService";
+import { EntityType } from "../../models/Enums";
+import { getFileUrl } from "../../api/mediaService";
 
 function TrainingDetails() {
   const [form] = Form.useForm();
@@ -18,6 +20,7 @@ function TrainingDetails() {
 
   const [training, setTraining] = useState<TrainingDto | undefined>();
   const [scores, setScores] = useState<Registration[]>([]);
+  const [imageUrl, setImageUrl] = useState<string | undefined>();
 
   const handleScoreChange = (userEmail: string, value: string | number) => {
     setScores((prevScores) =>
@@ -36,9 +39,15 @@ function TrainingDetails() {
     const fetchTraining = async () => {
       try {
         const data = await getTrainingById(+trainingId);
+        const imageUrl = await getFileUrl(
+                  +trainingId,
+                  EntityType.Training
+                );
 
         setTraining(data);
+        setImageUrl(imageUrl);
         setScores(data.registeredAthletes);
+        
       } catch (err) {
         console.log(err);
       }
@@ -113,6 +122,7 @@ function TrainingDetails() {
             >
               <div>{training?.startDate?.toString()}</div>
               <div>{training?.description}</div>
+              <Image width={300} src={imageUrl} />
             </Card>
           </Col>
           <Col span={14}>

@@ -5,30 +5,9 @@ import { getAllUsers } from "../../api/usersService";
 import { UserDto } from "../../models/users";
 
 function Users() {
-  //const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [Users, setUsers] = useState<UserDto[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  /*
-  const handleDeleteModalOpen = useCallback((activity: UserDto) => {
-    setIsDeleteModalOpen(true);
-    setDeleteActivityId(activity.id);
-  }, []);
-  
-  const handleDeleteCancel = useCallback(() => {
-    setIsDeleteModalOpen(false);
-    //setDeleteActivityId(undefined);
-  }, []);
-
-  const handleDeleteConfirm = useCallback(async () => {
-    if (deleteActivityId) {
-      await deleteActivity.mutateAsync(deleteActivityId);
-
-      setIsDeleteModalOpen(false);
-      //setDeleteActivityId(undefined);
-    }
-  }, []);
-*/
   useEffect(() => {
     const fetchUsers = async () => {
       try {

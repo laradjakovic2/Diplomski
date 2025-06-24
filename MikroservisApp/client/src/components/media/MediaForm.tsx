@@ -10,16 +10,17 @@ import { uploadMedia } from "../../api/mediaService";
 interface Props {
   onClose: () => void;
   entityId: number;
+  entityType: EntityType;
 }
 
-function MediaForm({ onClose, entityId }: Props) {
+function MediaForm({ onClose, entityId, entityType }: Props) {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const handleSubmit = useCallback(async () => {
     const command: MediaRequestModel = {
       relatedEntityId: entityId,
-      entityType: EntityType.Competition,
+      entityType: entityType,
       mediaType: MediaType.Image,
       file:
         fileList.length > 0
@@ -33,7 +34,7 @@ function MediaForm({ onClose, entityId }: Props) {
     uploadMedia(command);
 
     onClose();
-  }, [entityId, fileList, onClose]);
+  }, [entityId, entityType, fileList, onClose]);
 
   const handleBeforeUpload = useCallback((file: RcFile) => {
     const uploadFile: UploadFile = {

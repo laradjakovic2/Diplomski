@@ -12,6 +12,8 @@ import {
 } from "../../api/competitionsService";
 import WorkoutForm from "./WorkoutForm";
 import MediaForm from "../media/MediaForm";
+import { Link } from "@tanstack/react-router";
+import { EntityType } from "../../models/Enums";
 
 function Competitions() {
   //const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -114,6 +116,9 @@ function Competitions() {
     {
       title: "Competition",
       dataIndex: "title",
+      render: (value: string, competition: CompetitionDto) => (
+        <Link to={`/competitions/${competition.id}`}>{value}</Link>
+      ),
     },
     {
       title: "Description",
@@ -286,6 +291,7 @@ function Competitions() {
         >
           <MediaForm
             entityId={selectedCompetition.id}
+            entityType={EntityType.Competition}
             onClose={() => handleDrawerClose()}
           />
         </Drawer>
