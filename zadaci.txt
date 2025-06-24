@@ -40,10 +40,8 @@ docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-
 TODO:
 -myb dohvatiti za usere sva njegova placanja-api poziv na payments servise ili direktno??hmm
 
--training-media
 -user-media
 
--za natjecanja ukupnu tablicu srediti
 -poslozit kaj vidi trener a kaj user
 
 -kontejnerizirati i klijenta
@@ -55,9 +53,9 @@ TODO:
 -APIGateway dodati autorizaciju prosljeduje samo ako je autoriziran
 
 PITATI MENTORA:
--ima li acc za spremanje na cloud Azure Blob storage
 -Payment kako trenutno radi, simulacija samo, je li to ok pristup
 -slanje mailova trenutno ide preko mog privatnog, ima li neki MailGun
+-ima li acc za spremanje na cloud Azure Blob storage
 
 
 DONE:
@@ -82,3 +80,5 @@ DONE:
 -mediaCell radi spremanje i salje url - azurite - dobro za lokalno testiranje Azure blob storage-a, pitati ima li
 -competition-payment komunikacija sredena, payment info se sprema u bazu
 -competition-media upload i display
+-training-media
+-za natjecanja ukupnu tablicu srediti

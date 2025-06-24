@@ -18,8 +18,10 @@ import {
 } from "../../api/competitionsService";
 import {
   CompetitionDto,
+  CompetitionMembership,
   UpdateResult,
   UpdateScoreRequest,
+  WorkoutDto,
 } from "../../models/competitions";
 import WorkoutForm from "./WorkoutForm";
 import { EntityType } from "../../models/Enums";
@@ -37,12 +39,7 @@ interface ColumnProp {
 interface ScoreItem {
   key: string;
   userEmail: string;
-  workout1?: number | string;
-  workout2?: number | string;
-  workout3?: number | string;
-  workout4?: number | string;
-  workout5?: number | string;
-  workout6?: number | string;
+  [key: string]: number | string; // za workout1, workout2,
   total: number | string;
 }
 
@@ -58,23 +55,8 @@ function CompetitionDetails() {
     number | undefined
   >(undefined);
   const [scores, setScores] = useState<UpdateResult[]>([]);
-  const [totalScoreColumns, setTotalScoreColumns] = useState<ColumnProp[]>([
-    { title: "Name", dataIndex: "name", key: "name", sort: -1 },
-    { title: "Workout 0", dataIndex: "workout0", key: "workout0", sort: 0 },
-    { title: "Workout 1", dataIndex: "workout1", key: "workout1", sort: 0 },
-    { title: "Total", dataIndex: "total", key: "total", sort: 100 },
-  ]);
-  const [totalScoreData, setTotalScoreData] = useState<ScoreItem[]>([
-    {
-      key: "1",
-      userEmail: "Ana Kovač",
-      workout1: "120 pts",
-      workout2: "100 pts",
-      workout3: "95 pts",
-      workout4: "110 pts",
-      total: "425 pts",
-    },
-  ]);
+  const [totalScoreColumns, setTotalScoreColumns] = useState<ColumnProp[]>([]);
+  const [totalScoreData, setTotalScoreData] = useState<ScoreItem[]>([]);
 
   const handleScoreChange = (userId: number, value: string | number) => {
     setScores((prevScores) =>
@@ -121,67 +103,107 @@ function CompetitionDetails() {
     );
   };
 
+  const generateScoreTable = (
+    workouts: WorkoutDto[],
+    memberships: CompetitionMembership[]
+  ): { columns: ColumnProp[]; data: ScoreItem[] } => {
+    const columns: ColumnProp[] = [
+      {
+        title: "Natjecatelj",
+        dataIndex: "userEmail",
+        key: "userEmail",
+        sort: 0,
+      },
+    ];
+    const data: ScoreItem[] = [];
+    const sortedWorkouts = [...workouts].sort((a, b) => a.id - b.id);
+
+    // Map trening ID -> workout key npr: workout1, workout2...
+    const workoutKeys = sortedWorkouts.map((w, index) => ({
+      key: `workout${index + 1}`,
+      workout: w,
+    }));
+
+    workoutKeys.forEach(({ key }, index) => {
+      columns.push({
+        title: `Workout ${index + 1}`,
+        dataIndex: key,
+        key,
+        sort: index + 1,
+      });
+    });
+
+    columns.push({
+      title: "Total",
+      dataIndex: "total",
+      key: "total",
+      sort: workoutKeys.length + 1,
+    });
+
+    for (const member of memberships) {
+      const scoreItem: ScoreItem = {
+        key: member.userId.toString(),
+        userEmail: member.userEmail ?? "",
+        total: 0,
+      };
+
+      let total = 0;
+
+      workoutKeys.forEach(({ key, workout }) => {
+        const result = workout.results.find((r) => r.userId === member.userId);
+        const scoreStr = result?.score ?? "0";
+
+        const score = parseFloat(scoreStr.toString());
+        const validScore = isNaN(score) ? 0 : score;
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (scoreItem as any)[key] = validScore;
+        total += validScore;
+      });
+
+      scoreItem.total = total;
+      data.push(scoreItem);
+    }
+
+    return { columns, data };
+  };
+
   useEffect(() => {
     const fetchCompetition = async () => {
       try {
         const data = await getCompetitionById(+competitionId);
+        setCompetition(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const fetchImage = async () => {
+      try {
         const imageUrl = await getFileUrl(
           +competitionId,
           EntityType.Competition
         );
-        console.log(data);
-        setCompetition(data);
         setImageUrl(imageUrl);
-        /*
-        const totalScoreCols: ColumnProp[] = [];
-
-        data.workouts.forEach((workout, index) => {
-          totalScoreCols.push({
-            title: workout.title,
-            dataIndex: workout.id.toString(),
-            key: workout.id.toString(),
-            sort: index,
-          });
-        });
-
-        setTotalScoreColumns(totalScoreCols.sort((c) => c.sort));
-        setTotalScoreData([
-          {
-            key: "1",
-            userEmail: "Ana Kovač",
-            workout1: "120 pts",
-            workout2: "100 pts",
-            workout3: "95 pts",
-            workout4: "110 pts",
-            total: "425 pts",
-          },
-          {
-            key: "2",
-            userEmail: "Ivan Horvat",
-            workout1: "110 pts",
-            workout2: "105 pts",
-            workout3: "98 pts",
-            workout4: "115 pts",
-            total: "428 pts",
-          },
-          {
-            key: "3",
-            userEmail: "Marija Petrović",
-            workout1: "95 pts",
-            workout2: "90 pts",
-            workout3: "100 pts",
-            workout4: "105 pts",
-            total: "390 pts",
-          },
-        ]);
-        */
       } catch (err) {
         console.log(err);
       }
     };
 
     fetchCompetition();
-  }, [competitionId, expandedWorkoutId, totalScoreColumns]);
+    fetchImage();
+  }, [competitionId]);
+
+  useEffect(() => {
+    if (competition?.workouts && competition.competitionMemberships) {
+      const { columns, data } = generateScoreTable(
+        competition.workouts,
+        competition.competitionMemberships
+      );
+      setTotalScoreColumns(columns);
+      setTotalScoreData(data);
+    }
+  }, [competition]);
 
   const handleClose = useCallback(() => {
     setScores([]);
@@ -204,7 +226,6 @@ function CompetitionDetails() {
       <div>
         <Row>
           <Title level={2}>{competition?.title}</Title>
-          <div>Price: {competition?.totalPrice}</div>
 
           <Button
             key="1"
@@ -216,6 +237,12 @@ function CompetitionDetails() {
             Add workout
           </Button>
         </Row>
+
+        <Row>
+          <Title level={4}>{competition?.totalPrice}</Title>
+          <div>{competition?.description}</div>
+        </Row>
+        
         {imageUrl && (
           <Row>
             <Image width={450} src={imageUrl} />
