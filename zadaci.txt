@@ -45,11 +45,6 @@ PROMJENE OBAVEZNO KAK PISE U DIPL:
 
 TODO:
 
--user-media
-
-
--poslozit kaj vidi trener a kaj user
-
 -odvojiti u poseban github repo samo kod
 -kontejnerizirati i klijenta ili ga staviti u odvojeni dio-sve zapisati u dipl
 -APIGateway azurirati rute i pokretati sve preko toga-kontejnerizirano isto-radi, ali trenutno direktno zovem api poseban svaki
