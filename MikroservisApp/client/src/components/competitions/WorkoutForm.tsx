@@ -1,4 +1,4 @@
-import { Button, Form, Input, Row, Select } from "antd";
+import { Button, Col, Form, Input, Row, Select } from "antd";
 import { useCallback, useEffect } from "react";
 import { SaveOutlined } from "@ant-design/icons";
 import "../../App.css";
@@ -73,23 +73,29 @@ function WorkoutForm({ onClose, workout, competition }: Props) {
 
       <Form.Item name="scoreType" label={"Score"}>
         <Select placeholder="Select score" style={{ width: "100%" }}>
-          {Object.values(ScoreType).map((type) => (
-            <Option key={type} value={type}>
-              {type}
-            </Option>
-          ))}
+          {Object.values(ScoreType)
+            .filter((key) => isNaN(Number(key)))
+            .map((type) => (
+              <Option key={type} value={type}>
+                {type}
+              </Option>
+            ))}
         </Select>
       </Form.Item>
 
       {!workout?.id && (
-        <Row className="form-buttons">
-          <Button type="default" onClick={() => onClose()}>
-            {"Cancel"}
-          </Button>
-          <Button type="primary" htmlType="submit">
-            <SaveOutlined />
-            {"Save"}
-          </Button>
+        <Row justify="end" gutter={8} className="form-buttons">
+          <Col>
+            <Button type="default" onClick={() => onClose()}>
+              Cancel
+            </Button>
+          </Col>
+          <Col>
+            <Button type="primary" htmlType="submit">
+              <SaveOutlined />
+              Save
+            </Button>
+          </Col>
         </Row>
       )}
     </Form>

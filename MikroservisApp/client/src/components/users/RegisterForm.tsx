@@ -1,6 +1,9 @@
 import { CreateUser } from "../../models/users";
 import { registerUser } from "../../api/usersService";
-import { Button, DatePicker, Form, Input } from "antd";
+import { Button, DatePicker, Form, Input, Select } from "antd";
+import { UserRole } from "../../models/Enums";
+
+const { Option } = Select;
 
 function RegisterForm() {
   const [form] = Form.useForm();
@@ -16,11 +19,11 @@ function RegisterForm() {
 
   return (
     <div>
-      <div>Login</div>
+      <div>Register</div>
       <Form
         form={form}
-        labelCol={{ span: 7 }}
-        wrapperCol={{ span: 17 }}
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 8 }}
         onFinish={handleRegister}
       >
         <Form.Item
@@ -56,15 +59,23 @@ function RegisterForm() {
         </Form.Item>
 
         <Form.Item name="birthDate" label={"Birthdate"}>
-          <DatePicker />
+          <DatePicker style={{ width: "100%" }} />
         </Form.Item>
 
         <Form.Item
           name="roleId"
-          label={"roleId"}
+          label={"Role"}
           rules={[{ max: 500, message: "Too long" }]}
         >
-          <Input />
+          <Select placeholder="Select role" style={{ width: "100%" }}>
+            {Object.values(UserRole)
+              .filter((key) => isNaN(Number(key)))
+              .map((type) => (
+                <Option key={type} value={type}>
+                  {type}
+                </Option>
+              ))}
+          </Select>
         </Form.Item>
 
         <Button type="primary" htmlType="submit">
@@ -75,4 +86,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;;
+export default RegisterForm;

@@ -169,7 +169,7 @@ function Competitions() {
           },
           {
             key: "edit",
-            label: <div onClick={() => handleOpenDrawer(t)}>{"<Edit"}</div>,
+            label: <div onClick={() => handleOpenDrawer(t)}>{"Edit"}</div>,
           },
           {
             key: "add-workout",
@@ -219,7 +219,7 @@ function Competitions() {
           marginBottom: 16,
         }}
       >
-        <h1 style={{ margin: 0 }}>competitions</h1>
+        <h1 style={{ margin: 0 }}>Competitions</h1>
         <Button key="1" type="primary" onClick={() => handleOpenDrawer()}>
           <PlusOutlined />
           Add

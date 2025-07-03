@@ -38,9 +38,6 @@ const Sidebar: React.FC = () => {
         <Menu.Item key="/competitions" icon={<UserOutlined />}>
           <Link to="/competitions">Competitions</Link>
         </Menu.Item>
-        <Menu.Item key="/login" icon={<UserOutlined />}>
-          <Link to="/login">Login</Link>
-        </Menu.Item>
         <Menu.Item key="/calendar" icon={<UserOutlined />}>
           <Link to="/calendar">Calendar</Link>
         </Menu.Item>

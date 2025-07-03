@@ -1,11 +1,7 @@
 import { Card, Col, Row } from "antd";
 import { useEffect, useState } from "react";
-import {
-  CompetitionDto,
-} from "../../models/competitions";
-import {
-  getAllCompetitions,
-} from "../../api/competitionsService";
+import { CompetitionDto } from "../../models/competitions";
+import { getAllCompetitions } from "../../api/competitionsService";
 import { Link } from "@tanstack/react-router";
 
 function Competitions() {
@@ -37,9 +33,9 @@ function Competitions() {
                 headStyle={{ backgroundColor: "#e6f7ff" }}
                 hoverable
               >
-                <div>{competition.startDate.toString()}</div>
-                <div>{competition.endDate.toString()}</div>
-                <div>{competition.description}</div>
+                <div>{competition.startDate.toLocaleString()}</div>
+                <div>{competition.endDate.toLocaleString()}</div>
+                <div style={{ marginTop: 10 }}>{competition.description}</div>
               </Card>
             </Link>
           </Col>

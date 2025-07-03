@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as UsersImport } from './routes/users'
+import { Route as RegisterImport } from './routes/register'
 import { Route as PaymentsImport } from './routes/payments'
 import { Route as LoginImport } from './routes/login'
 import { Route as CalendarImport } from './routes/calendar'
@@ -27,6 +28,12 @@ import { Route as CompetitionsIdRegistrationImport } from './routes/competitions
 const UsersRoute = UsersImport.update({
   id: '/users',
   path: '/users',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RegisterRoute = RegisterImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -118,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaymentsImport
       parentRoute: typeof rootRoute
     }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterImport
+      parentRoute: typeof rootRoute
+    }
     '/users': {
       id: '/users'
       path: '/users'
@@ -170,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/calendar': typeof CalendarRoute
   '/login': typeof LoginRoute
   '/payments': typeof PaymentsRoute
+  '/register': typeof RegisterRoute
   '/users': typeof UsersRoute
   '/trainings/$id': typeof TrainingsIdRoute
   '/competitions': typeof CompetitionsIndexRoute
@@ -183,6 +198,7 @@ export interface FileRoutesByTo {
   '/calendar': typeof CalendarRoute
   '/login': typeof LoginRoute
   '/payments': typeof PaymentsRoute
+  '/register': typeof RegisterRoute
   '/users': typeof UsersRoute
   '/trainings/$id': typeof TrainingsIdRoute
   '/competitions': typeof CompetitionsIndexRoute
@@ -197,6 +213,7 @@ export interface FileRoutesById {
   '/calendar': typeof CalendarRoute
   '/login': typeof LoginRoute
   '/payments': typeof PaymentsRoute
+  '/register': typeof RegisterRoute
   '/users': typeof UsersRoute
   '/trainings/$id': typeof TrainingsIdRoute
   '/competitions/': typeof CompetitionsIndexRoute
@@ -212,6 +229,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/login'
     | '/payments'
+    | '/register'
     | '/users'
     | '/trainings/$id'
     | '/competitions'
@@ -224,6 +242,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/login'
     | '/payments'
+    | '/register'
     | '/users'
     | '/trainings/$id'
     | '/competitions'
@@ -236,6 +255,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/login'
     | '/payments'
+    | '/register'
     | '/users'
     | '/trainings/$id'
     | '/competitions/'
@@ -250,6 +270,7 @@ export interface RootRouteChildren {
   CalendarRoute: typeof CalendarRoute
   LoginRoute: typeof LoginRoute
   PaymentsRoute: typeof PaymentsRoute
+  RegisterRoute: typeof RegisterRoute
   UsersRoute: typeof UsersRoute
   TrainingsIdRoute: typeof TrainingsIdRoute
   CompetitionsIndexRoute: typeof CompetitionsIndexRoute
@@ -263,6 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarRoute: CalendarRoute,
   LoginRoute: LoginRoute,
   PaymentsRoute: PaymentsRoute,
+  RegisterRoute: RegisterRoute,
   UsersRoute: UsersRoute,
   TrainingsIdRoute: TrainingsIdRoute,
   CompetitionsIndexRoute: CompetitionsIndexRoute,
@@ -285,6 +307,7 @@ export const routeTree = rootRoute
         "/calendar",
         "/login",
         "/payments",
+        "/register",
         "/users",
         "/trainings/$id",
         "/competitions/",
@@ -304,6 +327,9 @@ export const routeTree = rootRoute
     },
     "/payments": {
       "filePath": "payments.tsx"
+    },
+    "/register": {
+      "filePath": "register.tsx"
     },
     "/users": {
       "filePath": "users.tsx"

@@ -37,10 +37,16 @@ NAPOMENE NAKON STO KONTEJNERIZIRANO:
 pokretanje Azurite:
 docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite
 -----------------------------------------------------------------
+
+PROMJENE OBAVEZNO KAK PISE U DIPL:
+-kontejnerizirati client
+
+
+
 TODO:
--myb dohvatiti za usere sva njegova placanja-api poziv na payments servise ili direktno??hmm
 
 -user-media
+
 
 -poslozit kaj vidi trener a kaj user
 
@@ -55,7 +61,6 @@ TODO:
 PITATI MENTORA:
 -Payment kako trenutno radi, simulacija samo, je li to ok pristup
 -slanje mailova trenutno ide preko mog privatnog, ima li neki MailGun
--ima li acc za spremanje na cloud Azure Blob storage
 
 
 DONE:

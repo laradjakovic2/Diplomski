@@ -230,7 +230,7 @@ function CompetitionDetails() {
           <Button
             key="1"
             type="primary"
-            style={{ marginTop: 25, marginLeft: 15 }}
+            style={{ marginTop: 30, marginLeft: 15 }}
             onClick={() => setIsWorkoutDrawerOpen(true)}
           >
             <PlusOutlined />
@@ -239,15 +239,13 @@ function CompetitionDetails() {
         </Row>
 
         <Row>
-          <Title level={4}>{competition?.totalPrice}</Title>
-          <div>{competition?.description}</div>
+          <div>Price: {competition?.totalPrice}</div>
         </Row>
-        
-        {imageUrl && (
-          <Row>
-            <Image width={450} src={imageUrl} />
-          </Row>
-        )}
+        <Row>
+          <div style={{ whiteSpace: "pre-wrap" }}>
+            {competition?.description}
+          </div>
+        </Row>
 
         <Row gutter={24}>
           {/* LEFT: Workouts */}
@@ -346,6 +344,7 @@ function CompetitionDetails() {
         <Row>
           <Button
             type="primary"
+            style={{ margin: 10 }}
             onClick={() => {
               navigate({
                 to: "/competitions/$id/registration",
@@ -356,6 +355,12 @@ function CompetitionDetails() {
             Register
           </Button>
         </Row>
+
+        {imageUrl && (
+          <Row>
+            <Image width={350} src={imageUrl} />
+          </Row>
+        )}
       </div>
 
       {competition && (

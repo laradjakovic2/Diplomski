@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, Row, Select } from "antd";
+import { Button, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { SaveOutlined } from "@ant-design/icons";
 import "../../App.css";
@@ -41,8 +41,6 @@ function TrainingForm({
         const data = await getAllTrainingTypes();
         console.log(data);
         setTrainingTypes(data);
-        // eslint-disable-next-line no-debugger
-        debugger;
       } catch (err) {
         console.log(err);
       }
@@ -68,8 +66,6 @@ function TrainingForm({
         trainerId: 1,
         scoreType: ScoreType.Time,
       };
-      // eslint-disable-next-line no-debugger
-      debugger;
       if (!training?.id) {
         await createTraining({ ...command });
       } else {
@@ -130,14 +126,18 @@ function TrainingForm({
         </Select>
       </Form.Item>
 
-      <Row className="form-buttons">
-        <Button type="default" onClick={() => onClose()}>
-          {"Cancel"}
-        </Button>
-        <Button type="primary" htmlType="submit">
-          <SaveOutlined />
-          {"Save"}
-        </Button>
+      <Row justify="end" gutter={8} className="form-buttons">
+        <Col>
+          <Button type="default" onClick={() => onClose()}>
+            Cancel
+          </Button>
+        </Col>
+        <Col>
+          <Button type="primary" htmlType="submit">
+            <SaveOutlined />
+            Save
+          </Button>
+        </Col>
       </Row>
     </Form>
   );

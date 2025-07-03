@@ -39,15 +39,14 @@ function TrainingDetails() {
     const fetchTraining = async () => {
       try {
         const data = await getTrainingById(+trainingId);
-        const imageUrl = await getFileUrl(+trainingId, EntityType.Training);
-
+        
         setTraining(data);
-        setImageUrl(imageUrl);
         setScores(data.registeredAthletes);
       } catch (err) {
         console.log(err);
       }
     };
+
     const fetchImageUrl = async () => {
       try {
         const imageUrl = await getFileUrl(+trainingId, EntityType.Training);

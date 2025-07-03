@@ -1,8 +1,12 @@
-import { Button, DatePicker, Form, Input, Row } from "antd";
+import { Button, Col, DatePicker, Form, Input, Row } from "antd";
 import { useCallback, useEffect } from "react";
 import { SaveOutlined } from "@ant-design/icons";
 import "../../App.css";
-import { CompetitionDto, CreateCompetition } from "../../models/competitions";
+import {
+  CompetitionDto,
+  CreateCompetition,
+  UpdateCompetition,
+} from "../../models/competitions";
 import {
   createCompetition,
   updateCompetition,
@@ -20,18 +24,17 @@ function CompetitionForm({ onClose, Competition }: Props) {
   useEffect(() => {
     if (Competition) {
       for (const [key, value] of Object.entries(Competition)) {
-        if(key==='startDate' || key==='endDate'){
+        if (key === "startDate" || key === "endDate") {
           form.setFieldsValue({ [key]: dayjs(value) });
-        }else{
+        } else {
           form.setFieldsValue({ [key]: value });
         }
-        
       }
     }
   }, [form, Competition]);
 
   const handleSubmit = useCallback(
-    async (values: CreateCompetition | CompetitionDto) => {
+    async (values: CreateCompetition | UpdateCompetition) => {
       const command = {
         ...values,
       };
@@ -77,24 +80,33 @@ function CompetitionForm({ onClose, Competition }: Props) {
         <DatePicker />
       </Form.Item>
 
+      <Form.Item name="price" label={"Price"}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item name="tax" label={"Tax"}>
+        <Input />
+      </Form.Item>
+
       <Form.Item name="location" label={"Location"}>
         <Input />
       </Form.Item>
 
-      {!Competition?.id && (
-        <Row className="form-buttons">
+      <Row justify="end" gutter={8} className="form-buttons">
+        <Col>
           <Button type="default" onClick={() => onClose()}>
-            {"Cancel"}
+            Cancel
           </Button>
+        </Col>
+        <Col>
           <Button type="primary" htmlType="submit">
             <SaveOutlined />
-            {"Save"}
+            Save
           </Button>
-        </Row>
-      )}
+        </Col>
+      </Row>
     </Form>
   );
 }
 
 export default CompetitionForm;
-

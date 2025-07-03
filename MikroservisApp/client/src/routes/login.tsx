@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Button, Form, Input } from "antd";
-import RegisterForm from "../components/users/RegisterForm";
 import { loginUser } from "../api/usersService";
 import { LoginUser } from "../models/users";
 
@@ -13,8 +12,7 @@ function RouteComponent() {
   const handleLogin = async (credentials: LoginUser) => {
     try {
       const token = await loginUser(credentials);
-      localStorage.setItem("token", token); //Spremanje tokena
-      // Nastavi s autoriziranim radnjama
+      localStorage.setItem("token", token);
     } catch (err) {
       console.error("Login error", err);
     }
@@ -49,8 +47,6 @@ function RouteComponent() {
           Login{" "}
         </Button>
       </Form>
-
-      <RegisterForm />
     </div>
   );
 }

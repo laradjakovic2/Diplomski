@@ -1,4 +1,4 @@
-import { Button, Form, Row, UploadFile } from "antd";
+import { Button, Col, Form, Row, UploadFile } from "antd";
 import { useCallback, useState } from "react";
 import { SaveOutlined, UploadOutlined } from "@ant-design/icons";
 import "../../App.css";
@@ -63,14 +63,18 @@ function MediaForm({ onClose, entityId, entityType }: Props) {
         </Upload>
       </Form.Item>
 
-      <Row className="form-buttons">
-        <Button type="default" onClick={() => onClose()}>
-          {"Cancel"}
-        </Button>
-        <Button type="primary" htmlType="submit">
-          <SaveOutlined />
-          {"Save"}
-        </Button>
+      <Row justify="end" gutter={8} className="form-buttons">
+        <Col>
+          <Button type="default" onClick={() => onClose()}>
+            Cancel
+          </Button>
+        </Col>
+        <Col>
+          <Button type="primary" htmlType="submit">
+            <SaveOutlined />
+            Save
+          </Button>
+        </Col>
       </Row>
     </Form>
   );

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Row, Typography, Button, Input, Form } from "antd";
+import { Row, Typography, Button, Input, Form, Col } from "antd";
 import { useNavigate, useParams } from "@tanstack/react-router";
 import {
   getCompetitionById,
@@ -56,18 +56,25 @@ function CompetitionRegistration() {
       });
       onClose();
     },
-    [competition?.price, competition?.tax, competition?.totalPrice, competitionId, onClose]
+    [
+      competition?.price,
+      competition?.tax,
+      competition?.totalPrice,
+      competitionId,
+      onClose,
+    ]
   );
 
   return (
     <>
       <Title level={3}>{competition?.title}</Title>
       <div>Price: {competition?.totalPrice}</div>
+      <div>{competition?.description}</div>
       <Title level={4}>Payment data</Title>
       <Form
         form={form}
-        labelCol={{ span: 7 }}
-        wrapperCol={{ span: 17 }}
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 8 }}
         onFinish={handleSubmit}
       >
         <Form.Item
@@ -86,13 +93,17 @@ function CompetitionRegistration() {
           <Input />
         </Form.Item>
 
-        <Row className="form-buttons">
-          <Button type="default" onClick={onClose}>
-            {"Cancel"}
-          </Button>
-          <Button type="primary" htmlType="submit">
-            Checkout and pay
-          </Button>
+        <Row justify="end" gutter={8} className="form-buttons">
+          <Col>
+            <Button type="default" onClick={() => onClose()}>
+              Cancel
+            </Button>
+          </Col>
+          <Col>
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
+          </Col>
         </Row>
       </Form>
     </>

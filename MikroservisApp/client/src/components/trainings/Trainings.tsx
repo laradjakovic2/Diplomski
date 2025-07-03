@@ -5,7 +5,7 @@ import { getAllTrainings } from "../../api/trainingsService";
 import { TrainingDto, TrainingType } from "../../models/trainings";
 import TrainingForm from "./TrainingForm";
 import TrainingTypeForm from "./TrainingTypeForm";
-import { useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import MediaForm from "../media/MediaForm";
 import { EntityType } from "../../models/Enums";
 
@@ -25,7 +25,7 @@ function Trainings() {
   const [isTrainingTypeDrawerOpen, setIsTrainingTypeDrawerOpen] =
     useState<boolean>(false);
   const [isMediaDrawerOpen, setIsMediaDrawerOpen] = useState<boolean>(false);
-  
+
   const handleOpenDrawer = useCallback((entity?: TrainingDto) => {
     setTraining(entity);
     setIsDrawerOpen(true);
@@ -37,9 +37,9 @@ function Trainings() {
   }, []);
 
   const handleMediaDrawerOpen = useCallback((entity?: TrainingDto) => {
-      setIsMediaDrawerOpen(true);
-      setTraining(entity);
-    }, []);
+    setIsMediaDrawerOpen(true);
+    setTraining(entity);
+  }, []);
 
   const handleDrawerClose = useCallback(() => {
     setTraining(undefined);
@@ -87,6 +87,9 @@ function Trainings() {
     {
       title: "Training",
       dataIndex: "title",
+      render: (value: string, t: TrainingDto) => (
+        <Link to={`/trainings/${t.id}`}>{value}</Link>
+      ),
     },
     {
       title: "Description",
