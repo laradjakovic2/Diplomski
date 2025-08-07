@@ -1,9 +1,6 @@
 import { CreateUser } from "../../models/users";
 import { registerUser } from "../../api/usersService";
-import { Button, DatePicker, Form, Input, Select } from "antd";
-import { UserRole } from "../../models/Enums";
-
-const { Option } = Select;
+import { Button, DatePicker, Form, Input } from "antd";
 
 function RegisterForm() {
   const [form] = Form.useForm();
@@ -52,7 +49,15 @@ function RegisterForm() {
 
         <Form.Item
           name="password"
-          label={"Pass"}
+          label={"Password"}
+          rules={[{ max: 500, message: "Too long" }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="password"
+          label={"Repeat password"}
           rules={[{ max: 500, message: "Too long" }]}
         >
           <Input />
@@ -62,7 +67,7 @@ function RegisterForm() {
           <DatePicker style={{ width: "100%" }} />
         </Form.Item>
 
-        <Form.Item
+        {/*<Form.Item
           name="roleId"
           label={"Role"}
           rules={[{ max: 500, message: "Too long" }]}
@@ -76,7 +81,7 @@ function RegisterForm() {
                 </Option>
               ))}
           </Select>
-        </Form.Item>
+        </Form.Item>*/}
 
         <Button type="primary" htmlType="submit">
           Register{" "}

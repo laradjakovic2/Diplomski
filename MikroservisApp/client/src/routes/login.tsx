@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button, Form, Input } from "antd";
 import { loginUser } from "../api/usersService";
 import { LoginUser } from "../models/users";
@@ -37,7 +37,7 @@ function RouteComponent() {
 
         <Form.Item
           name="password"
-          label={"Pass"}
+          label={"Password"}
           rules={[{ max: 500, message: "Too long" }]}
         >
           <Input />
@@ -46,6 +46,10 @@ function RouteComponent() {
         <Button type="primary" htmlType="submit">
           Login{" "}
         </Button>
+
+        <div>
+          You don't have an account? <Link to="/register">Register</Link>
+        </div>
       </Form>
     </div>
   );

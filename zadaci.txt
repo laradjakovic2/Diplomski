@@ -42,7 +42,6 @@ PROMJENE OBAVEZNO KAK PISE U DIPL:
 -kontejnerizirati client
 
 
-
 TODO:
 
 -odvojiti u poseban github repo samo kod

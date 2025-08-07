@@ -25,10 +25,11 @@ function Payments() {
       title: "User",
       dataIndex: "userEmail",
     },
-    /*{
+    {
       title: "Competition",
       dataIndex: "competitionId",
-    },*/
+      render: () => "Zagreb Games",
+    },
     {
       title: "Price",
       dataIndex: "total",

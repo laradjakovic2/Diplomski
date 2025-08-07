@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { CompetitionDto } from "../../models/competitions";
 import { getAllCompetitions } from "../../api/competitionsService";
 import { Link } from "@tanstack/react-router";
+import { formatDate } from "../../helpers/OptionsMappingHelper";
 
 function Competitions() {
   const [competitions, setCompetitions] = useState<
@@ -33,9 +34,14 @@ function Competitions() {
                 headStyle={{ backgroundColor: "#e6f7ff" }}
                 hoverable
               >
-                <div>{competition.startDate.toLocaleString()}</div>
-                <div>{competition.endDate.toLocaleString()}</div>
-                <div style={{ marginTop: 10 }}>{competition.description}</div>
+                <div>{formatDate(competition.startDate)}</div>
+                <div>{formatDate(competition.endDate)}</div>
+                <div style={{ marginTop: 10 }}>
+                  {competition.description &&
+                  competition.description?.length > 150
+                    ? competition.description?.slice(0, 150) + "..."
+                    : competition.description}
+                </div>
               </Card>
             </Link>
           </Col>

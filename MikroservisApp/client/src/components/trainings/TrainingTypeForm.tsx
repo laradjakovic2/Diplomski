@@ -1,4 +1,4 @@
-import { Button, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
 import { useCallback, useEffect } from "react";
 import { SaveOutlined } from "@ant-design/icons";
 import "../../App.css";
@@ -50,14 +50,19 @@ function TrainingTypeForm({ onClose, trainingType }: Props) {
         <Input />
       </Form.Item>
 
-      <Row className="form-buttons">
-        <Button type="default" onClick={() => onClose()}>
-          {"Cancel"}
-        </Button>
-        <Button type="primary" htmlType="submit">
-          <SaveOutlined />
-          {"Save"}
-        </Button>
+      <Row justify="end" gutter={8} className="form-buttons">
+        <Col>
+          <Button type="default" onClick={() => onClose()}>
+            {"Cancel"}
+          </Button>
+        </Col>
+
+        <Col>
+          <Button type="primary" htmlType="submit">
+            <SaveOutlined />
+            {"Save"}
+          </Button>
+        </Col>
       </Row>
     </Form>
   );
