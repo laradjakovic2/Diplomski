@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: lara2001
-      POSTGRES_DB: UsersCell  # Primary (mora jedan biti naveden, ostali se stvaraju putem SQL-a)
+      POSTGRES_DB: UsersCell  # mora jedan biti naveden, ostali se stvaraju putem SQL-a
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init:/docker-entrypoint-initdb.d
@@ -20,14 +20,10 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
-    #hostname: rabbitmq
     restart: always
     ports:
-      - "5672:5672"      # RabbitMQ TCP port
-      - "15672:15672"     # Web UI (default je 15672)
-    #expose:
-     #- 15672
-     #- 5672
+      - "5672:5672"
+      - "15672:15672"
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "ping"]
       interval: 5s
